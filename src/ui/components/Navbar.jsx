@@ -1,14 +1,17 @@
 import React from 'react'
+import '../../styles/Navbar.css'
 
 const Navbar = () => {
   return (
-    <div>
-        <h1>Busca ofertas en autos economicos, deportivos y de lujo</h1>
-        <form className='formulario'>
-            <input type="text" />
-            <input type="text" />
-            <button>Buscar</button>
-        </form>
+    <div className="navbar">
+      <h1 className="menssage">
+        Busca ofertas en autos economicos, deportivos y de lujo
+      </h1>
+      <form className="formulario">
+        <input type="text" />
+        <input type="text" />
+        <button className="button-submit">Buscar</button>
+      </form>
     </div>
   )
 }
