@@ -1,0 +1,41 @@
+@import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@700&display=swap');
+
+/* estilos del navbar, busqueda */
+.navbar {
+  text-align: center;
+  color: #dfe4ea;
+  background-color: #191b1d;
+  padding: 30px;
+  font-family: 'Quicksand';
+}
+
+/* estilos del formulario */
+.formulario {
+  margin: 20px;
+}
+
+.formulario input {
+  border-radius: 4px;
+  margin: 8px;
+  padding: 8px;
+  height: 40px;
+  width: 300px;
+  font-family: 'Quicksand';
+  background-color: #dfe4ea;
+}
+
+/* estilos del boton de busqueda*/
+.button-submit {
+  padding: 5px;
+  width: 180px;
+  height: 35px;
+  border-radius: 4px;
+  font-family: 'Quicksand';
+  background-color: #f0572d;
+  color: #dfe4ea;
+}
+
+.button-submit:hover {
+  background-color: #31363f;
+  color: #dfe4ea;
+}
