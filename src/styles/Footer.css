@@ -1,0 +1,15 @@
+@import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@700&display=swap');
+
+/* estilos del footer */
+.footer {
+  display: flex;
+  padding: 8px;
+  justify-content: space-between;
+  align-items: center;
+  font-family: 'Quicksand';
+  background-color: orangered;
+}
+
+.footer img {
+  margin: 15px;
+}
