@@ -1,0 +1,53 @@
+@import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@700&display=swap');
+
+/* estilo de la cards de la zona de recomendaciones */
+.auto-card {
+  display: flex;
+  margin: 20px;
+  border-radius: 8px;
+  box-shadow: 3px 3px 3px #a2a1a1;
+}
+
+/* estilos de la img */
+
+.auto-card img {
+  width: 800px;
+  height: 280px;
+  display: flex;
+  border-radius: 8px;
+}
+
+/* zona de informacion */
+.info-car {
+  padding: 15px;
+  border-radius: 8px;
+  background-color: #ffffff;
+}
+
+/* titulo */
+.info-title {
+  color: #31363f;
+  font-size: 20pt;
+}
+
+/* locacion */
+.info-location {
+  margin-top: 30px;
+}
+
+/* boton para ver mas */
+.info-view-more {
+  border: none;
+  width: 290px;
+  padding: 15px;
+  margin-top: 50px;
+  border-radius: 8px;
+  font-family: 'Quicksand';
+  background-color: #f0572d;
+  color: #ffffff;
+}
+
+.info-view-more:hover {
+  background-color: #31363f;
+  color: #f0572d;
+}
