@@ -1,26 +1,6 @@
-*{
+* {
   box-sizing: border-box;
   padding: 0;
   margin: 0;
-}
-
-.header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-
-.logo {
-  display: flex;
-}
-
-.formulario {
-  display: flex;
-}
-
-.footer {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  background-color: orangered;
+  max-width: 100%;
 }
