@@ -1,0 +1,39 @@
+@import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@700&display=swap');
+
+/* estilos del header */
+.header {
+  background-color: #f0572d;
+  display: flex;
+  justify-content: space-between;
+  font-family: 'Quicksand';
+}
+
+/* estilos del logo */
+.logo {
+  display: flex;
+  margin: 15px;
+  height: 60px;
+}
+
+/* estilos del slogan del logo */
+.slogan {
+  font-size: 16pt;
+  margin-top: 20px;
+  margin-left: 5px;
+}
+
+/* estilos de los botones (registro e inicio de sesion) */
+.buttons button {
+  background-color: #dfe4ea;
+  margin: 30px;
+  padding: 8px;
+  width: 190px;
+  border-radius: 4px;
+  font-family: 'Quicksand';
+}
+
+.buttons button:hover {
+  color: #f0572d;
+  background-color: #31363f;
+  border-color: #191b1d;
+}
