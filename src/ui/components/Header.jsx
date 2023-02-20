@@ -18,11 +18,11 @@ const Header = () => {
   return (
     <div className="header">
       <NavLink to="/" className="logo">
-        <img src="/assets/logoDH.png" alt="Logo DB" />
-        <p>Sentite como en tu hogar</p>
+        <img src="/assets/logo 1.png" alt="Logo DB" />
+        <p className="slogan">Sentite como en tu hogar</p>
       </NavLink>
 
-      <div>
+      <div className="buttons">
         {lastPath === '/login' ? (
           <button onClick={onCreateAcount}> Crear Cuenta </button>
         ) : lastPath === '/acount' ? (
