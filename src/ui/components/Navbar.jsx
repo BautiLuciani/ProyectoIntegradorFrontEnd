@@ -1,16 +1,23 @@
 import React from 'react'
+import provincias from '../data/provincias'
 import '../../styles/Navbar.css'
 
 const Navbar = () => {
+  const location = provincias
+
   return (
-    <div className="navbar">
-      <h1 className="menssage">
-        Busca ofertas en autos economicos, deportivos y de lujo
-      </h1>
+    <div>
+      <h1>Busca ofertas en autos economicos, deportivos y de lujo</h1>
       <form className="formulario">
+        <select name="provincias">
+          {location.map((provincias) => (
+            <option key={provincias} value={provincias}>
+              {provincias}
+            </option>
+          ))}
+        </select>
         <input type="text" />
-        <input type="text" />
-        <button className="button-submit">Buscar</button>
+        <button>Buscar</button>
       </form>
     </div>
   )
