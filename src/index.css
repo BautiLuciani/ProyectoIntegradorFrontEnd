@@ -67,3 +67,6 @@
   align-items: center;
 }
 
+.mensajeError {
+  color: red;
+}

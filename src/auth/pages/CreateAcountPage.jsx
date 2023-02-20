@@ -1,10 +1,12 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import useForm from '../../hooks/useForm'
 import Footer from '../../ui/components/Footer'
 import Header from '../../ui/components/Header'
 
 const CreateAcountPage = () => {
+
+  const [mensaje, setMensaje] = useState(false)
 
   const {nombre, apellido, email, contrasenia, password, onInputChange} = useForm({
     nombre: '',
@@ -15,7 +17,6 @@ const CreateAcountPage = () => {
   })
 
   const navigate = useNavigate()
-  let mensaje = false
 
   const onFormSubmit = (e)=>{
     e.preventDefault()
@@ -28,8 +29,6 @@ const CreateAcountPage = () => {
 
     navigate('/')
   }
-
-  console.log(mensaje);
 
   return (
     <>
@@ -98,12 +97,12 @@ const CreateAcountPage = () => {
           </section>
 
           <section className='caButton'>
-            <button>
+            <button onClick={()=>setMensaje(true)}>
               Crear cuenta
             </button>
 
             {
-              (mensaje) && <p>hola</p>
+              (mensaje) && <p className='mensajeError'>Por favor vuelva a intentarlo, sus credenciales son inválidas</p>
             }
 
             <p>
