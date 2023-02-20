@@ -1,0 +1,83 @@
+@import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@700&display=swap');
+
+/* createAccount section */
+.formCreateAcount {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  font-family: 'Quicksand';
+}
+
+/* crateAccount title */
+.createAccount-title {
+  color: #f0572d;
+  margin-top: 60px;
+  margin-bottom: 20px;
+}
+
+/* inputs del formulario */
+.formCreateAcount input {
+  margin: 10px;
+  padding: 10px;
+  width: 200px;
+  border-radius: 8px;
+  border-width: 1px;
+  font-family: 'Quicksand';
+}
+
+/* form */
+.formularioCA {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+/* campos nombre y apellido */
+.caNombreApellido input {
+  width: 230px;
+  flex-direction: row;
+}
+
+.name {
+  display: flex;
+}
+
+/* campos email y contrasena */
+.caEmailContrasena input {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 500px;
+}
+
+/* campo boton */
+.caButton {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+/* boton */
+.createAccount-button {
+  padding: 8px;
+  border-radius: 8px;
+  margin: 15px;
+  width: 200px;
+  border-width: 0px;
+  background-color: #f0572d;
+  color: #ffffff;
+  font-family: 'Quicksand';
+}
+
+.createAccount-button:hover {
+  background-color: #191b1d;
+}
+
+/* mensaje de login */
+.mensagge-login {
+  margin: 10px;
+}
