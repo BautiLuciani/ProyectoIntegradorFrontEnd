@@ -14,6 +14,19 @@
   margin: 20px;
 }
 
+/* seleccion de provincias */
+.provincias {
+  border-radius: 4px;
+  margin: 8px;
+  padding: 8px;
+  height: 40px;
+  width: 300px;
+  font-family: 'Quicksand';
+  background-color: #dfe4ea;
+  border-width: 1px;
+}
+
+/* input*/
 .formulario input {
   border-radius: 4px;
   margin: 8px;
@@ -22,6 +35,7 @@
   width: 300px;
   font-family: 'Quicksand';
   background-color: #dfe4ea;
+  border-width: 1px;
 }
 
 /* estilos del boton de busqueda*/
