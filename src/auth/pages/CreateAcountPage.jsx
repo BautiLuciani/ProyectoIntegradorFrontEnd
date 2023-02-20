@@ -1,31 +1,33 @@
-import React, { useState } from 'react'
-import { Link, useNavigate } from 'react-router-dom'
+import React, {useState} from 'react'
+import {Link, useNavigate} from 'react-router-dom'
 import useForm from '../../hooks/useForm'
 import Footer from '../../ui/components/Footer'
+import '../../styles/CreateAccount.css'
 import Header from '../../ui/components/Header'
 
 const CreateAcountPage = () => {
-
   const [mensaje, setMensaje] = useState(false)
 
-  const {nombre, apellido, email, contrasenia, password, onInputChange} = useForm({
-    nombre: '',
-    apellido: '',
-    email: '',
-    contrasenia: '',
-    password: ''
-  })
+  const {nombre, apellido, email, contrasenia, password, onInputChange} =
+    useForm({
+      nombre: '',
+      apellido: '',
+      email: '',
+      contrasenia: '',
+      password: ''
+    })
 
   const navigate = useNavigate()
 
-  const onFormSubmit = (e)=>{
+  const onFormSubmit = (e) => {
     e.preventDefault()
-    if(
-      !email.includes('@') || 
-      !email.includes('.com') || 
+    if (
+      !email.includes('@') ||
+      !email.includes('.com') ||
       contrasenia.length < 6 ||
-      !(contrasenia===password)
-    ) return
+      !(contrasenia === password)
+    )
+      return
 
     navigate('/')
   }
@@ -34,87 +36,85 @@ const CreateAcountPage = () => {
     <>
       <Header />
 
-      <div className='formCreateAcount'>
-        <h3>Crear Cuenta</h3>
-        <form className='formularioCA' onSubmit={onFormSubmit}>
-
-          <section className='caNombreApellido'>
-            <label htmlFor='nombre'>Nombre</label>
+      <div className="formCreateAcount">
+        <h3 className="createAccount-title">Crear Cuenta</h3>
+        <form className="formularioCA" onSubmit={onFormSubmit}>
+          <section className="caNombreApellido">
+            <label htmlFor="nombre">Nombre</label>
             <input
               type="text"
-              id='nombre'
-              placeholder='Ingrese su nombre'
-              name='nombre'
+              id="nombre"
+              placeholder="Ingrese su nombre"
+              name="nombre"
               value={nombre}
               onChange={onInputChange}
-              required 
+              required
             />
 
-            <label htmlFor='apellido'>Apellido</label>
+            <label htmlFor="apellido">Apellido</label>
             <input
               type="text"
-              id='apellido'
-              placeholder='Ingrese su apellido'
-              name='apellido'
+              id="apellido"
+              placeholder="Ingrese su apellido"
+              name="apellido"
               value={apellido}
               onChange={onInputChange}
               required
             />
           </section>
 
-          <section className='caEmailContrasena'>
-            <label htmlFor='email'>Correo electrónico</label>
+          <section className="caEmailContrasena">
+            <label htmlFor="email">Correo electrónico</label>
             <input
               type="email"
-              id='email'
-              placeholder='Ingrese su correo'
-              name='email'
+              id="email"
+              placeholder="Ingrese su correo"
+              name="email"
               value={email}
               onChange={onInputChange}
               required
             />
 
-            <label htmlFor='contrasenia'>Contraseña</label>
-            <input 
+            <label htmlFor="contrasenia">Contraseña</label>
+            <input
               type="password"
-              placeholder='Ingrese su constreña'
-              name='contrasenia'
+              placeholder="Ingrese su constreña"
+              name="contrasenia"
               value={contrasenia}
               onChange={onInputChange}
               required
             />
 
-            <label htmlFor='password'>Confirmar contraseña</label>
+            <label htmlFor="password">Confirmar contraseña</label>
             <input
               type="password"
-              id='password'
-              placeholder='Confirme su contraseña'
-              name='password'
+              id="password"
+              placeholder="Confirme su contraseña"
+              name="password"
               value={password}
               onChange={onInputChange}
               required
             />
           </section>
 
-          <section className='caButton'>
-            <button onClick={()=>setMensaje(true)}>
+          <section className="caButton">
+            <button
+              className="createAccount-button"
+              onClick={() => setMensaje(true)}>
               Crear cuenta
             </button>
 
-            {
-              (mensaje) && <p className='mensajeError'>Por favor vuelva a intentarlo, sus credenciales son inválidas</p>
-            }
+            {mensaje && (
+              <p className="mensajeError">
+                Por favor vuelva a intentarlo, sus credenciales son inválidas
+              </p>
+            )}
 
-            <p>
+            <p className="mensagge-login">
               ¿Ya tienes cuenta?
-              <Link
-                to="/login"
-              >
-                Iniciar sesión
-              </Link>
+              <Link to="/login">Iniciar sesión</Link>
             </p>
           </section>
-
         </form>
       </div>
 
