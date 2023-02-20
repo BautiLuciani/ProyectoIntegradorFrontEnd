@@ -6,10 +6,10 @@ const Navbar = () => {
   const location = provincias
 
   return (
-    <div>
+    <div className="navbar">
       <h1>Busca ofertas en autos economicos, deportivos y de lujo</h1>
       <form className="formulario">
-        <select name="provincias">
+        <select name="provincias" className="provincias">
           {location.map((provincias) => (
             <option key={provincias} value={provincias}>
               {provincias}
@@ -17,7 +17,7 @@ const Navbar = () => {
           ))}
         </select>
         <input type="text" />
-        <button>Buscar</button>
+        <button className="button-submit">Buscar</button>
       </form>
     </div>
   )
