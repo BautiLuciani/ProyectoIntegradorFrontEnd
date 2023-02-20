@@ -18,7 +18,14 @@ const Header = () => {
     }
 
     return (
-        <div className='header'>
+        <div 
+            className={(lastPath == '/login')
+                        ? 'login'
+                        : (lastPath == '/acount')
+                        ? 'createAcount'
+                        : 'header'
+            }
+        >
             <NavLink
                 to="/"
                 className='logo'
