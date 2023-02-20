@@ -13,6 +13,7 @@
   display: flex;
   margin: 15px;
   height: 60px;
+  text-decoration: none;
 }
 
 /* estilos del slogan del logo */
@@ -20,6 +21,7 @@
   font-size: 16pt;
   margin-top: 20px;
   margin-left: 5px;
+  color: #191b1d;
 }
 
 /* estilos de los botones (registro e inicio de sesion) */
