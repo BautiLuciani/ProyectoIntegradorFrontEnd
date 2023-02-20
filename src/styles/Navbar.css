@@ -42,8 +42,9 @@
 .button-submit {
   padding: 5px;
   width: 180px;
-  height: 35px;
+  height: 45px;
   border-radius: 4px;
+  border-width: 1px;
   font-family: 'Quicksand';
   background-color: #f0572d;
   color: #dfe4ea;
