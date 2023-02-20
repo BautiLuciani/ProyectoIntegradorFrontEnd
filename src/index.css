@@ -10,6 +10,17 @@
   align-items: center;
 }
 
+.usuario {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.iniciales {
+  background-color: brown;
+  border-radius: 360px;
+}
+
 .login {
   display: flex;
   justify-content: space-between;

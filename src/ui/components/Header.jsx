@@ -4,10 +4,22 @@ import AuthContext from '../../auth/context/AuthContext'
 
 const Header = () => {
 
-    const {logged, user} = useContext(AuthContext)
+    const {logged, user, logout} = useContext(AuthContext)
+    const {nombre, apellido} = user
     const navigate = useNavigate()
     const { pathname, search } = useLocation()
     const lastPath = pathname + search
+
+    const primeraLetraNombre = nombre.charAt(0).toUpperCase()
+    const primeraLetraApellido = apellido.charAt(0).toUpperCase()
+
+    const nombreMayuscula = ()=>{
+        const restoNombre = nombre.slice(1)
+        const restoApellido = apellido.slice(1)
+        const nombreCompleto = primeraLetraNombre + restoNombre
+        const apellidoCompleto = primeraLetraApellido + restoApellido
+        return `${nombreCompleto} ${apellidoCompleto}`
+    }
 
     const onCreateAcount = () => {
         navigate("/acount")
@@ -15,6 +27,14 @@ const Header = () => {
 
     const onLogin = () => {
         navigate("/login")
+    }
+
+    const onLogout = ()=>{
+        logout()
+
+        navigate('/', {
+            replace: true
+        })
     }
 
     return (
@@ -34,25 +54,36 @@ const Header = () => {
                 <p>Sentite como en tu hogar</p>
             </NavLink>
 
-            <div>
+            <div className='usuario'>
                 {
-                    (lastPath === '/login')
-                        ? <button onClick={onCreateAcount}> Crear Cuenta </button>
-                        : (lastPath === '/acount')
-                            ? <button onClick={onLogin}> Iniciar Sesion </button>
-                            :
-                            <>
-                                <button
-                                    onClick={onCreateAcount}
-                                >
-                                    Crear Cuenta
-                                </button>
-                                <button
-                                    onClick={onLogin}
-                                >
-                                    Iniciar Sesion
-                                </button>
-                            </>
+                    (logged)
+                    ? 
+                    <>
+                        <section className='iniciales'><b>{primeraLetraNombre}{primeraLetraApellido}</b></section>
+                        <p>Bienvenido, {nombreMayuscula()}</p>
+                        <button
+                            onClick={onLogout}
+                        >
+                            Cerrar Sesion
+                        </button>
+                    </>
+                    : (lastPath === '/login')
+                    ? <button onClick={onCreateAcount}> Crear Cuenta </button>
+                    : (lastPath === '/acount')
+                        ? <button onClick={onLogin}> Iniciar Sesion </button>
+                        :
+                        <>
+                            <button
+                                onClick={onCreateAcount}
+                            >
+                                Crear Cuenta
+                            </button>
+                            <button
+                                onClick={onLogin}
+                            >
+                                Iniciar Sesion
+                            </button>
+                        </>
                 }
             </div>
         </div>
