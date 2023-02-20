@@ -5,20 +5,22 @@
   display: flex;
   margin: 20px;
   border-radius: 8px;
-  box-shadow: 3px 3px 3px #a2a1a1;
+  box-shadow: 4px 4px 4px #a2a1a1;
 }
 
 /* estilos de la img */
 
 .auto-card img {
-  width: 900px;
+  width: 700px;
   height: 290px;
   display: flex;
-  border-radius: 8px;
+  border-top-left-radius: 8px;
+  border-bottom-left-radius: 8px;
 }
 
 /* zona de informacion */
 .info-car {
+  height: 290px;
   padding: 15px;
   border-radius: 8px;
   background-color: #ffffff;
