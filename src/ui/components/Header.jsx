@@ -1,8 +1,10 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import { NavLink, useLocation, useNavigate } from 'react-router-dom'
+import AuthContext from '../../auth/context/AuthContext'
 
 const Header = () => {
 
+    const {logged, user} = useContext(AuthContext)
     const navigate = useNavigate()
     const { pathname, search } = useLocation()
     const lastPath = pathname + search

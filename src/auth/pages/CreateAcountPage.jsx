@@ -1,12 +1,18 @@
-import React, { useState } from 'react'
+import React, { useContext, useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import useForm from '../../hooks/useForm'
 import Footer from '../../ui/components/Footer'
 import Header from '../../ui/components/Header'
+import AuthContext from '../context/AuthContext'
 
 const CreateAcountPage = () => {
 
-  const [mensaje, setMensaje] = useState(false)
+  const [mensaje, setMensaje] = useState({
+    verificado: false,
+    error: false
+  })
+  const {login} = useContext(AuthContext)
+  const navegar = useNavigate()
 
   const {nombre, apellido, email, contrasenia, password, onInputChange} = useForm({
     nombre: '',
@@ -16,10 +22,21 @@ const CreateAcountPage = () => {
     password: ''
   })
 
-  const navigate = useNavigate()
+  const onLogin = ()=> {
+    if(mensaje.verificado == true) {
+      login(nombre, apellido, email, contrasenia)
+
+      navegar('/', {
+        replace: true
+      })
+    } else {
+      setMensaje({...mensaje, error: true})
+    }
+  }
 
   const onFormSubmit = (e)=>{
     e.preventDefault()
+    
     if(
       !email.includes('@') || 
       !email.includes('.com') || 
@@ -27,9 +44,9 @@ const CreateAcountPage = () => {
       !(contrasenia===password)
     ) return
 
-    navigate('/')
+    setMensaje({...mensaje, verificado: true})
   }
-
+  
   return (
     <>
       <Header />
@@ -97,12 +114,12 @@ const CreateAcountPage = () => {
           </section>
 
           <section className='caButton'>
-            <button onClick={()=>setMensaje(true)}>
+            <button onClick={onLogin}>
               Crear cuenta
             </button>
 
             {
-              (mensaje) && <p className='mensajeError'>Por favor vuelva a intentarlo, sus credenciales son inválidas</p>
+              (mensaje.error == true) && <p className='mensajeError'>Por favor vuelva a intentarlo, sus credenciales son inválidas</p>
             }
 
             <p>
