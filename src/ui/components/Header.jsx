@@ -16,7 +16,14 @@ const Header = () => {
   }
 
   return (
-    <div className="header">
+    <div
+      className={
+        lastPath == '/login'
+          ? 'login'
+          : lastPath == '/acount'
+          ? 'createAcount'
+          : 'header'
+      }>
       <NavLink to="/" className="logo">
         <img src="/assets/logo 1.png" alt="Logo DB" />
         <p className="slogan">Sentite como en tu hogar</p>
