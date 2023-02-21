@@ -6,6 +6,10 @@
   padding: 8px;
   justify-content: space-between;
   align-items: center;
+  height: 50px;
+  width: 100%;
+  position: fixed;
+  bottom: 0;
   font-family: 'Quicksand';
   background-color: #f0572d;
 }
