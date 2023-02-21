@@ -21,9 +21,6 @@ const LoginPage = () => {
           <label htmlFor="contrasena">Contraseña</label>
           <input type="password" id="contrasena" />
 
-          <label htmlFor="contrasena">Contraseña</label>
-          <input type="password" id="contrasena" />
-
           {error == true && (
             <p className="mensajeError">
               Por favor vuelva a intentarlo, sus credenciales son inválidas
