@@ -4,18 +4,17 @@ import AuthContext from '../../auth/context/AuthContext'
 
 const Header = () => {
 
-    const {logged, user, logout} = useContext(AuthContext)
-    const {nombre, apellido} = user
+    const { logged, user, logout } = useContext(AuthContext)
     const navigate = useNavigate()
     const { pathname, search } = useLocation()
     const lastPath = pathname + search
 
-    const primeraLetraNombre = nombre.charAt(0).toUpperCase()
-    const primeraLetraApellido = apellido.charAt(0).toUpperCase()
+    const primeraLetraNombre = user?.nombre.charAt(0).toUpperCase()
+    const primeraLetraApellido = user?.apellido.charAt(0).toUpperCase()
 
-    const nombreMayuscula = ()=>{
-        const restoNombre = nombre.slice(1)
-        const restoApellido = apellido.slice(1)
+    const nombreMayuscula = () => {
+        const restoNombre = user?.nombre.slice(1)
+        const restoApellido = user?.apellido.slice(1)
         const nombreCompleto = primeraLetraNombre + restoNombre
         const apellidoCompleto = primeraLetraApellido + restoApellido
         return `${nombreCompleto} ${apellidoCompleto}`
@@ -29,7 +28,7 @@ const Header = () => {
         navigate("/login")
     }
 
-    const onLogout = ()=>{
+    const onLogout = () => {
         logout()
 
         navigate('/', {
@@ -38,12 +37,12 @@ const Header = () => {
     }
 
     return (
-        <div 
+        <div
             className={(lastPath == '/login')
-                        ? 'login'
-                        : (lastPath == '/acount')
-                        ? 'createAcount'
-                        : 'header'
+                ? 'login'
+                : (lastPath == '/acount')
+                    ? 'createAcount'
+                    : 'header'
             }
         >
             <NavLink
@@ -57,33 +56,33 @@ const Header = () => {
             <div className='usuario'>
                 {
                     (logged)
-                    ? 
-                    <>
-                        <section className='iniciales'><b>{primeraLetraNombre}{primeraLetraApellido}</b></section>
-                        <p>Bienvenido, {nombreMayuscula()}</p>
-                        <button
-                            onClick={onLogout}
-                        >
-                            Cerrar Sesion
-                        </button>
-                    </>
-                    : (lastPath === '/login')
-                    ? <button onClick={onCreateAcount}> Crear Cuenta </button>
-                    : (lastPath === '/acount')
-                        ? <button onClick={onLogin}> Iniciar Sesion </button>
-                        :
+                        ?
                         <>
+                            <section className='iniciales'><b>{primeraLetraNombre}{primeraLetraApellido}</b></section>
+                            <p>Bienvenido, {nombreMayuscula()}</p>
                             <button
-                                onClick={onCreateAcount}
+                                onClick={onLogout}
                             >
-                                Crear Cuenta
-                            </button>
-                            <button
-                                onClick={onLogin}
-                            >
-                                Iniciar Sesion
+                                Cerrar Sesion
                             </button>
                         </>
+                        : (lastPath === '/login')
+                            ? <button onClick={onCreateAcount}> Crear Cuenta </button>
+                            : (lastPath === '/acount')
+                                ? <button onClick={onLogin}> Iniciar Sesion </button>
+                                :
+                                <>
+                                    <button
+                                        onClick={onCreateAcount}
+                                    >
+                                        Crear Cuenta
+                                    </button>
+                                    <button
+                                        onClick={onLogin}
+                                    >
+                                        Iniciar Sesion
+                                    </button>
+                                </>
                 }
             </div>
         </div>

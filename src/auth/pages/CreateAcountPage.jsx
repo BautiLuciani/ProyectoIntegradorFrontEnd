@@ -1,20 +1,19 @@
-import React, { useContext, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import useForm from '../../hooks/useForm'
 import Footer from '../../ui/components/Footer'
 import Header from '../../ui/components/Header'
 import AuthContext from '../context/AuthContext'
+import validate from '../data/validate'
 
 const CreateAcountPage = () => {
 
-  const [mensaje, setMensaje] = useState({
-    verificado: false,
-    error: false
-  })
   const {login} = useContext(AuthContext)
   const navegar = useNavigate()
 
-  const {nombre, apellido, email, contrasenia, password, onInputChange} = useForm({
+  const [errors, setErrors] = useState({})
+
+  const {form, nombre, apellido, email, contrasenia, password, onInputChange} = useForm({
     nombre: '',
     apellido: '',
     email: '',
@@ -22,31 +21,22 @@ const CreateAcountPage = () => {
     password: ''
   })
 
-  const onLogin = ()=> {
-    if(mensaje.verificado == true) {
-      login(nombre, apellido, email, contrasenia)
+  const onFormSubmit = (e)=>{
+      e.preventDefault()
+      setErrors(validate(form))
+  }
 
+  useEffect(() => {
+    if((Object.keys(errors).length === 0) && (nombre !== "") && (apellido !== "") && (email !== "") && (contrasenia !== "") && (password !== "")){
+      login(nombre, apellido, email, contrasenia)
+    
       navegar('/', {
         replace: true
       })
-    } else {
-      setMensaje({...mensaje, error: true})
     }
-  }
-
-  const onFormSubmit = (e)=>{
-    e.preventDefault()
-    
-    if(
-      !email.includes('@') || 
-      !email.includes('.com') || 
-      contrasenia.length < 6 ||
-      !(contrasenia===password)
-    ) return
-
-    setMensaje({...mensaje, verificado: true})
-  }
+  }, [errors])
   
+
   return (
     <>
       <Header />
@@ -64,8 +54,8 @@ const CreateAcountPage = () => {
               name='nombre'
               value={nombre}
               onChange={onInputChange}
-              required 
             />
+            {errors.nombre && <p className='mensajeError'>{errors.nombre}</p>}
 
             <label htmlFor='apellido'>Apellido</label>
             <input
@@ -75,21 +65,21 @@ const CreateAcountPage = () => {
               name='apellido'
               value={apellido}
               onChange={onInputChange}
-              required
             />
+            {errors.apellido && <p className='mensajeError'>{errors.apellido}</p>}
           </section>
 
           <section className='caEmailContrasena'>
             <label htmlFor='email'>Correo electrónico</label>
             <input
-              type="email"
+              type="text"
               id='email'
               placeholder='Ingrese su correo'
               name='email'
               value={email}
               onChange={onInputChange}
-              required
             />
+            {errors.email && <p className='mensajeError'>{errors.email}</p>}
 
             <label htmlFor='contrasenia'>Contraseña</label>
             <input 
@@ -98,8 +88,8 @@ const CreateAcountPage = () => {
               name='contrasenia'
               value={contrasenia}
               onChange={onInputChange}
-              required
             />
+            {errors.contrasenia && <p className='mensajeError'>{errors.contrasenia}</p>}
 
             <label htmlFor='password'>Confirmar contraseña</label>
             <input
@@ -109,18 +99,14 @@ const CreateAcountPage = () => {
               name='password'
               value={password}
               onChange={onInputChange}
-              required
             />
+            {errors.password && <p className='mensajeError'>{errors.password}</p>}
           </section>
 
           <section className='caButton'>
-            <button onClick={onLogin}>
+            <button>
               Crear cuenta
             </button>
-
-            {
-              (mensaje.error == true) && <p className='mensajeError'>Por favor vuelva a intentarlo, sus credenciales son inválidas</p>
-            }
 
             <p>
               ¿Ya tienes cuenta?

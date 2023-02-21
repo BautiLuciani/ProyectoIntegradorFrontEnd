@@ -20,7 +20,7 @@ const useForm = (initialValue = { }) => {
     ...form,
     form,
     onInputChange,
-    onResetForm
+    onResetForm,
   }
 }
 
