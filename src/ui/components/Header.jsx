@@ -46,8 +46,8 @@ const Header = () => {
           : 'header'
       }>
       <NavLink to="/" className="logo">
-        <img src="/assets/logoDH.png" alt="Logo DB" />
-        <p>Sentite como en tu hogar</p>
+        <img src="/assets/logo 1.png" alt="Logo DB" />
+        <p className="slogan">Sentite como en tu hogar</p>
       </NavLink>
 
       <div className="usuario">
@@ -60,16 +60,28 @@ const Header = () => {
               </b>
             </section>
             <p>Bienvenido, {nombreMayuscula()}</p>
-            <button onClick={onLogout}>Cerrar Sesion</button>
+            <button className="buttons" onClick={onLogout}>
+              Cerrar Sesion
+            </button>
           </>
         ) : lastPath === '/login' ? (
-          <button onClick={onCreateAcount}> Crear Cuenta </button>
+          <button className="buttons" onClick={onCreateAcount}>
+            {' '}
+            Crear Cuenta{' '}
+          </button>
         ) : lastPath === '/acount' ? (
-          <button onClick={onLogin}> Iniciar Sesion </button>
+          <button className="buttons" onClick={onLogin}>
+            {' '}
+            Iniciar Sesion{' '}
+          </button>
         ) : (
           <>
-            <button onClick={onCreateAcount}>Crear Cuenta</button>
-            <button onClick={onLogin}>Iniciar Sesion</button>
+            <button className="buttons" onClick={onCreateAcount}>
+              Crear Cuenta
+            </button>
+            <button className="buttons" onClick={onLogin}>
+              Iniciar Sesion
+            </button>
           </>
         )}
       </div>

@@ -30,7 +30,9 @@ const LoginPage = () => {
             </p>
           )}
 
-          <button onClick={() => setError(true)}>Ingresar</button>
+          <button className="button-login" onClick={() => setError(true)}>
+            Ingresar
+          </button>
           <p>
             ¿Aun no tienes cuenta?
             <Link className="link-to-register" to="/acount">
