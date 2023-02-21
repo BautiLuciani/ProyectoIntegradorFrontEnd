@@ -3,10 +3,12 @@
 /* createAccount section */
 .formCreateAcount {
   display: flex;
+  min-height: 90vh;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   font-family: 'Quicksand';
+  background-color: #dfe4ea;
 }
 
 /* crateAccount title */
@@ -22,7 +24,7 @@
   padding: 10px;
   width: 200px;
   border-radius: 8px;
-  border-width: 1px;
+  border-width: 0px;
   font-family: 'Quicksand';
 }
 
@@ -66,8 +68,10 @@
   padding: 8px;
   border-radius: 8px;
   margin: 15px;
+  height: 40px;
   width: 200px;
   border-width: 0px;
+  box-shadow: 3px 3px 3px #a2a1a1;
   background-color: #f0572d;
   color: #ffffff;
   font-family: 'Quicksand';
@@ -75,9 +79,53 @@
 
 .createAccount-button:hover {
   background-color: #191b1d;
+  color: #f0572d;
 }
 
 /* mensaje de login */
 .mensagge-login {
   margin: 10px;
+}
+
+.link-to-login {
+  margin-left: 3px;
+  text-decoration: none;
+  color: #f0572d;
+}
+
+.link-to-login:hover {
+  text-decoration: underline;
+}
+
+/* mensaje error */
+.mensajeError {
+  margin-bottom: 0px;
+  color: red;
+}
+
+.createAcount {
+  background-color: #31363f;
+  display: flex;
+  justify-content: space-between;
+  color: #ffffff;
+  font-family: 'Quicksand';
+}
+
+.createAcount p {
+  color: #f0572d;
+}
+
+/* .createAcount button {
+  background-color: #dfe4ea;
+  color: #31363f;
+} */
+
+.createAcount button:hover {
+  background-color: #f0572d;
+  color: #dfe4ea;
+}
+
+.createAcount button:hover {
+  background-color: #f0572d;
+  color: #dfe4ea;
 }
