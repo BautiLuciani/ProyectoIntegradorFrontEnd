@@ -112,7 +112,9 @@ const CreateAcountPage = () => {
 
             <p className="mensagge-login">
               ¿Ya tienes cuenta?
-              <Link to="/login">Iniciar sesión</Link>
+              <Link to="/login" className="link-to-login">
+                Iniciar sesión
+              </Link>
             </p>
           </section>
         </form>
