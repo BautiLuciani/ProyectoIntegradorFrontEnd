@@ -84,6 +84,7 @@ const CreateAcountPage = () => {
             <label htmlFor='contrasenia'>Contraseña</label>
             <input 
               type="password"
+              id='contrasenia'
               placeholder='Ingrese su constreña'
               name='contrasenia'
               value={contrasenia}
