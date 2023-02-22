@@ -2,6 +2,7 @@ import React, { useContext } from 'react'
 import { NavLink, useLocation, useNavigate } from 'react-router-dom'
 import AuthContext from '../../auth/context/AuthContext'
 
+
 const Header = () => {
 
     const { logged, user, logout } = useContext(AuthContext)
