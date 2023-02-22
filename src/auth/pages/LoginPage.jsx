@@ -1,6 +1,6 @@
 import React from 'react'
-import {Link} from 'react-router-dom'
-import {useState} from 'react'
+import { Link } from 'react-router-dom'
+import { useState } from 'react'
 import Footer from '../../ui/components/Footer'
 import Header from '../../ui/components/Header'
 import '../../styles/Login.css'

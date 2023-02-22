@@ -1,5 +1,5 @@
-import {Link, useNavigate} from 'react-router-dom'
-import React, {useContext, useEffect, useState} from 'react'
+import { Link, useNavigate } from 'react-router-dom'
+import React, { useContext, useEffect, useState } from 'react'
 import useForm from '../../hooks/useForm'
 import Footer from '../../ui/components/Footer'
 import '../../styles/CreateAccount.css'
@@ -8,19 +8,26 @@ import AuthContext from '../context/AuthContext'
 import validate from '../data/validate'
 
 const CreateAcountPage = () => {
-  const {login} = useContext(AuthContext)
+  const { login } = useContext(AuthContext)
   const navegar = useNavigate()
 
   const [errors, setErrors] = useState({})
 
-  const {form, nombre, apellido, email, contrasenia, password, onInputChange} =
-    useForm({
-      nombre: '',
-      apellido: '',
-      email: '',
-      contrasenia: '',
-      password: ''
-    })
+  const {
+    form,
+    nombre,
+    apellido,
+    email,
+    contrasenia,
+    password,
+    onInputChange,
+  } = useForm({
+    nombre: '',
+    apellido: '',
+    email: '',
+    contrasenia: '',
+    password: '',
+  })
 
   const onFormSubmit = (e) => {
     e.preventDefault()
@@ -39,7 +46,7 @@ const CreateAcountPage = () => {
       login(nombre, apellido, email, contrasenia)
 
       navegar('/', {
-        replace: true
+        replace: true,
       })
     }
   }, [errors])
