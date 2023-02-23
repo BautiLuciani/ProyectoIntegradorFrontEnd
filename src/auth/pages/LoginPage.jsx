@@ -57,7 +57,7 @@ const LoginPage = () => {
           />
           {errors.contrasena && <p className='mensajeError'>{errors.contrasena}</p>}
 
-          <button>
+          <button className='button-login'>
             Ingresar
           </button>
           <p>
