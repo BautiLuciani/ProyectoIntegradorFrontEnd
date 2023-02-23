@@ -1,29 +1,22 @@
-import React, { useEffect, useState } from 'react'
+import React, { useState } from 'react'
 import { Link } from 'react-router-dom'
 import useForm from '../../hooks/useForm'
 import Footer from '../../ui/components/Footer'
 import Header from '../../ui/components/Header'
-import validate from '../data/validate'
 
 const LoginPage = () => {
 
-  const [errors, setErrors] = useState({})
+  const [mensaje, setMensaje] = useState(false)
 
-  const {form, email, contrasena, onInputChange} = useForm({
+  const {email, contrasena, onInputChange} = useForm({
     email: '',
     contrasena: '',
   })
 
   const onFormSubmit = (e) => {
     e.preventDefault()
-    setErrors(validate(form))
+    setMensaje(true)
   }
-
-  useEffect(() => {
-    if((Object.keys(errors).length === 0) && (email !== "") && (contrasena !== "")){
-      console.log("Login...");
-    }
-  }, [errors])
 
   return (
     <>
@@ -42,7 +35,6 @@ const LoginPage = () => {
             value={email}
             onChange={onInputChange}
           />
-          {errors.email && <p className='mensajeError'>{errors.email}</p>}
 
           <label htmlFor='contrasena'>Contraseña</label>
           <input
@@ -53,7 +45,7 @@ const LoginPage = () => {
             value={contrasena}
             onChange={onInputChange}
           />
-          {errors.contrasena && <p className='mensajeError'>{errors.contrasena}</p>}
+          {mensaje && <p className='mensajeError'>Los datos ingresados son incorrectos</p>}
 
           <button>
             Ingresar
