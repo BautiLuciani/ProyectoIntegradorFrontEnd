@@ -106,13 +106,13 @@ const CreateAcountPage = () => {
           </section>
 
           <section className='caButton'>
-            <button>
+            <button className='createAccount-button'>
               Crear cuenta
             </button>
 
             <p>
               ¿Ya tienes cuenta?
-              <Link
+              <Link className='link-to-login'
                 to="/login"
               >
                 Iniciar sesión
