@@ -7,12 +7,12 @@ const Navbar = () => {
   const location = provincias
 
   return (
-    <div>
+    <div className='navbar'>
       <h1>Busca ofertas en autos economicos, deportivos y de lujo</h1>
       <form className='formulario'>
         <>
-          <label htmlFor="provincias">Seleccione una provincia</label>
-          <select name="provincias">
+          <label className='select-province-text' htmlFor="provincias">Seleccione una provincia</label>
+          <select  className='select-province' name="provincias">
             {location.map(provincias => (
               <option key={provincias} value={provincias}>{provincias}</option>
             ))}
@@ -24,7 +24,7 @@ const Navbar = () => {
           <label htmlFor="checkout">Check-Out</label>
           <input type="date" id='checkout'/>
         </>
-        <button>Buscar</button>
+        <button className='button-submit'>Buscar</button>
       </form>
     </div>
   )
