@@ -39,3 +39,27 @@
   background-color: #31363f;
   border-color: #191b1d;
 }
+
+/* responsive */
+
+@media (max-width: 600px){
+  .header{
+    display: flex;
+    align-items: center;
+  }
+   
+  .header img{
+    height: 70px;
+    width: 140px;
+    /* margin-top: 10px; */
+  }
+
+
+  .slogan {
+    display: none;
+  }
+
+  .buttons {
+    /* display: none; */
+  }
+}

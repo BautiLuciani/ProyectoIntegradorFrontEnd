@@ -43,7 +43,7 @@ const CreateAcountPage = () => {
       <Header />
 
       <div className='formCreateAcount'>
-        <h3>Crear Cuenta</h3>
+        <h3 className='createAccount-title'>Crear Cuenta</h3>
         <form className='formularioCA' onSubmit={onFormSubmit}>
 
           <section className='caNombreApellido'>

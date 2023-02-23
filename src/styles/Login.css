@@ -93,3 +93,14 @@
   background-color: #f0572d;
   color: #dfe4ea;
 }
+
+@media (max-width: 600px){
+  .formualarioLogin input{
+    width: 300px;
+  }
+
+  .login button{
+    width: 150px;
+    border-width: 0px;
+  }
+}

@@ -114,3 +114,19 @@
 }
 
 
+@media (max-width: 600px){
+  .formCreateAcount{
+    padding: 70px;
+    display: flex;
+    flex-direction: column;
+  }
+  
+
+  label{
+    margin-left: 12px;
+  }
+
+  input {
+    width: 300px;
+  }
+}

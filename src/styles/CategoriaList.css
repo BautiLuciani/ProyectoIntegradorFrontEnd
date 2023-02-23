@@ -2,3 +2,11 @@
 .categorys {
   display: flex;
 }
+
+/* responsive */
+@media (max-width: 600px){
+  .categorys{
+    display: flex;
+    flex-direction: column;
+  }
+}

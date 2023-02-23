@@ -53,3 +53,9 @@
   background-color: #31363f;
   color: #f0572d;
 }
+
+@media (max-width: 600px){
+  .auto-card{
+    flex-direction: column;
+  }
+}

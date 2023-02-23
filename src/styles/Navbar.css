@@ -68,3 +68,14 @@
   background-color: #31363f;
   color: #f0572d;
 }
+
+/* Responsive */
+
+
+@media (max-width: 600px){
+  .navbar{
+    text-align: center;
+    display: grid;
+    flex-wrap: 1fr;
+  }
+}
