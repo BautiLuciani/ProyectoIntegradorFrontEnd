@@ -1,33 +1,63 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
-import { useState } from 'react'
+import useForm from '../../hooks/useForm'
 import Footer from '../../ui/components/Footer'
 import Header from '../../ui/components/Header'
+import validate from '../data/validate'
 import '../../styles/Login.css'
 
+
 const LoginPage = () => {
-  const [error, setError] = useState()
+
+  const [errors, setErrors] = useState({})
+
+  const {form, email, contrasena, onInputChange} = useForm({
+    email: '',
+    contrasena: '',
+  })
+
+  const onFormSubmit = (e) => {
+    e.preventDefault()
+    setErrors(validate(form))
+  }
+
+  useEffect(() => {
+    if((Object.keys(errors).length === 0) && (email !== "") && (contrasena !== "")){
+      console.log("Login...");
+    }
+  }, [errors])
 
   return (
     <>
       <Header />
 
-      <div className="formLogin">
-        <h3 className="formLogin-title">Iniciar Sesion</h3>
-        <form className="formualarioLogin">
-          <label htmlFor="correo">Correo electrónico</label>
-          <input type="email" id="correo" />
+      <div className='formLogin'>
+        <h3>Iniciar Sesion</h3>
+        <form className='formualarioLogin' onSubmit={onFormSubmit}>
 
-          <label htmlFor="contrasena">Contraseña</label>
-          <input type="password" id="contrasena" />
+          <label htmlFor='correo'>Correo electrónico</label>
+          <input
+            type="text"
+            id='correo'
+            placeholder='Ingrese su correo'
+            name='email'
+            value={email}
+            onChange={onInputChange}
+          />
+          {errors.email && <p className='mensajeError'>{errors.email}</p>}
 
-          {error == true && (
-            <p className="mensajeError">
-              Por favor vuelva a intentarlo, sus credenciales son inválidas
-            </p>
-          )}
+          <label htmlFor='contrasena'>Contraseña</label>
+          <input
+            type="password"
+            id='contrasena'
+            placeholder='Ingrese su constreña'
+            name='contrasena'
+            value={contrasena}
+            onChange={onInputChange}
+          />
+          {errors.contrasena && <p className='mensajeError'>{errors.contrasena}</p>}
 
-          <button className="button-login" onClick={() => setError(true)}>
+          <button>
             Ingresar
           </button>
           <p>

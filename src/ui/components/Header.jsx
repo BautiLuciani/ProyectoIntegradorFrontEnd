@@ -3,6 +3,7 @@ import {NavLink, useLocation, useNavigate} from 'react-router-dom'
 import AuthContext from '../../auth/context/AuthContext'
 import '../../styles/Header.css'
 
+
 const Header = () => {
   const {logged, user, logout} = useContext(AuthContext)
   const navigate = useNavigate()

@@ -17,6 +17,11 @@ const validate = (values) => {
     } else if (values.contrasenia.length < 7) {
         errores.contrasenia = "La contraseña es muy corta"
     }
+    if (!values.contrasena) {
+        errores.contrasena = "Contraseña no puede estar vacio"
+    } else if (values.contrasena.length < 7) {
+        errores.contrasena = "La contraseña es muy corta"
+    }
     if (!values.password) {
         errores.password = "Contraseña no puede estar vacio"
     } else if (!(values.contrasenia == values.password)) {
