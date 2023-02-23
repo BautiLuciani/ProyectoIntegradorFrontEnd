@@ -42,9 +42,7 @@
   flex-direction: row;
 }
 
-.name {
-  display: flex;
-}
+
 
 /* campos email y contrasena */
 .caEmailContrasena input {
@@ -115,17 +113,4 @@
   color: #f0572d;
 }
 
-/* .createAcount button {
-  background-color: #dfe4ea;
-  color: #31363f;
-} */
 
-.createAcount button:hover {
-  background-color: #f0572d;
-  color: #dfe4ea;
-}
-
-.createAcount button:hover {
-  background-color: #f0572d;
-  color: #dfe4ea;
-}
