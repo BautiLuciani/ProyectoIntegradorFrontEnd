@@ -8,7 +8,7 @@ const CategoriaCard = ({img, nombre, cantidad}) => {
         </div>
         <div>
             <h3>{nombre}</h3>
-            <p>{cantidad} disponibles</p>
+            <p>{cantidad} disponible(s)</p>
         </div>
     </div>
   )
