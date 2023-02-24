@@ -8,6 +8,13 @@ const authReducer = (state = {}, action)=>{
                 logged: true,
                 user: action.payload
             }
+
+        case types.createAcount:
+            return {
+                ...state,
+                logged: true,
+                user: action.payload
+            }
         
         case types.logout:
             return {

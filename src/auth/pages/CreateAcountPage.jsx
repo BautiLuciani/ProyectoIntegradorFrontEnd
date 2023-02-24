@@ -8,7 +8,7 @@ import validate from '../data/validate'
 
 const CreateAcountPage = () => {
 
-  const {login} = useContext(AuthContext)
+  const {createAcount} = useContext(AuthContext)
   const navegar = useNavigate()
 
   const [errors, setErrors] = useState({})
@@ -28,7 +28,7 @@ const CreateAcountPage = () => {
 
   useEffect(() => {
     if((Object.keys(errors).length === 0) && (nombre !== "") && (apellido !== "") && (email !== "") && (contrasenia !== "") && (password !== "")){
-      login(nombre, apellido, email, contrasenia)
+      createAcount(nombre, apellido, email, contrasenia)
     
       navegar('/', {
         replace: true
