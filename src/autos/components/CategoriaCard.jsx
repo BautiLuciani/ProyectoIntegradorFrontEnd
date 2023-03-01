@@ -3,13 +3,13 @@ import '../../styles/CategoriaCard.css'
 
 const CategoriaCard = ({img, nombre, cantidad}) => {
   return (
-    <div>
+    <div className='category-card'>
         <div>
             <img src={img} alt={nombre} />
         </div>
-        <div>
+        <div className='info'>
             <h3>{nombre}</h3>
-            <p>{cantidad} disponible(s)</p>
+            <p className='quantity'>{cantidad} disponible(s)</p>
         </div>
     </div>
   )
