@@ -1,15 +1,17 @@
-import React, { useEffect, useState } from 'react'
-import { Link } from 'react-router-dom'
+import React, { useContext, useEffect, useState } from 'react'
+import { Link, useNavigate } from 'react-router-dom'
 import useForm from '../../hooks/useForm'
 import Footer from '../../ui/components/Footer'
 import Header from '../../ui/components/Header'
-import validate from '../data/validate'
+import AuthContext from '../context/AuthContext'
+import validateLogin from '../data/validateLogin'
 import '../../styles/Login.css'
-
 
 const LoginPage = () => {
 
-  const [errors, setErrors] = useState({})
+  const {login} = useContext(AuthContext)
+  const navegar = useNavigate()
+  const [errores, setErrores] = useState({})
 
   const {form, email, contrasena, onInputChange} = useForm({
     email: '',
@@ -18,14 +20,19 @@ const LoginPage = () => {
 
   const onFormSubmit = (e) => {
     e.preventDefault()
-    setErrors(validate(form))
+    setErrores(validateLogin(form, email))
   }
 
   useEffect(() => {
-    if((Object.keys(errors).length === 0) && (email !== "") && (contrasena !== "")){
-      console.log("Login...");
+    if((Object.keys(errores).length === 0) && (email !== "") && (contrasena !== "")){
+      login(email)
+      navegar('/', {
+        replace: true
+      })
     }
-  }, [errors])
+  
+  }, [errores])
+  
 
   return (
     <>
@@ -44,7 +51,6 @@ const LoginPage = () => {
             value={email}
             onChange={onInputChange}
           />
-          {errors.email && <p className='mensajeError'>{errors.email}</p>}
 
           <label htmlFor='contrasena'>Contraseña</label>
           <input
@@ -55,7 +61,7 @@ const LoginPage = () => {
             value={contrasena}
             onChange={onInputChange}
           />
-          {errors.contrasena && <p className='mensajeError'>{errors.contrasena}</p>}
+          {errores.login && <p className='mensajeError'>{errores.login}</p>}
 
           <button className='button-login'>
             Ingresar

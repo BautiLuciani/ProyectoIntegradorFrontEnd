@@ -9,7 +9,7 @@ import '../../styles/CreateAccount.css'
 
 const CreateAcountPage = () => {
 
-  const {login} = useContext(AuthContext)
+  const {createAcount} = useContext(AuthContext)
   const navegar = useNavigate()
 
   const [errors, setErrors] = useState({})
@@ -24,12 +24,12 @@ const CreateAcountPage = () => {
 
   const onFormSubmit = (e)=>{
       e.preventDefault()
-      setErrors(validate(form))
+      setErrors(validate(form, email))
   }
 
   useEffect(() => {
     if((Object.keys(errors).length === 0) && (nombre !== "") && (apellido !== "") && (email !== "") && (contrasenia !== "") && (password !== "")){
-      login(nombre, apellido, email, contrasenia)
+      createAcount(nombre, apellido, email, contrasenia)
     
       navegar('/', {
         replace: true
@@ -104,6 +104,8 @@ const CreateAcountPage = () => {
             />
             {errors.password && <p className='mensajeError'>{errors.password}</p>}
           </section>
+
+          {errors.ingresar && <p className='mensajeError'>{errors.ingresar}</p>}
 
           <section className='caButton'>
             <button className='createAccount-button'>

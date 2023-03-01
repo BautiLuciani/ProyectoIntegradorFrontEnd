@@ -19,10 +19,10 @@ const Navbar = () => {
           </select>
         </>
         <>
-            <label htmlFor="checkin">Check-In</label>
-          <input type="date" id='checkin'/>
+          <label htmlFor="checkin">Check-In</label>
+          <input type="date" id='checkin' />
           <label htmlFor="checkout">Check-Out</label>
-          <input type="date" id='checkout'/>
+          <input type="date" id='checkout' />
         </>
         <button className='button-submit'>Buscar</button>
       </form>

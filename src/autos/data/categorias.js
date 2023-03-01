@@ -7,13 +7,18 @@ const categorias = [
     {
         'img': '/assets/deportivo.jpg',
         'nombre': 'Deportivo',
-        'cantidad': 3
+        'cantidad': 2
     },
     {
         'img': '/assets/lujo.jpg',
         'nombre': 'De Lujo',
         'cantidad': 2
     },
+    {
+        'img': '/assets/camioneta.jpg',
+        'nombre': 'Camioneta',
+        'cantidad': 1
+    }
 ]
 
 export default categorias

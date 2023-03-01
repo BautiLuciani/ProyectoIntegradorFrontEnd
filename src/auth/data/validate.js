@@ -1,5 +1,6 @@
-const validate = (values) => {
+const validate = (values, email) => {
     const errores = {}
+    const user = JSON.parse(localStorage.getItem(`${email}`))
 
     if (!values.nombre) {
         errores.nombre = "Nombre no puede estar vacio"
@@ -17,15 +18,13 @@ const validate = (values) => {
     } else if (values.contrasenia.length < 7) {
         errores.contrasenia = "La contraseña es muy corta"
     }
-    if (!values.contrasena) {
-        errores.contrasena = "Contraseña no puede estar vacio"
-    } else if (values.contrasena.length < 7) {
-        errores.contrasena = "La contraseña es muy corta"
-    }
     if (!values.password) {
         errores.password = "Contraseña no puede estar vacio"
     } else if (!(values.contrasenia == values.password)) {
         errores.password = "Las contraseñas deben coincidir"
+    }
+    if(email === user?.email){
+        errores.ingresar = "Este correo ya esta utilizado"
     }
 
     return errores

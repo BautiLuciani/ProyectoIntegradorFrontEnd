@@ -49,11 +49,11 @@ const autos = [
         'description': 'Porsche Panamera / Color Bordo / Año 2022 / 14.630 km / 5 puertas / Motor 2.9-liter Twin-Turbocharged V6'
     },
     {
-        'img': '/assets/jaguar.jpg',
-        'category': 'Deportivo',
-        'title': 'Jaguar E-Type',
+        'img': '/assets/ram.jpg',
+        'category': 'Camioneta',
+        'title': 'Ram',
         'location': 'Salta',
-        'description': 'Jaguar E-Type / Color Negro / Año 2022 / 19.650 km / 2 puertas / Motor 5.3L Jaguar V12'
+        'description': 'Ram / Color Negro / Año 2022 / 19.650 km / 4 puertas / Motor 3.0 L V6 diesel'
     },
 
 ]
