@@ -1,98 +1,19 @@
-*{
+@import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@700&display=swap');
+
+* {
   box-sizing: border-box;
   padding: 0;
   margin: 0;
+  max-width: 100%;
 }
 
-.header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
+.createAcount button {
+  color: #31363f;
+  background-color: #dfe4ea;
 }
 
-.usuario {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-
-.iniciales {
-  background-color: brown;
-  border-radius: 360px;
-}
-
-.login {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  background-color: aqua;
-}
-
-.createAcount {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  background-color: blueviolet;
-}
-
-.logo {
-  display: flex;
-}
-
-.formulario {
-  display: flex;
-}
-
-.footer {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  background-color: orangered;
-}
-
-.formCreateAcount {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-}
-
-.formularioCA {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-}
-
-.caEmailContrasena {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-}
-
-.caButton {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-}
-
-.formLogin {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-}
-
-.formualarioLogin {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-}
-
-.mensajeError {
-  color: red;
+.createAcount button:hover {
+  color: #dfe4ea;
+  background-color: #f0572d;
 }
 

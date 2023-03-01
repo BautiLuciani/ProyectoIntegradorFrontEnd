@@ -1,0 +1,27 @@
+@import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@700&display=swap');
+
+/* estilos de body */
+.body {
+  background-color: #ffffff;
+  font-family: 'Quicksand';
+  margin-bottom: 30px;
+}
+
+/* titulo de zona para buscar por tipo de auto */
+.filter-by-car-title {
+  font-size: 20pt;
+  margin-left: 45px;
+  margin-top: 10px;
+}
+
+/* estilo de la zona de recomendaciones */
+.recommendations {
+  padding: 20px;
+  background-color: #dfe4ea;
+}
+
+/* titulo de la zona de recomendaciones */
+.recommendations-title {
+  margin-left: 20px;
+  font-size: 20pt;
+}

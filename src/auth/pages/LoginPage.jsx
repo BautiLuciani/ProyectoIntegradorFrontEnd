@@ -5,6 +5,7 @@ import Footer from '../../ui/components/Footer'
 import Header from '../../ui/components/Header'
 import AuthContext from '../context/AuthContext'
 import validateLogin from '../data/validateLogin'
+import '../../styles/Login.css'
 
 const LoginPage = () => {
 
@@ -62,14 +63,12 @@ const LoginPage = () => {
           />
           {errores.login && <p className='mensajeError'>{errores.login}</p>}
 
-          <button>
+          <button className='button-login'>
             Ingresar
           </button>
           <p>
             ¿Aun no tienes cuenta?
-            <Link
-              to="/acount"
-            >
+            <Link className="link-to-register" to="/acount">
               Registrate
             </Link>
           </p>

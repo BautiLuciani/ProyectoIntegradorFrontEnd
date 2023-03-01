@@ -5,6 +5,7 @@ import Footer from '../../ui/components/Footer'
 import Header from '../../ui/components/Header'
 import AuthContext from '../context/AuthContext'
 import validate from '../data/validate'
+import '../../styles/CreateAccount.css'
 
 const CreateAcountPage = () => {
 
@@ -42,7 +43,7 @@ const CreateAcountPage = () => {
       <Header />
 
       <div className='formCreateAcount'>
-        <h3>Crear Cuenta</h3>
+        <h3 className='createAccount-title'>Crear Cuenta</h3>
         <form className='formularioCA' onSubmit={onFormSubmit}>
 
           <section className='caNombreApellido'>
@@ -107,13 +108,13 @@ const CreateAcountPage = () => {
           {errors.ingresar && <p className='mensajeError'>{errors.ingresar}</p>}
 
           <section className='caButton'>
-            <button>
+            <button className='createAccount-button'>
               Crear cuenta
             </button>
 
             <p>
               ¿Ya tienes cuenta?
-              <Link
+              <Link className='link-to-login'
                 to="/login"
               >
                 Iniciar sesión

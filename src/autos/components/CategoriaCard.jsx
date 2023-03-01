@@ -1,4 +1,5 @@
 import React from 'react'
+import '../../styles/CategoriaCard.css'
 
 const CategoriaCard = ({img, nombre, cantidad}) => {
   return (

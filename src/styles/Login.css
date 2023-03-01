@@ -1,0 +1,106 @@
+@import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@700&display=swap');
+
+/* seccion login */
+.formLogin {
+  display: flex;
+  min-height: 85vh;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  font-family: 'Quicksand';
+  background-color: #dfe4ea;
+}
+
+/* formulario login */
+.formualarioLogin {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+/* titulo */
+.formLogin-title {
+  font-size: 20pt;
+  margin-top: 50px;
+  margin-bottom: 30px;
+  color: #f0572d;
+}
+
+/* inputs */
+.formualarioLogin input {
+  padding: 8px;
+  height: 40px;
+  width: 500px;
+  border-radius: 8px;
+  border-width: 0px;
+  margin: 15px;
+  font-family: 'Quicksand';
+}
+
+/* boton login */
+.button-login {
+  margin: 20px;
+  padding: 8px;
+  height: 40px;
+  width: 200px;
+  border-radius: 8px;
+  border-width: 0px;
+  box-shadow: 3px 3px 3px #a2a1a1;
+  background-color: #f0572d;
+  color: #ffffff;
+  font-family: 'Quicksand';
+}
+
+.button-login:hover {
+  background-color: #191b1d;
+  color: #f0572d;
+}
+
+/* mensaje */
+.mensagge-register {
+  margin-bottom: 50px;
+}
+
+.link-to-register {
+  margin-left: 5px;
+  text-decoration: none;
+  color: #f0572d;
+}
+
+.link-to-register:hover {
+  text-decoration: underline;
+}
+
+.login {
+  background-color: #31363f;
+  display: flex;
+  justify-content: space-between;
+  color: #ffffff;
+  font-family: 'Quicksand';
+}
+
+.login p {
+  color: #f0572d;
+}
+
+.login button {
+  background-color: #dfe4ea;
+  color: #31363f;
+}
+
+.login button:hover {
+  background-color: #f0572d;
+  color: #dfe4ea;
+}
+
+@media (max-width: 600px){
+  .formualarioLogin input{
+    width: 300px;
+  }
+
+  .login button{
+    width: 150px;
+    border-width: 0px;
+  }
+}

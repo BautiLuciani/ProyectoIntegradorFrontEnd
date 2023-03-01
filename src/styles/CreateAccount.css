@@ -1,0 +1,132 @@
+@import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@700&display=swap');
+
+/* createAccount section */
+.formCreateAcount {
+  display: flex;
+  min-height: 85vh;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  font-family: 'Quicksand';
+  background-color: #dfe4ea;
+}
+
+/* crateAccount title */
+.createAccount-title {
+  color: #f0572d;
+  margin-top: 0px;
+  margin-bottom: 20px;
+}
+
+/* inputs del formulario */
+.formCreateAcount input {
+  margin: 10px;
+  padding: 10px;
+  width: 200px;
+  border-radius: 8px;
+  border-width: 0px;
+  font-family: 'Quicksand';
+}
+
+/* form */
+.formularioCA {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+/* campos nombre y apellido */
+.caNombreApellido input {
+  width: 230px;
+  flex-direction: row;
+}
+
+
+
+/* campos email y contrasena */
+.caEmailContrasena input {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 500px;
+}
+
+/* campo boton */
+.caButton {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+/* boton */
+.createAccount-button {
+  padding: 8px;
+  border-radius: 8px;
+  margin: 15px;
+  height: 40px;
+  width: 200px;
+  border-width: 0px;
+  box-shadow: 3px 3px 3px #a2a1a1;
+  background-color: #f0572d;
+  color: #ffffff;
+  font-family: 'Quicksand';
+}
+
+.createAccount-button:hover {
+  background-color: #191b1d;
+  color: #f0572d;
+}
+
+/* mensaje de login */
+.mensagge-login {
+  margin: 10px;
+}
+
+.link-to-login {
+  margin-left: 3px;
+  text-decoration: none;
+  color: #f0572d;
+}
+
+.link-to-login:hover {
+  text-decoration: underline;
+}
+
+/* mensaje error */
+.mensajeError {
+  margin-bottom: 0px;
+  color: red;
+}
+
+.createAcount {
+  background-color: #31363f;
+  display: flex;
+  justify-content: space-between;
+  color: #ffffff;
+  font-family: 'Quicksand';
+}
+
+.createAcount p {
+  color: #f0572d;
+}
+
+
+@media (max-width: 600px){
+  .formCreateAcount{
+    padding: 70px;
+    display: flex;
+    flex-direction: column;
+  }
+  
+
+  label{
+    margin-left: 12px;
+  }
+
+  input {
+    width: 300px;
+  }
+}

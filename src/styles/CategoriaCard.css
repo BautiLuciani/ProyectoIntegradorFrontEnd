@@ -1,0 +1,30 @@
+/* cards de categoria */
+.category-card {
+  margin-left: 45px;
+  margin-right: 45px;
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+/* img de categoria */
+.category-card img {
+  height: 300px;
+  width: 420px;
+  border-top-left-radius: 8px;
+  border-top-right-radius: 8px;
+}
+
+/* info de categoria */
+.info {
+  background-color: #ffffff;
+  color: #191b1d;
+  padding: 10px;
+  border-bottom-right-radius: 8px;
+  border-bottom-left-radius: 8px;
+  box-shadow: 0px 5px 5px #ccd1d5;
+}
+
+/* cantidad */
+.quantity {
+  color: #f0572d;
+}
