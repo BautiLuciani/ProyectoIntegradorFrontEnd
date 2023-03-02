@@ -46,7 +46,7 @@ const Header = () => {
           ? 'createAcount'
           : 'header'
       }>
-      <NavLink to="/" className="logo">
+      <NavLink to="/home" className="logo">
         <img src="/assets/logo 1.png" alt="Logo DB" />
         <p className="slogan">Sentite como en tu hogar</p>
       </NavLink>
