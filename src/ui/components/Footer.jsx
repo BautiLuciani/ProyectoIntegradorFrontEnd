@@ -3,7 +3,7 @@ import '../../styles/Footer.css'
 
 const Footer = () => {
   return (
-    <div className="footer">
+    <footer className="footer">
       <div>
         <p>©2023 Digital Booking</p>
       </div>
@@ -13,7 +13,7 @@ const Footer = () => {
         <img src="/assets/logoTwitter.png" alt="Logo Twitter" />
         <img src="/assets/logoInstagram.png" alt="Logo Instagram" />
       </div>
-    </div>
+    </footer>
   )
 }
 
