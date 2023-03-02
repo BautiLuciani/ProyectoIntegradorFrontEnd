@@ -1,8 +1,8 @@
 import React from 'react'
-import {Link} from 'react-router-dom'
+import { Link } from 'react-router-dom'
 import '../../styles/AutoCard.css'
 
-const AutoCard = ({img, category, title, location, description}) => {
+const AutoCard = ({ id, img, category, title, location, description }) => {
   return (
     <div className="auto-card">
       <div>
@@ -15,7 +15,9 @@ const AutoCard = ({img, category, title, location, description}) => {
         <p className="info-description">
           <small>{description}</small>
         </p>
-        <button className="info-view-more">Ver Mas</button>
+        <Link to={`/producto/${id}`}>
+          Ver mas
+        </Link>
       </div>
     </div>
   )
