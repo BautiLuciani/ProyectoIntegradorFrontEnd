@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import provincias from '../data/provincias'
 import '../../styles/Navbar.css'
+import DateRangePicker from './DateRangePicker'
 
 
 const Navbar = () => {
@@ -19,10 +20,8 @@ const Navbar = () => {
           </select>
         </>
         <>
-          <label htmlFor="checkin">Check-In</label>
-          <input type="date" id='checkin' />
-          <label htmlFor="checkout">Check-Out</label>
-          <input type="date" id='checkout' />
+          <label>Check In - Check Out</label>
+          <DateRangePicker/>
         </>
         <button className='button-submit'>Buscar</button>
       </form>

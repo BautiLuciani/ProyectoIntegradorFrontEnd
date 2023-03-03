@@ -8,6 +8,7 @@ import { GiSteeringWheel } from 'react-icons/gi'
 import { MdOutlineFlipCameraAndroid, MdTouchApp } from 'react-icons/md'
 import { TbGps } from 'react-icons/tb'
 import Footer from '../../ui/components/Footer'
+import CalendarRangePicker from '../../ui/components/CalendarRangePicker'
 
 const ProductPage = () => {
 
@@ -109,6 +110,20 @@ const ProductPage = () => {
                         <div>
                             <h4>Politicas de cancelacion</h4>
                             <p>Agrega las fechas de tu viaje para obtener los detalles de cancelacion de este auto</p>
+                        </div>
+                    </div>
+                </section>
+                <section>
+                    <h3>Fechas disponibles</h3>
+                    <div>
+                        <div>
+                            <CalendarRangePicker/>
+                        </div>
+                        <div>
+                            <p>Agrega tus fechas de viaje para obtener precios exactos</p>
+                            <button>
+                                Iniciar Reserva
+                            </button>
                         </div>
                     </div>
                 </section>
