@@ -15,7 +15,7 @@ const AutoCard = ({ id, img, category, title, location, description }) => {
         <p className="info-description">
           <small>{description}</small>
         </p>
-        <Link to={`/producto/${id}`}>
+        <Link className=' info-view-more' to={`/producto/${id}`}>
           Ver mas
         </Link>
       </div>

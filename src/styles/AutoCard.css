@@ -39,12 +39,15 @@
 
 /* boton para ver mas */
 .info-view-more {
-  border: none;
   width: 290px;
   padding: 15px;
-  margin-top: 50px;
+  margin-top: 30px;
+  text-align: center;
   border-radius: 8px;
+  border: none;
+  text-decoration: none;
   font-family: 'Quicksand';
+  display: block;
   background-color: #f0572d;
   color: #ffffff;
 }
