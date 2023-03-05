@@ -1,0 +1,146 @@
+@import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@700&display=swap');
+
+*{
+  font-family: 'Quicksand';
+}
+
+.title-info {
+  padding: 20px;
+  display: flex;
+  justify-content: space-between;
+  background-color: #31363F;
+  color: #DFE4EA;
+}
+
+.auto-title{
+  font-size: 24pt;
+}
+
+.return-button{
+  margin:10px;
+  height: 30px;
+  width: 60px;
+  background-color: #F0572D;
+  border-radius: 8px;
+  border-width: 0px;
+}
+
+.return-button:hover{
+  background-color: #DFE4EA;
+}
+
+/* location seccion */
+.location-info{
+  display: flex;
+  padding: 20px;
+  flex-direction: column;
+  background-color: #DFE4EA;
+}
+
+.location{
+  display: flex;
+}
+
+.location-icon{
+  margin-right: 5px;
+}
+
+.distance{
+  margin-left: 20px;
+}
+
+/* auto images section */
+
+.img-auto{
+  padding: 20px;
+}
+
+.images-group{
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-rows: 1fr 1fr;
+  margin-bottom: 10px
+}
+
+.view-more-button {
+  padding: 8px;
+  border-width: 0px;
+  border-radius: 8px;
+  background-color: #F0572D;
+}
+
+/* car description */
+.description{
+  padding: 20px;
+}
+
+.description-message{
+  font-size: 20pt;
+}
+
+.description p{
+  margin-bottom: 10px;
+}
+
+/* details */
+
+.details-section{
+  padding: 20px;
+}
+
+.details-title{
+  font-size: 20pt;
+  margin-bottom: 10px;
+}
+
+hr{
+  border-color: #F0572D;
+  margin-bottom: 10px;
+}
+
+.details{
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  grid-template-rows: 1fr 1fr;
+}
+
+.details div{
+  display: flex;
+  margin: 10px;
+}
+
+.details div p{
+  margin-left: 5px;
+}
+
+.icon {
+  color: #F0572D;
+  font-size:  20px;
+}
+
+/* rules */
+
+.rules-and-recommendations{
+  padding: 20px;
+}
+
+.rules-and-recommendations-title{
+  font-size: 20pt;
+  margin-bottom: 10px;
+}
+
+.sections{
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+}
+
+
+
+.sections div h4{
+  margin-bottom: 30px;
+  font-size: 16pt;
+}
+.sections div p{
+  margin-bottom: 20px;
+}
+
