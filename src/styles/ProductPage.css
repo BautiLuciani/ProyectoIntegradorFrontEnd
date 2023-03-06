@@ -5,7 +5,7 @@
 }
 
 .title-info {
-  padding: 20px;
+  padding: 30px;
   display: flex;
   justify-content: space-between;
   background-color: #31363F;
@@ -32,7 +32,7 @@
 /* location seccion */
 .location-info{
   display: flex;
-  padding: 20px;
+  padding: 30px;
   flex-direction: column;
   background-color: #DFE4EA;
 }
@@ -52,7 +52,7 @@
 /* auto images section */
 
 .img-auto{
-  padding: 20px;
+  padding: 30px;
   position: relative;
 }
 
@@ -64,7 +64,7 @@
   gap: 1rem;
 }
 
-img{
+.images-group img{
   border-radius: 8px;
 }
 
@@ -81,7 +81,7 @@ img{
   background-color: #F0572D;
   position: absolute;
   right: 30px;
-  bottom: 35px;
+  bottom: 40px;
 }
 
 
@@ -93,7 +93,7 @@ img{
 
 /* car description */
 .description{
-  padding: 20px;
+  padding: 30px;
 }
 
 .description-message{
@@ -107,7 +107,7 @@ img{
 /* details */
 
 .details-section{
-  padding: 20px;
+  padding: 30px;
 }
 
 .details-title{
@@ -143,7 +143,7 @@ hr{
 /* rules */
 
 .rules-and-recommendations{
-  padding: 20px;
+  padding: 30px;
 }
 
 .rules-and-recommendations-title{
@@ -166,3 +166,60 @@ hr{
   margin-bottom: 20px;
 }
 
+
+/* bookings */
+.bookings-zone{
+  padding: 30px;
+  background-color: #DFE4EA;
+}
+
+
+.bookings-zone-title{
+  margin-bottom: 15px;
+  font-size: 20pt;
+}
+
+
+.calendary-and-booking{
+  display: flex;
+  align-items: center;
+  /* justify-content: space-around;
+  align-items: center; */
+}
+
+/* calendary */
+.calendary{
+  margin-bottom: 20px;
+  border-radius: 8px;
+  border: none;
+  border-width: 0px;
+}
+
+.starting-reservation{
+  margin-left: 50px;
+  background-color: #ffffff ;
+  padding: 20px;
+  border-radius: 8px;
+  width: 450px;
+  box-shadow: 4px 4px 4px  #a2a1a1;
+}
+
+.reservation-mensagge{
+  /* color: #F0572D; */
+  margin-bottom: 20px;
+}
+
+.booking-button{
+  background-color: #F0572D;
+  color: #31363F;
+  padding: 10px;
+  width: 400px;
+  border-width: 0px;
+  border-radius: 8px;
+  box-shadow: 2px 2px 2px  #a2a1a1;
+}
+
+.booking-button:hover{
+  background-color: #31363F;
+  color: #F0572D;
+}

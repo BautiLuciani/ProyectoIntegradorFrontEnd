@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import Calendar from 'react-calendar'
 import 'react-calendar/dist/Calendar.css';
+import '../../styles/ProductPage.css'
 
 const CalendarRangePicker = () => {
 
@@ -8,7 +9,7 @@ const CalendarRangePicker = () => {
     const ayer = new Date(Date.now() - 1);
 
     return (
-        <Calendar
+        <Calendar className={'calendary'}
             value={calendarRange}
             onChange={(update) => {
                 setCalendarRange(update);
