@@ -37,11 +37,24 @@
 }
 
 /* campos nombre y apellido */
-.caNombreApellido input {
-  width: 230px;
-  flex-direction: row;
+
+.caNombreApellido{
+  display: flex;
+  justify-content: space-between;
 }
 
+.caNombreApellido div{
+  display: flex;
+  flex-direction: column;
+}
+
+.caNombreApellido input {
+  width: 240px;
+}
+
+.caNombreApellido label{
+  margin-left: 10px;
+}
 
 
 /* campos email y contrasena */
