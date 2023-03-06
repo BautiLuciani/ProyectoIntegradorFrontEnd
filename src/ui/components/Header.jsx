@@ -53,18 +53,18 @@ const Header = () => {
 
       <div className="usuario">
         {logged ? (
-          <>
-            <section className="iniciales">
-              <b>
+          <div className='user'>
+            <section>
+              <b className='initials'>
                 {primeraLetraNombre}
                 {primeraLetraApellido}
               </b>
             </section>
-            <p>Bienvenido, {nombreMayuscula()}</p>
+            <p className='welcome-mensagge'>Bienvenido, {nombreMayuscula()}</p>
             <button className="buttons" onClick={onLogout}>
               Cerrar Sesion
             </button>
-          </>
+          </div>
         ) : lastPath === '/login' ? (
           <button className="buttons" onClick={onCreateAcount}>
             {' '}
