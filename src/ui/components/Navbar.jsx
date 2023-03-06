@@ -20,7 +20,7 @@ const Navbar = () => {
           </select>
         </>
         <>
-          <label>Check In - Check Out</label>
+          {/* <label>Check In - Check Out</label> */}
           <DateRangePicker/>
         </>
         <button className='button-submit'>Buscar</button>

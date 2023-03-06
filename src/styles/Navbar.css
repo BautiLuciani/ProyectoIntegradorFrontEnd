@@ -12,6 +12,8 @@
 /* estilos del formulario */
 .formulario {
   margin: 20px;
+  display: flex;
+  justify-content: center;
 }
 
 /* seleccion de provincias */
@@ -27,12 +29,13 @@
 }
 
 .select-province-text{
-  margin-right: 8px;
+  margin: 5px;
+  width: 200px;
 }
 
 .select-province{
   height: 40px;
-  width: 200px;
+  width: 500px;
   margin: 8px;
   border-radius: 4px;
   padding: 8px;
@@ -41,14 +44,15 @@
 
 /* input*/
 .formulario input {
-  border-radius: 4px;
+  display: flex;
   margin: 8px;
   padding: 8px;
   height: 40px;
-  width: 300px;
+  width: 800px;
   font-family: 'Quicksand';
   background-color: #dfe4ea;
   border-width: 1px;
+  border-radius: 4px;
 }
 
 /* estilos del boton de busqueda*/
@@ -56,7 +60,7 @@
   padding: 5px;
   width: 180px;
   height: 40px;
-  margin-top: 20px;
+  margin-top: 8px;
   border-radius: 4px;
   border-width: 1px;
   font-family: 'Quicksand';
