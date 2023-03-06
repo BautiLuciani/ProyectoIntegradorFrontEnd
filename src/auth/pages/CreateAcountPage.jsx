@@ -9,12 +9,12 @@ import '../../styles/CreateAccount.css'
 
 const CreateAcountPage = () => {
 
-  const {createAcount} = useContext(AuthContext)
+  const { createAcount } = useContext(AuthContext)
   const navegar = useNavigate()
 
   const [errors, setErrors] = useState({})
 
-  const {form, nombre, apellido, email, contrasenia, password, onInputChange} = useForm({
+  const { form, nombre, apellido, email, contrasenia, password, onInputChange } = useForm({
     nombre: '',
     apellido: '',
     email: '',
@@ -22,21 +22,21 @@ const CreateAcountPage = () => {
     password: ''
   })
 
-  const onFormSubmit = (e)=>{
-      e.preventDefault()
-      setErrors(validate(form, email))
+  const onFormSubmit = (e) => {
+    e.preventDefault()
+    setErrors(validate(form, email))
   }
 
   useEffect(() => {
-    if((Object.keys(errors).length === 0) && (nombre !== "") && (apellido !== "") && (email !== "") && (contrasenia !== "") && (password !== "")){
+    if ((Object.keys(errors).length === 0) && (nombre !== "") && (apellido !== "") && (email !== "") && (contrasenia !== "") && (password !== "")) {
       createAcount(nombre, apellido, email, contrasenia)
-    
+
       navegar('/', {
         replace: true
       })
     }
   }, [errors])
-  
+
 
   return (
     <>
@@ -47,27 +47,31 @@ const CreateAcountPage = () => {
         <form className='formularioCA' onSubmit={onFormSubmit}>
 
           <section className='caNombreApellido'>
-            <label htmlFor='nombre'>Nombre</label>
-            <input
-              type="text"
-              id='nombre'
-              placeholder='Ingrese su nombre'
-              name='nombre'
-              value={nombre}
-              onChange={onInputChange}
-            />
-            {errors.nombre && <p className='mensajeError'>{errors.nombre}</p>}
+            <div>
+              <label htmlFor='nombre'>Nombre</label>
+              <input
+                type="text"
+                id='nombre'
+                placeholder='Ingrese su nombre'
+                name='nombre'
+                value={nombre}
+                onChange={onInputChange}
+              />
+              {errors.nombre && <p className='mensajeError'>{errors.nombre}</p>}
+            </div>
 
-            <label htmlFor='apellido'>Apellido</label>
-            <input
-              type="text"
-              id='apellido'
-              placeholder='Ingrese su apellido'
-              name='apellido'
-              value={apellido}
-              onChange={onInputChange}
-            />
-            {errors.apellido && <p className='mensajeError'>{errors.apellido}</p>}
+            <div>
+              <label htmlFor='apellido'>Apellido</label>
+              <input
+                type="text"
+                id='apellido'
+                placeholder='Ingrese su apellido'
+                name='apellido'
+                value={apellido}
+                onChange={onInputChange}
+              />
+              {errors.apellido && <p className='mensajeError'>{errors.apellido}</p>}
+            </div>
           </section>
 
           <section className='caEmailContrasena'>
@@ -83,7 +87,7 @@ const CreateAcountPage = () => {
             {errors.email && <p className='mensajeError'>{errors.email}</p>}
 
             <label htmlFor='contrasenia'>Contraseña</label>
-            <input 
+            <input
               type="password"
               id='contrasenia'
               placeholder='Ingrese su constreña'
