@@ -22,7 +22,7 @@
 .info-car {
   height: 290px;
   padding: 15px;
-  border-radius: 8px;
+  border-radius: 0px 8px 8px 0px;
   background-color: #ffffff;
 }
 
