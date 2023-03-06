@@ -4,6 +4,7 @@
 .header {
   background-color: #f0572d;
   display: flex;
+  padding: 9px;
   justify-content: space-between;
   font-family: 'Quicksand';
 }
@@ -24,6 +25,13 @@
   color: #191b1d;
 }
 
+
+.user{
+  display: flex;
+  justify-content: right;
+  align-items: center;
+}
+
 /* estilos de los botones (registro e inicio de sesion) */
 .buttons {
   background-color: #dfe4ea;
@@ -39,6 +47,22 @@
   background-color: #31363f;
   border-color: #191b1d;
 }
+
+
+/* logueo */
+.initials{
+  color: #dfe4ea;
+  background-color: #202933;
+  padding: 8px;
+  border-radius: 50px;
+}
+
+
+.welcome-mensagge{
+  margin-left: 10px;
+}
+
+
 
 /* responsive */
 
@@ -59,7 +83,7 @@
     display: none;
   }
 
-  .buttons {
-    /* display: none; */
-  }
+  /* .buttons {
+    display: none;
+  } */
 }
