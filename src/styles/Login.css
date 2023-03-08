@@ -94,7 +94,7 @@
   color: #dfe4ea;
 }
 
-@media (max-width: 600px){
+@media (max-width: 400px){
   .formualarioLogin input{
     width: 300px;
   }
@@ -102,5 +102,10 @@
   .login button{
     width: 150px;
     border-width: 0px;
+  }
+
+  .formualarioLogin label{
+    margin-top: 5px;
+    margin-left: 0px;
   }
 }

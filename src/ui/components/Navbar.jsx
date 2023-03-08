@@ -13,7 +13,7 @@ const Navbar = () => {
       <form className='formulario'>
         <>
           <label className='select-province-text' htmlFor="provincias">Seleccione una provincia</label>
-          <select  className='select-province' name="provincias">
+          <select className='select-province' name="provincias">
             {location.map(provincias => (
               <option key={provincias} value={provincias}>{provincias}</option>
             ))}
@@ -21,9 +21,11 @@ const Navbar = () => {
         </>
         <>
           {/* <label>Check In - Check Out</label> */}
-          <DateRangePicker/>
+          <DateRangePicker />
         </>
-        <button className='button-submit'>Buscar</button>
+        <div>
+          <button className='button-submit'>Buscar</button>
+        </div>
       </form>
     </div>
   )

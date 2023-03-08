@@ -66,15 +66,16 @@
 
 /* responsive */
 
-@media (max-width: 600px){
+@media (max-width: 400px){
   .header{
     display: flex;
     align-items: center;
+    justify-content: space-between;
   }
    
   .header img{
-    height: 70px;
-    width: 140px;
+    height: 60px;
+    width: 150px;
     /* margin-top: 10px; */
   }
 
@@ -83,7 +84,20 @@
     display: none;
   }
 
-  /* .buttons {
+  .initials{
     display: none;
-  } */
+  }
+
+  .welcome-mensagge{
+    display: none;
+  }
+
+
+  .buttons {
+    border-width: 0px;
+  }
+
+  .buttons{
+    margin-right: 5px;
+  }
 }

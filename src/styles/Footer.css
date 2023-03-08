@@ -19,7 +19,7 @@
 }
 
 
-@media (max-width: 600px){
+@media (max-width: 415px){
   .footer img{
     display: none;
   }

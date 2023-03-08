@@ -38,12 +38,12 @@
 
 /* campos nombre y apellido */
 
-.caNombreApellido{
+.caNombreApellido {
   display: flex;
   justify-content: space-between;
 }
 
-.caNombreApellido div{
+.caNombreApellido div {
   display: flex;
   flex-direction: column;
 }
@@ -52,7 +52,7 @@
   width: 240px;
 }
 
-.caNombreApellido label{
+.caNombreApellido label {
   margin-left: 10px;
 }
 
@@ -114,11 +114,13 @@
   color: red;
 }
 
+/* Navbar de formulario */
 .createAcount {
   background-color: #31363f;
+  color: #ffffff;
+  padding: 8px;
   display: flex;
   justify-content: space-between;
-  color: #ffffff;
   font-family: 'Quicksand';
 }
 
@@ -127,19 +129,37 @@
 }
 
 
-@media (max-width: 600px){
-  .formCreateAcount{
+@media (max-width: 600px) {
+  .formCreateAcount {
     padding: 70px;
     display: flex;
     flex-direction: column;
   }
   
-
-  label{
+  label {
     margin-left: 12px;
   }
 
-  input {
+  .caNombreApellido {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .caNombreApellido label {
+    margin-left: 12px;
+  }
+
+  .caNombreApellido input{
     width: 300px;
+  }
+
+  .caButton p {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  .link-to-login {
+    margin-left: 20px;
   }
 }

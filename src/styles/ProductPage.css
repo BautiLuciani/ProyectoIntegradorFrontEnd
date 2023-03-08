@@ -2,6 +2,7 @@
 
 *{
   font-family: 'Quicksand';
+  box-sizing: border-box;
 }
 
 .title-info {
@@ -222,4 +223,78 @@ hr{
 .booking-button:hover{
   background-color: #31363F;
   color: #F0572D;
+}
+
+
+
+
+@media (max-width: 400px){
+ .view-more-button{
+  display: none;
+ }
+
+ .description p{
+  margin-bottom: 30px;
+ }
+
+ .details{
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+ }
+
+
+ .rules-and-recommendations .sections{
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 40px;
+ }
+
+ .rules-and-recommendations .sections h4{
+  margin-bottom: 10px ;
+  margin-top: 20px;
+ }
+
+
+ .rules-and-recommendations .sections p{
+  margin-bottom: 10px;
+ }
+
+ .bookings-zone{
+  padding: 20px;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  justify-content: center;
+ }
+
+ .calendary-and-booking{
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 20px;
+  margin-left: 20px;
+  display: flex;
+  text-align: center;
+
+ }
+
+ .calendary{
+  width: 400px;
+  margin: 0px;
+  display: flex;
+  flex-direction: column;
+  padding-top: 20px;
+  padding-right: 20px;
+  padding-bottom: 10px;
+ }
+
+ .starting-reservation{
+  display: flex;
+  flex-direction: column;
+  width: 350px;
+  margin-bottom: 40px;
+  justify-content: center;
+  margin-right: 20px;
+  margin-left: 0px;
+ }
+ 
 }

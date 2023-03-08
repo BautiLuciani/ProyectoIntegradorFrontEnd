@@ -30,7 +30,7 @@
 
 .select-province-text{
   margin: 5px;
-  width: 200px;
+  width: 300px;
 }
 
 .select-province{
@@ -48,7 +48,7 @@
   margin: 8px;
   padding: 8px;
   height: 40px;
-  width: 800px;
+  width: 600px;
   font-family: 'Quicksand';
   background-color: #dfe4ea;
   border-width: 1px;
@@ -58,7 +58,7 @@
 /* estilos del boton de busqueda*/
 .button-submit {
   padding: 5px;
-  width: 180px;
+  width: 200px;
   height: 40px;
   margin-top: 8px;
   border-radius: 4px;
@@ -76,10 +76,33 @@
 /* Responsive */
 
 
-@media (max-width: 600px){
+@media (max-width: 400px){
+  
   .navbar{
-    text-align: center;
-    display: grid;
-    flex-wrap: 1fr;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
   }
+
+  .select-province-text{
+    display: none;
+  }
+
+  .formulario input {
+    display: flex;
+    margin: 8px;
+    padding: 8px;
+    height: 40px;
+    width: 400px;
+    font-family: 'Quicksand';
+    background-color: #dfe4ea;
+    border-width: 1px;
+    border-radius: 4px;
+  }
+
+  .formulario{
+    display: flex;
+    flex-direction: column;
+  }
+
 }
