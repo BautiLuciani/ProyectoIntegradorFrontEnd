@@ -1,17 +1,23 @@
 import React from 'react'
-import categorias from '../data/categorias'
 import CategoriaCard from './CategoriaCard'
 import '../../styles/CategoriaList.css'
+import useFetchCategorias from '../../hooks/useFetchCategorias'
 
 const CategoriaList = () => {
-  const arregloCategorias = categorias
+
+  const { isLoading, categorias } = useFetchCategorias()
 
   return (
-    <div className="categorys">
-      {arregloCategorias.map((categoria) => (
-        <CategoriaCard key={categoria.nombre} {...categoria} />
-      ))}
-    </div>
+    <>
+      {
+        isLoading && (<h2>Cargando...</h2>)
+      }
+      <div className="categorys">
+        {categorias.map((cate) => (
+          <CategoriaCard key={cate.id} {...cate} />
+        ))}
+      </div>
+    </>
   )
 }
 

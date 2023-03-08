@@ -1,7 +1,6 @@
 import React, { useMemo } from 'react'
 import { useNavigate, useParams } from 'react-router-dom'
 import Header from '../../ui/components/Header'
-import getAutoById from '../helpers/getAutoById'
 import { GoLocation } from 'react-icons/go'
 import { BsSnow, BsThermometerSun, BsFillPersonCheckFill } from 'react-icons/bs'
 import { GiSteeringWheel } from 'react-icons/gi'
@@ -9,11 +8,12 @@ import { MdOutlineFlipCameraAndroid, MdTouchApp } from 'react-icons/md'
 import { TbGps } from 'react-icons/tb'
 import Footer from '../../ui/components/Footer'
 import CalendarRangePicker from '../../ui/components/CalendarRangePicker'
+import useFetchProductosId from '../../hooks/useFetchProductosId'
 
 const ProductPage = () => {
 
     const { id } = useParams()
-    const auto = useMemo(() => getAutoById(id), [id])
+    const { products, loading } = useFetchProductosId(id)
 
     const navigate = useNavigate()
 
@@ -24,11 +24,14 @@ const ProductPage = () => {
     return (
         <>
             <Header />
+            {
+                loading && (<h2>Cargando...</h2>)
+            }
             <div>
                 <section>
                     <div>
-                        <p>{`Auto ${auto.category}`}</p>
-                        <h3>{auto.title}</h3>
+                        <p>{`Auto ${products.categoria?.titulo}`}</p>
+                        <h3>{products.titulo}</h3>
                     </div>
                     <button
                         onClick={onNavigateBack}
@@ -39,17 +42,17 @@ const ProductPage = () => {
                 <section>
                     <div>
                         <GoLocation />
-                        <p><b>{auto.location}</b>, Argentina</p>
+                        <p><b>{products.ciudad?.titulo}</b>, Argentina</p>
                     </div>
                     <p>A 940 metros del centro</p>
                 </section>
                 <section>
                     <div>
-                        <img src={auto.img} alt={auto.title} />
-                        <img src={auto.img} alt={auto.title} />
-                        <img src={auto.img} alt={auto.title} />
-                        <img src={auto.img} alt={auto.title} />
-                        <img src={auto.img} alt={auto.title} />
+                        <img src={products.categoria?.urlImagen} alt={products.titulo} />
+                        <img src={products.categoria?.urlImagen} alt={products.titulo} />
+                        <img src={products.categoria?.urlImagen} alt={products.titulo} />
+                        <img src={products.categoria?.urlImagen} alt={products.titulo} />
+                        <img src={products.categoria?.urlImagen} alt={products.titulo} />
                     </div>
                     <button> Ver Mas </button>
                 </section>
@@ -117,7 +120,7 @@ const ProductPage = () => {
                     <h3>Fechas disponibles</h3>
                     <div>
                         <div>
-                            <CalendarRangePicker/>
+                            <CalendarRangePicker />
                         </div>
                         <div>
                             <p>Agrega tus fechas de viaje para obtener precios exactos</p>
@@ -128,7 +131,7 @@ const ProductPage = () => {
                     </div>
                 </section>
             </div>
-            <Footer/>
+            <Footer />
         </>
     )
 }

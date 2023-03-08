@@ -2,18 +2,19 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 import '../../styles/AutoCard.css'
 
-const AutoCard = ({ id, img, category, title, location, description }) => {
+const AutoCard = ({id, titulo, ciudad, categoria }) => {
+
   return (
     <div className="auto-card">
       <div>
-        <img src={img} alt={title} />
+        <img src={categoria?.urlImagen} alt={titulo} />
       </div>
       <div className="info-car">
-        <h4 className="info-title">{title}</h4>
-        <h6 className="info-category">{category}</h6>
-        <p className="info-location">{location}</p>
+        <h4 className="info-title">{titulo}</h4>
+        <h6 className="info-category">{categoria?.titulo}</h6>
+        <p className="info-location">{ciudad?.titulo}</p>
         <p className="info-description">
-          <small>{description}</small>
+          <small>{categoria?.descripcion}</small>
         </p>
         <Link to={`/producto/${id}`}>
           Ver mas
