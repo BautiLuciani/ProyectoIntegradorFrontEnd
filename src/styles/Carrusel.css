@@ -1,6 +1,17 @@
 .open-galery-button {
-  background-color: #f0572d;
+  padding: 4px;
+  height: 30px;
   border-width: 0px;
+  border-radius: 8px;
+  background-color: #F0572D;
+  position: absolute;
+  right: 30px;
+  bottom: 60px;
+}
+
+.open-galery-button:hover {
+  background-color: #31363F;
+  color: #F0572D;
 }
 
 .window {
