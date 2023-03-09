@@ -9,11 +9,16 @@ import { TbGps } from 'react-icons/tb'
 import Footer from '../../ui/components/Footer'
 import CalendarRangePicker from '../../ui/components/CalendarRangePicker'
 import useFetchProductosId from '../../hooks/useFetchProductosId'
+import Carrusel from '../components/Carrusel'
+import useFetchImagenes from '../../hooks/useFetchImagenes'
 
 const ProductPage = () => {
 
     const { id } = useParams()
     const { products, loading } = useFetchProductosId(id)
+    const {imagenes} = useFetchImagenes()
+
+    const galeria = imagenes.filter(img => (img.producto.id == id))
 
     const navigate = useNavigate()
 
@@ -54,7 +59,7 @@ const ProductPage = () => {
                         <img src={products.categoria?.urlImagen} alt={products.titulo} />
                         <img src={products.categoria?.urlImagen} alt={products.titulo} />
                     </div>
-                    <button> Ver Mas </button>
+                    <Carrusel imagenes={galeria}/>
                 </section>
                 <section>
                     <h3>Disfruta de tu viaje</h3>
