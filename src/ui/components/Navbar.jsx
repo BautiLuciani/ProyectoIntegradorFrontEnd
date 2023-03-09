@@ -1,11 +1,12 @@
 import React, { useState } from 'react'
-import provincias from '../data/provincias'
 import '../../styles/Navbar.css'
 import DateRangePicker from './DateRangePicker'
+import useFetchProvincias from '../../hooks/useFetchProvincias'
 
 
 const Navbar = () => {
-  const location = provincias
+
+  const { provincias } = useFetchProvincias()
 
   return (
     <div className='navbar'>
@@ -14,8 +15,8 @@ const Navbar = () => {
         <>
           <label className='select-province-text' htmlFor="provincias">Seleccione una provincia</label>
           <select className='select-province' name="provincias">
-            {location.map(provincias => (
-              <option key={provincias} value={provincias}>{provincias}</option>
+            {provincias.map(prov => (
+              <option key={prov.id} value={prov.titulo}>{prov.titulo}</option>
             ))}
           </select>
         </>

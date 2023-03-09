@@ -1,7 +1,6 @@
 import React, { useMemo } from 'react'
 import { useNavigate, useParams } from 'react-router-dom'
 import Header from '../../ui/components/Header'
-import getAutoById from '../helpers/getAutoById'
 import { GoLocation } from 'react-icons/go'
 import { BsSnow, BsThermometerSun, BsFillPersonCheckFill } from 'react-icons/bs'
 import { GiSteeringWheel } from 'react-icons/gi'
@@ -10,11 +9,17 @@ import { TbGps } from 'react-icons/tb'
 import Footer from '../../ui/components/Footer'
 import '../../styles/ProductPage.css'
 import CalendarRangePicker from '../../ui/components/CalendarRangePicker'
+import useFetchProductosId from '../../hooks/useFetchProductosId'
+import Carrusel from '../components/Carrusel'
+import useFetchImagenes from '../../hooks/useFetchImagenes'
 
 const ProductPage = () => {
 
     const { id } = useParams()
-    const auto = useMemo(() => getAutoById(id), [id])
+    const { products, loading } = useFetchProductosId(id)
+    const { imagenes } = useFetchImagenes()
+
+    const galeria = imagenes.filter(img => (img.producto.id == id))
 
     const navigate = useNavigate()
 
@@ -25,11 +30,14 @@ const ProductPage = () => {
     return (
         <>
             <Header />
+            {
+                loading && (<h2>Cargando...</h2>)
+            }
             <div>
                 <section className='title-info'>
                     <div>
-                        <p>{`Auto ${auto.category}`}</p>
-                        <h3 className='auto-title'>{auto.title}</h3>
+                        <p>{`Auto ${products.categoria?.titulo}`}</p>
+                        <h3>{products.titulo}</h3>
                     </div>
                     <button className='return-button'
                         onClick={onNavigateBack}
@@ -39,20 +47,23 @@ const ProductPage = () => {
                 </section>
                 <section className='location-info'>
                     <div className='location'>
-                        <GoLocation className='location-icon'/>
-                        <p><b>{auto.location}</b>, Argentina</p>
+                        <GoLocation className='location-icon' />
+                        <p><b>{products.ciudad?.titulo}</b>, Argentina</p>
                     </div>
                     <p className='distance'>A 940 metros del centro</p>
                 </section>
                 <section className='img-auto'>
                     <div className='images-group'>
-                        <img className='image' src={auto.img} alt={auto.title} />
-                        <img src={auto.img} alt={auto.title} />
-                        <img src={auto.img} alt={auto.title} />
-                        <img src={auto.img} alt={auto.title} />
-                        <img src={auto.img} alt={auto.title} />
+                        <img className='image' src={products.categoria?.urlImagen} alt={products.titulo} />
+                        <img src={products.categoria?.urlImagen} alt={products.titulo} />
+                        <img src={products.categoria?.urlImagen} alt={products.titulo} />
+                        <img src={products.categoria?.urlImagen} alt={products.titulo} />
+                        <img src={products.categoria?.urlImagen} alt={products.titulo} />
                     </div>
-                    <button className='view-more-button'> Ver Mas </button>
+                    <button className='view-more-button'>
+                        <Carrusel imagenes={galeria} />
+
+                    </button>
                 </section>
                 <section className='description'>
                     <h3 className='description-message'>Disfruta de tu viaje</h3>
@@ -63,34 +74,34 @@ const ProductPage = () => {
 
                 <section className='details-section'>
                     <h3 className='details-title'>¿Que ofrece este auto?</h3>
-                    <hr/>
+                    <hr />
                     <div className='details'>
                         <div>
-                            <BsSnow className='icon'/>
+                            <BsSnow className='icon' />
                             <p>Aire acondicionado</p>
                         </div>
                         <div>
-                            <BsThermometerSun className='icon'/>
+                            <BsThermometerSun className='icon' />
                             <p>Calentador de asiento</p>
                         </div>
                         <div>
-                            <GiSteeringWheel className='icon'/>
+                            <GiSteeringWheel className='icon' />
                             <p>Piloto automatico</p>
                         </div>
                         <div>
-                            <MdOutlineFlipCameraAndroid className='icon'/>
+                            <MdOutlineFlipCameraAndroid className='icon' />
                             <p>Camara retrovisora</p>
                         </div>
                         <div>
-                            <BsFillPersonCheckFill className='icon'/>
+                            <BsFillPersonCheckFill className='icon' />
                             <p>Asistente</p>
                         </div>
                         <div>
-                            <MdTouchApp className='icon'/>
+                            <MdTouchApp className='icon' />
                             <p>Pantalla tactil</p>
                         </div>
                         <div>
-                            <TbGps className='icon'/>
+                            <TbGps className='icon' />
                             <p>GPS</p>
                         </div>
                     </div>
@@ -121,7 +132,7 @@ const ProductPage = () => {
                     <h3 className='bookings-zone-title'>Fechas disponibles</h3>
                     <div className='calendary-and-booking'>
                         <div className='calendary'>
-                            <CalendarRangePicker/>
+                            <CalendarRangePicker />
                         </div>
                         <div className='starting-reservation'>
                             <p className='reservation-mensagge'>Agrega tus fechas de viaje para obtener precios exactos</p>
@@ -132,7 +143,7 @@ const ProductPage = () => {
                     </div>
                 </section>
             </div>
-            <Footer/>
+            <Footer />
         </>
     )
 }

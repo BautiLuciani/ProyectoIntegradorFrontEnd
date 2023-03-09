@@ -1,6 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@700&display=swap');
 
-*{
+* {
   font-family: 'Quicksand';
   box-sizing: border-box;
 }
@@ -13,12 +13,12 @@
   color: #DFE4EA;
 }
 
-.auto-title{
+.auto-title {
   font-size: 24pt;
 }
 
-.return-button{
-  margin:10px;
+.return-button {
+  margin: 10px;
   height: 30px;
   width: 60px;
   background-color: #F0572D;
@@ -26,50 +26,50 @@
   border-width: 0px;
 }
 
-.return-button:hover{
+.return-button:hover {
   background-color: #DFE4EA;
 }
 
 /* location seccion */
-.location-info{
+.location-info {
   display: flex;
   padding: 30px;
   flex-direction: column;
   background-color: #DFE4EA;
 }
 
-.location{
+.location {
   display: flex;
 }
 
-.location-icon{
+.location-icon {
   margin-right: 5px;
 }
 
-.distance{
+.distance {
   margin-left: 20px;
 }
 
 /* auto images section */
 
-.img-auto{
+.img-auto {
   padding: 30px;
   position: relative;
 }
 
-.images-group{
+.images-group {
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr 1fr; 
+  grid-template-columns: 1fr 1fr 1fr 1fr;
   grid-template-rows: 1fr 1fr;
   margin-bottom: 10px;
   gap: 1rem;
 }
 
-.images-group img{
+.images-group img {
   border-radius: 8px;
 }
 
-.image{
+.image {
   grid-column: 1/3;
   grid-row: 1/3;
 }
@@ -86,102 +86,103 @@
 }
 
 
-.view-more-button:hover{
+.view-more-button:hover {
   background-color: #31363F;
   color: #F0572D;
 }
 
 
 /* car description */
-.description{
+.description {
   padding: 30px;
 }
 
-.description-message{
+.description-message {
   font-size: 20pt;
 }
 
-.description p{
+.description p {
   margin-bottom: 10px;
 }
 
 /* details */
 
-.details-section{
+.details-section {
   padding: 30px;
 }
 
-.details-title{
+.details-title {
   font-size: 20pt;
   margin-bottom: 10px;
 }
 
-hr{
+hr {
   border-color: #F0572D;
   margin-bottom: 10px;
 }
 
-.details{
+.details {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr 1fr;
   grid-template-rows: 1fr 1fr;
 }
 
-.details div{
+.details div {
   display: flex;
   margin: 10px;
 }
 
-.details div p{
+.details div p {
   margin-left: 5px;
 }
 
 .icon {
   color: #F0572D;
-  font-size:  20px;
+  font-size: 20px;
 }
 
 /* rules */
 
-.rules-and-recommendations{
+.rules-and-recommendations {
   padding: 30px;
 }
 
-.rules-and-recommendations-title{
+.rules-and-recommendations-title {
   font-size: 20pt;
   margin-bottom: 10px;
 }
 
-.sections{
+.sections {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
 }
 
 
 
-.sections div h4{
+.sections div h4 {
   margin-bottom: 30px;
   font-size: 16pt;
 }
-.sections div p{
+
+.sections div p {
   margin-bottom: 20px;
 }
 
 
 /* bookings */
-.bookings-zone{
+.bookings-zone {
   padding: 30px;
   background-color: #DFE4EA;
 }
 
 
-.bookings-zone-title{
+.bookings-zone-title {
   margin-bottom: 15px;
   font-size: 20pt;
 }
 
 
-.calendary-and-booking{
+.calendary-and-booking {
   display: flex;
   align-items: center;
   /* justify-content: space-around;
@@ -189,38 +190,39 @@ hr{
 }
 
 /* calendary */
-.calendary{
+.calendary {
   margin-bottom: 20px;
   border-radius: 8px;
   border: none;
   border-width: 0px;
 }
 
-.starting-reservation{
+.starting-reservation {
   margin-left: 50px;
-  background-color: #ffffff ;
+  background-color: #ffffff;
   padding: 20px;
   border-radius: 8px;
   width: 450px;
-  box-shadow: 4px 4px 4px  #a2a1a1;
+  text-align: center;
+  box-shadow: 4px 4px 4px #a2a1a1;
 }
 
-.reservation-mensagge{
+.reservation-mensagge {
   /* color: #F0572D; */
   margin-bottom: 20px;
 }
 
-.booking-button{
+.booking-button {
   background-color: #F0572D;
   color: #31363F;
   padding: 10px;
   width: 400px;
   border-width: 0px;
   border-radius: 8px;
-  box-shadow: 2px 2px 2px  #a2a1a1;
+  box-shadow: 2px 2px 2px #a2a1a1;
 }
 
-.booking-button:hover{
+.booking-button:hover {
   background-color: #31363F;
   color: #F0572D;
 }
@@ -228,73 +230,73 @@ hr{
 
 
 
-@media (max-width: 400px){
- .view-more-button{
-  display: none;
- }
+@media (max-width: 400px) {
+  .view-more-button {
+    display: none;
+  }
 
- .description p{
-  margin-bottom: 30px;
- }
+  .description p {
+    margin-bottom: 30px;
+  }
 
- .details{
-  display: grid;
-  grid-template-columns: 1fr 1fr;
- }
-
-
- .rules-and-recommendations .sections{
-  display: flex;
-  flex-direction: column;
-  margin-bottom: 40px;
- }
-
- .rules-and-recommendations .sections h4{
-  margin-bottom: 10px ;
-  margin-top: 20px;
- }
+  .details {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+  }
 
 
- .rules-and-recommendations .sections p{
-  margin-bottom: 10px;
- }
+  .rules-and-recommendations .sections {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 40px;
+  }
 
- .bookings-zone{
-  padding: 20px;
-  display: flex;
-  align-items: center;
-  flex-direction: column;
-  justify-content: center;
- }
+  .rules-and-recommendations .sections h4 {
+    margin-bottom: 10px;
+    margin-top: 20px;
+  }
 
- .calendary-and-booking{
-  display: flex;
-  flex-direction: column;
-  margin-bottom: 20px;
-  margin-left: 20px;
-  display: flex;
-  text-align: center;
 
- }
+  .rules-and-recommendations .sections p {
+    margin-bottom: 10px;
+  }
 
- .calendary{
-  width: 400px;
-  margin: 0px;
-  display: flex;
-  flex-direction: column;
-  padding-top: 20px;
-  padding-right: 20px;
-  padding-bottom: 10px;
- }
+  .bookings-zone {
+    padding: 20px;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: center;
+  }
 
- .starting-reservation{
-  display: flex;
-  flex-direction: column;
-  width: 350px;
-  margin-bottom: 40px;
-  justify-content: center;
-  margin-right: 20px;
-  margin-left: 0px;
- }
- 
+  .calendary-and-booking {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 20px;
+    margin-left: 20px;
+    display: flex;
+    text-align: center;
+
+  }
+
+  .calendary {
+    width: 400px;
+    margin: 0px;
+    display: flex;
+    flex-direction: column;
+    padding-top: 20px;
+    padding-right: 20px;
+    padding-bottom: 10px;
+  }
+
+  .starting-reservation {
+    display: flex;
+    flex-direction: column;
+    width: 350px;
+    margin-bottom: 40px;
+    justify-content: center;
+    margin-right: 20px;
+    margin-left: 0px;
+  }
+
 }

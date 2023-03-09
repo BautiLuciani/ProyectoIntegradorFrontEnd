@@ -1,17 +1,23 @@
 import React from 'react'
-import autos from '../data/autos'
 import AutoCard from './AutoCard'
 import '../../styles/AutoList.css'
+import useFetchProductos from '../../hooks/useFetchProductos'
 
 const AutoList = () => {
-  const arregloaAutos = autos
+
+  const { cargando, productos } = useFetchProductos()
 
   return (
-    <div className="auto-list">
-      {arregloaAutos.map((auto) => (
-        <AutoCard key={auto.title} {...auto} />
-      ))}
-    </div>
+    <>
+      {
+        cargando && (<h2>Cargando...</h2>)
+      }
+      <div className="auto-list">
+        {productos.map((prod) => (
+          <AutoCard key={prod.id} {...prod} />
+        ))}
+      </div>
+    </>
   )
 }
 
