@@ -1,5 +1,5 @@
 const getProductById = async(id)=>{
-    const url = `http://ec2-3-17-71-125.us-east-2.compute.amazonaws.com:8081/producto/${id}`;
+    const url = `http://ec2-3-144-85-4.us-east-2.compute.amazonaws.com:8084/producto/${id}`;
     const resp = await fetch(url);
     const data = await resp.json();
     

@@ -1,5 +1,5 @@
 const getCategorias = async()=>{
-    const url = "http://ec2-3-17-71-125.us-east-2.compute.amazonaws.com:8081/categoria/listar";
+    const url = "http://ec2-3-144-85-4.us-east-2.compute.amazonaws.com:8084/categoria/listar";
     const resp = await fetch(url);
     const data = await resp.json();
     
