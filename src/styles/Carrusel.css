@@ -1,0 +1,29 @@
+.open-galery-button {
+  background-color: #f0572d;
+  border-width: 0px;
+}
+
+.window {
+  margin-top: 400px;
+  margin-left: 800px;
+  display: flex;
+  text-align: center;
+  justify-content: center;
+  width: 800px;
+  max-height: 990px;
+  padding-top: 40px;
+}
+
+
+.carousel {
+  display: flex;
+  flex-direction: column;
+  width: 700px;
+  justify-content: center;
+}
+
+.carousel img {
+  max-height: 320px;
+  max-width: 600px;
+  /* margin-right: 600px; */
+}

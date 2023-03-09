@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import Modal from "react-modal"
 import { Carousel } from 'react-responsive-carousel'
 import 'react-responsive-carousel/lib/styles/carousel.min.css';
+import '../../styles/Carrusel.css'
 
 const customStyles = {
     content: {
@@ -24,37 +25,37 @@ const customStyles = {
 
 Modal.setAppElement('#root')
 
-const Carrusel = ({imagenes}) => {
+const Carrusel = ({ imagenes }) => {
 
     const [modalOpen, setModalOpen] = useState(false)
 
-    const openModal = ()=> {
+    const openModal = () => {
         setModalOpen(true)
     }
 
-    const closeModal = ()=> {
+    const closeModal = () => {
         setModalOpen(false)
     }
 
-  return (
-    <div>
-        <button onClick={openModal}> Ver Mas </button>
+    return (
+        <div>
+            <button className='open-galery-button' onClick={openModal}> Ver Mas </button>
 
-        <Modal
-            isOpen={modalOpen}
-            onRequestClose={closeModal}
-            style={customStyles}
-            contentLabel="detalles carrusel"
-        >
+            <Modal className={"window"}
+                isOpen={modalOpen}
+                onRequestClose={closeModal}
+                style={customStyles}
+                contentLabel="detalles carrusel"
+            >
 
-            <Carousel useKeyboardArrows={true}>
-                {imagenes.map(img => (<img src={img.url} key={img.id} alt='img auto'/>))}
-            </Carousel>
+                <Carousel className='carousel' useKeyboardArrows={true}>
+                    {imagenes.map(img => (<img src={img.url} key={img.id} alt='img auto' />))}
+                </Carousel>
 
-        </Modal>
-        
-    </div>
-  )
+            </Modal>
+
+        </div>
+    )
 }
 
 export default Carrusel
