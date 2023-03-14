@@ -22,9 +22,6 @@ const FiltroCiudad = () => {
     return (
         <>
             <Header />
-            {
-                charging && (<h2>Cargando...</h2>)
-            }
             <section>
                 <div>
                     <p>Autos disponibles en</p>
@@ -36,6 +33,9 @@ const FiltroCiudad = () => {
                     Volver
                 </button>
             </section>
+            {
+                charging && (<h2>Cargando...</h2>)
+            }
             <div className="auto-list">
                 {provincia.map((prov) => (
                     <AutoCard key={prov.id} {...prov} />
