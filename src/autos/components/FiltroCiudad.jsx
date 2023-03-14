@@ -34,14 +34,17 @@ const FiltroCiudad = () => {
                 </button>
             </section>
             {
-                charging && (<h2>Cargando...</h2>)
+                (charging)
+                    ? (<h2>Cargando...</h2>)
+                    : <div className="auto-list">
+                        {(provincia.length == 0)
+                            ? <h3>Lo siento, no pudimos encontrar productos en esta ciudad</h3>
+                            : provincia.map((prov) => (
+                                <AutoCard key={prov.id} {...prov} />
+                            ))}
+                    </div>
             }
-            <div className="auto-list">
-                {provincia.map((prov) => (
-                    <AutoCard key={prov.id} {...prov} />
-                ))}
-            </div>
-            <Footer/>
+            <Footer />
         </>
     )
 }
