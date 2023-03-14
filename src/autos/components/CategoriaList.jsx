@@ -3,13 +3,14 @@ import CategoriaCard from './CategoriaCard'
 import '../../styles/CategoriaList.css'
 import useFetchCategorias from '../../hooks/useFetchCategorias'
 import useFetchProductos from '../../hooks/useFetchProductos'
+import { Link } from 'react-router-dom'
 
 const CategoriaList = () => {
 
   const { isLoading, categorias } = useFetchCategorias()
   const { productos } = useFetchProductos()
-  
-  const cantidad = ()=> {
+
+  const cantidad = () => {
     let cantidadEconomico = 0;
     let cantidadDeLujo = 0;
     let cantidadCamioneta = 0;
@@ -31,11 +32,12 @@ const CategoriaList = () => {
           break;
         default:
           break;
-      }})
+      }
+    })
 
     return [cantidadEconomico, cantidadDeportivo, cantidadDeLujo, cantidadCamioneta]
   }
-  
+
 
   return (
     <>
@@ -44,11 +46,16 @@ const CategoriaList = () => {
       }
       <div className="categorys">
         {categorias.map((cate) => (
-          <CategoriaCard
+          <Link
+            to={"producto/categoria"}
+            state={cate.titulo}
             key={cate.id}
-            {...cate}
-            cantidad = {cantidad()}
-          />
+          >
+            <CategoriaCard
+              {...cate}
+              cantidad={cantidad()}
+            />
+          </Link>
         ))}
       </div>
     </>
