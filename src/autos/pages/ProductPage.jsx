@@ -11,14 +11,17 @@ import CalendarRangePicker from '../../ui/components/CalendarRangePicker'
 import useFetchProductosId from '../../hooks/useFetchProductosId'
 import Carrusel from '../components/Carrusel'
 import useFetchImagenes from '../../hooks/useFetchImagenes'
+import useFetchDescripcion from '../../hooks/useFetchDescripcion'
 
 const ProductPage = () => {
 
     const { id } = useParams()
     const { products, loading } = useFetchProductosId(id)
-    const {imagenes} = useFetchImagenes()
+    const { imagenes } = useFetchImagenes()
+    const { descripcion } = useFetchDescripcion()
 
     const galeria = imagenes.filter(img => (img.producto.id == id))
+    console.log(galeria);
 
     const navigate = useNavigate()
 
@@ -53,19 +56,23 @@ const ProductPage = () => {
                 </section>
                 <section>
                     <div>
-                        <img src={products.categoria?.urlImagen} alt={products.titulo} />
-                        <img src={products.categoria?.urlImagen} alt={products.titulo} />
-                        <img src={products.categoria?.urlImagen} alt={products.titulo} />
-                        <img src={products.categoria?.urlImagen} alt={products.titulo} />
-                        <img src={products.categoria?.urlImagen} alt={products.titulo} />
+                        <img src={galeria[0]?.url} alt={products.titulo} />
+                        <img src={galeria[1]?.url} alt={products.titulo} />
+                        <img src={galeria[2]?.url} alt={products.titulo} />
+                        <img src={galeria[3]?.url} alt={products.titulo} />
+                        <img src={galeria[4]?.url} alt={products.titulo} />
                     </div>
-                    <Carrusel imagenes={galeria}/>
+                    <Carrusel imagenes={galeria} />
                 </section>
                 <section>
                     <h3>Disfruta de tu viaje</h3>
-                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Nihil quisquam quasi impedit sit voluptas a. Ipsa vitae facilis, accusantium consequatur quisquam doloribus, nostrum ab minus mollitia libero nulla voluptas sint!</p>
-                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ea rem atque recusandae illum porro perferendis voluptas quisquam aspernatur accusamus omnis? Quod ab unde eius ut ipsa eligendi magni, dolores nobis!</p>
-                    <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Quae nemo odio vel rem voluptatem animi error est sint ullam ipsum laudantium, quia, ratione culpa impedit. Temporibus praesentium dolorem sit ipsam?</p>
+                    {
+                        descripcion.map(desc=>{
+                            if(desc.id == id){
+                                return <p key={desc.id}>{desc.descripcion}</p>
+                            }
+                        })
+                    }
                 </section>
                 <section>
                     <h3>¿Que ofrece este auto?</h3>
