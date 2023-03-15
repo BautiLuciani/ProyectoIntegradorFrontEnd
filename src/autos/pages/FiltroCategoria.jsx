@@ -3,7 +3,7 @@ import { useLocation, useNavigate } from 'react-router-dom'
 import useFetchProductos from '../../hooks/useFetchProductos'
 import Footer from '../../ui/components/Footer'
 import Header from '../../ui/components/Header'
-import AutoCard from './AutoCard'
+import AutoCard from '../components/AutoCard'
 
 const FiltroCategoria = () => {
 
