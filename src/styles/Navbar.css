@@ -28,12 +28,12 @@
   border-width: 1px;
 }
 
-.select-province-text{
+.select-province-text {
   margin: 5px;
   width: 300px;
 }
 
-.select-province{
+.select-province {
   height: 40px;
   width: 500px;
   margin: 8px;
@@ -48,7 +48,7 @@
   margin: 8px;
   padding: 8px;
   height: 40px;
-  width: 600px;
+  width: 800px;
   font-family: 'Quicksand';
   background-color: #dfe4ea;
   border-width: 1px;
@@ -57,7 +57,7 @@
 
 /* estilos del boton de busqueda*/
 .button-submit {
-  padding: 5px;
+  padding-top: 10px;
   width: 200px;
   height: 40px;
   margin-top: 8px;
@@ -66,6 +66,7 @@
   font-family: 'Quicksand';
   background-color: #f0572d;
   color: #dfe4ea;
+  text-decoration: none;
 }
 
 .button-submit:hover {
@@ -76,15 +77,15 @@
 /* Responsive */
 
 
-@media (max-width: 400px){
-  
-  .navbar{
+@media (max-width: 400px) {
+
+  .navbar {
     display: flex;
     flex-direction: column;
     justify-content: center;
   }
 
-  .select-province-text{
+  .select-province-text {
     display: none;
   }
 
@@ -100,9 +101,13 @@
     border-radius: 4px;
   }
 
-  .formulario{
+  .formulario {
     display: flex;
     flex-direction: column;
+  }
+
+  .button-submit {
+    margin-left: 50px;
   }
 
 }
