@@ -1,16 +1,24 @@
 import React, { useState } from 'react'
 import { Link } from 'react-router-dom'
 import useFetchDescripcion from '../../hooks/useFetchDescripcion'
+import useFetchImagenes from '../../hooks/useFetchImagenes'
 import '../../styles/AutoCard.css'
 
 const AutoCard = ({ id, titulo, ciudad, categoria }) => {
 
+  const { imagenes } = useFetchImagenes()
   const { descripcion } = useFetchDescripcion()
 
   return (
     <div className="auto-card">
       <div>
-        <img src={categoria?.urlImagen} alt={titulo} />
+        {
+          imagenes.map(img => {
+            if (img.id == id) {
+              return <img key={img.id} src={img.url} alt={img.titulo} />
+            }
+          })
+        }
       </div>
       <div className="info-car">
         <h4 className="info-title">{titulo}</h4>
@@ -19,7 +27,7 @@ const AutoCard = ({ id, titulo, ciudad, categoria }) => {
         {
           descripcion.map(desc => {
             if (desc.id == id) {
-              return <p key={desc.id} className="info-description"><small>{desc.descripcion.substr(0,70)}...</small></p>
+              return <p key={desc.id} className="info-description"><small>{desc.descripcion.substr(0, 70)}...</small></p>
             }
           })
         }
