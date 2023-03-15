@@ -10,7 +10,7 @@ const CategoriaCard = ({ titulo, imagen, cantidad }) => {
       </div>
       <div>
         <div className='info'>
-          <h3>{titulo}</h3>
+          <h3 className='category-title'>{titulo}</h3>
           {
             (titulo == "Economico")
               ? <p className='quantity'>{cantidad[0]} disponible(s)</p>

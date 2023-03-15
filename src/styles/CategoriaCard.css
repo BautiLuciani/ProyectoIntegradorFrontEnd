@@ -24,7 +24,15 @@
   box-shadow: 0px 5px 5px #ccd1d5;
 }
 
+.category-title {
+  text-decoration: none;
+  list-style: none;
+}
+
+
 /* cantidad */
 .quantity {
+  text-decoration: none;
+  list-style: none;
   color: #f0572d;
 }

@@ -179,6 +179,7 @@ hr {
   border-width: 0px;
 }
 
+/* reservation seccion */
 .starting-reservation {
   margin-left: 50px;
   background-color: #ffffff;
@@ -189,11 +190,13 @@ hr {
   box-shadow: 4px 4px 4px #a2a1a1;
 }
 
+/* reservation mensagge */
 .reservation-mensagge {
   /* color: #F0572D; */
   margin-bottom: 20px;
 }
 
+/* boton de reserva */
 .booking-button {
   background-color: #F0572D;
   color: #31363F;

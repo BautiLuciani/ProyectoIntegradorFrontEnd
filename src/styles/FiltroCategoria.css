@@ -1,0 +1,21 @@
+.category{
+  background-color: #000000;
+  color: #FFFFFF;
+  position: relative;
+  padding: 20px;
+  width: 100%;
+}
+
+.button-back{
+  padding: 8px;
+  border-radius: 4px;
+  border: none;
+  background-color: #f0572d;
+  position: absolute;
+  right: 30px;
+  top: 140px;
+}
+
+.auto-list-filter{
+  margin: 50px;
+}
