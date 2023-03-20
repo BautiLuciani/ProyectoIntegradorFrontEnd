@@ -1,5 +1,5 @@
 import React, { useMemo } from 'react'
-import { useNavigate, useParams } from 'react-router-dom'
+import { Link, useNavigate, useParams } from 'react-router-dom'
 import Header from '../../ui/components/Header'
 import { GoLocation } from 'react-icons/go'
 import { BsSnow, BsThermometerSun, BsFillPersonCheckFill } from 'react-icons/bs'
@@ -67,8 +67,8 @@ const ProductPage = () => {
                 <section>
                     <h3>Disfruta de tu viaje</h3>
                     {
-                        descripcion.map(desc=>{
-                            if(desc.id == id){
+                        descripcion.map(desc => {
+                            if (desc.id == id) {
                                 return <p key={desc.id}>{desc.descripcion}</p>
                             }
                         })
@@ -136,9 +136,11 @@ const ProductPage = () => {
                         </div>
                         <div>
                             <p>Agrega tus fechas de viaje para obtener precios exactos</p>
-                            <button>
+                            <Link
+                                to={`/producto/${id}/reserva`}
+                            >
                                 Iniciar Reserva
-                            </button>
+                            </Link>
                         </div>
                     </div>
                 </section>
