@@ -18,8 +18,6 @@ const Navbar = () => {
     e.preventDefault()
   }
 
-  console.log(ciudad);
-
   return (
     <div className='navbar'>
       <h1>Busca ofertas en autos economicos, deportivos y de lujo</h1>

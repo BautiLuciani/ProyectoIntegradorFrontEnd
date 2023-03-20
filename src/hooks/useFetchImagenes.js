@@ -1,5 +1,4 @@
 import { useEffect, useState } from 'react'
-import getCategorias from '../autos/helpers/getCategorias'
 import getImagenesProductos from '../autos/helpers/getImagenesProductos'
 
 const useFetchImagenes = () => {

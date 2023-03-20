@@ -204,6 +204,7 @@ hr {
   width: 400px;
   border-width: 0px;
   border-radius: 8px;
+  text-decoration: none;
   box-shadow: 2px 2px 2px #a2a1a1;
 }
 

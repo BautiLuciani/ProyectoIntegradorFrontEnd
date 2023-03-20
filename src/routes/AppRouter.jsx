@@ -2,10 +2,11 @@ import React from 'react'
 import { Route, Routes } from 'react-router-dom'
 import CreateAcountPage from '../auth/pages/CreateAcountPage'
 import LoginPage from '../auth/pages/LoginPage'
-import FiltroCategoria from '../autos/components/FiltroCategoria'
-import FiltroCiudad from '../autos/components/FiltroCiudad'
+import FiltroCategoria from '../autos/pages/FiltroCategoria'
+import FiltroCiudad from '../autos/pages/FiltroCiudad'
 import HomePage from '../autos/pages/HomePage'
 import ProductPage from '../autos/pages/ProductPage'
+import ReservasPage from '../autos/pages/ReservasPage'
 
 const AppRouter = () => {
   return (
@@ -20,6 +21,8 @@ const AppRouter = () => {
         <Route path="producto/ciudad" element={<FiltroCiudad/>} />
 
         <Route path="producto/categoria" element={<FiltroCategoria/>} />
+
+        <Route path='producto/:id/reserva' element={<ReservasPage/>}/>
 
         <Route path="login" element={<LoginPage />} />
 
