@@ -1,4 +1,5 @@
 import React, { useContext, useEffect, useState } from 'react'
+import { Cookies } from 'react-cookie';
 import { Link, useNavigate } from 'react-router-dom'
 import useForm from '../../hooks/useForm'
 import Footer from '../../ui/components/Footer'
@@ -12,19 +13,39 @@ const LoginPage = () => {
   const {login} = useContext(AuthContext)
   const navegar = useNavigate()
   const [errores, setErrores] = useState({})
+  const [email, setEmail] = useState("")
+  const [password, setPassword] = useState("")
+  const cookies = new Cookies
 
-  const {form, email, contrasena, onInputChange} = useForm({
-    email: '',
-    contrasena: '',
-  })
+  const handleLogin = async (event) => {
+    event.preventDefault();
+    setErrores(validateLogin(email, password))
 
-  const onFormSubmit = (e) => {
-    e.preventDefault()
-    setErrores(validateLogin(form, email))
+    const response = await fetch('http://ec2-3-133-79-117.us-east-2.compute.amazonaws.com:8085/authenticate', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        email: email,
+        password: password
+      })
+    });
+
+    
+    const token = response.headers.get('JWT'); // Obtener el valor de la cookie
+    console.log(token);
+    if (response.ok) {
+      cookies.set('JWT', token); // almacenar la cookie en el navegador
+    } else {
+      console.log('Error al iniciar sesión'); // manejar el error de autenticación
+    }
+
+    return response
   }
 
   useEffect(() => {
-    if((Object.keys(errores).length === 0) && (email !== "") && (contrasena !== "")){
+    if((Object.keys(errores).length === 0) && (email !== "") && (password !== "")){
       login(email)
       navegar('/', {
         replace: true
@@ -40,7 +61,7 @@ const LoginPage = () => {
 
       <div className='formLogin'>
         <h3>Iniciar Sesion</h3>
-        <form className='formualarioLogin' onSubmit={onFormSubmit}>
+        <form className='formualarioLogin' onSubmit={handleLogin}>
 
           <label htmlFor='correo'>Correo electrónico</label>
           <input
@@ -49,7 +70,7 @@ const LoginPage = () => {
             placeholder='Ingrese su correo'
             name='email'
             value={email}
-            onChange={onInputChange}
+            onChange={(e) => setEmail(e.target.value)}
           />
 
           <label htmlFor='contrasena'>Contraseña</label>
@@ -58,8 +79,8 @@ const LoginPage = () => {
             id='contrasena'
             placeholder='Ingrese su constreña'
             name='contrasena'
-            value={contrasena}
-            onChange={onInputChange}
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
           />
           {errores.login && <p className='mensajeError'>{errores.login}</p>}
 

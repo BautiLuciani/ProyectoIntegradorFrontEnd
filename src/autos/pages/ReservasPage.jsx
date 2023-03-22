@@ -1,5 +1,5 @@
 import React from 'react'
-import { useNavigate } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import CalendarRangePicker from '../../ui/components/CalendarRangePicker'
 import Footer from '../../ui/components/Footer'
 import Header from '../../ui/components/Header'
@@ -68,7 +68,9 @@ const ReservasPage = () => {
               <p>Check Out</p>
               <p>VALOR_CHECKOUT</p>
             </div>
-            <button>Confirmar reserva</button>
+            <Link to={`/producto/reservaok`}>
+              Confirmar reserva
+            </Link>
           </div>
         </div>
         {/* Selecciona tu fecha de reserva */}
@@ -82,14 +84,14 @@ const ReservasPage = () => {
         <div>
           <h3>Tu horario de llegada</h3>
           <p>Podes retirar el auto en cualquier momento del dia</p>
-          <form>
-            <label>Indicá tu horario estimado de llegada</label>
+          <div>
+            <p>Indicá tu horario estimado de llegada</p>
             <select>
               {horario.map(hor => (
                 <option key={hor} value={hor}>{hor}</option>
               ))}
             </select>
-          </form>
+          </div>
         </div>
       </div>
       <div>

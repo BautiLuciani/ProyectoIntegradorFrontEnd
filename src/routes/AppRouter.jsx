@@ -6,6 +6,7 @@ import FiltroCategoria from '../autos/pages/FiltroCategoria'
 import FiltroCiudad from '../autos/pages/FiltroCiudad'
 import HomePage from '../autos/pages/HomePage'
 import ProductPage from '../autos/pages/ProductPage'
+import ReservaExitosaPage from '../autos/pages/ReservaExitosaPage'
 import ReservasPage from '../autos/pages/ReservasPage'
 
 const AppRouter = () => {
@@ -23,6 +24,8 @@ const AppRouter = () => {
         <Route path="producto/categoria" element={<FiltroCategoria/>} />
 
         <Route path='producto/:id/reserva' element={<ReservasPage/>}/>
+
+        <Route path='producto/reservaok' element={<ReservaExitosaPage/>}/>
 
         <Route path="login" element={<LoginPage />} />
 
