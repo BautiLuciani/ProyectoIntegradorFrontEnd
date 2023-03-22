@@ -4,6 +4,7 @@ import useFetchProductosCiudad from '../../hooks/useFetchProductoCiudad'
 import Footer from '../../ui/components/Footer'
 import Header from '../../ui/components/Header'
 import AutoCard from '../components/AutoCard'
+import '../../styles/FiltroCiudad.css'
 
 const FiltroCiudad = () => {
 
@@ -22,8 +23,8 @@ const FiltroCiudad = () => {
     return (
         <>
             <Header />
-            <section>
-                <div>
+            <section className='available-cars-section'>
+                <div className='available-cars'>
                     <p>Autos disponibles en</p>
                     <h3>{ciudad}</h3>
                 </div>
@@ -36,7 +37,7 @@ const FiltroCiudad = () => {
             {
                 (charging)
                     ? (<h2>Cargando...</h2>)
-                    : <div className="auto-list">
+                    : <div className="auto-list auto-list-filter">
                         {(provincia.length == 0)
                             ? <h3>Lo siento, no pudimos encontrar productos en esta ciudad</h3>
                             : provincia.map((prov) => (

@@ -3,7 +3,7 @@
 /* estilos del footer */
 .footer {
   display: flex;
-  padding: 8px;
+  padding: 20px;
   justify-content: space-between;
   align-items: center;
   height: 50px;

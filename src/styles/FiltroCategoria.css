@@ -1,5 +1,5 @@
 .category{
-  background-color: #000000;
+  background-color: #31363F;
   color: #FFFFFF;
   position: relative;
   padding: 20px;
@@ -12,7 +12,7 @@
   border: none;
   background-color: #f0572d;
   position: absolute;
-  right: 30px;
+  right: 40px;
   top: 140px;
 }
 

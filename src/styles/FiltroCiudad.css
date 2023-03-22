@@ -1,0 +1,28 @@
+.available-cars{
+  padding: 30px;
+  background-color: #31363F;
+  color: #ffffff;
+}
+
+.available-cars p{
+  color: #F0572D;
+}
+
+.available-cars-section{
+  position: relative;
+}
+
+.available-cars-section button{
+  border: none;
+  border-radius: 4px;
+  padding: 10px;
+  color: #31363F;
+  background-color: #F0572D;
+  position: absolute;
+  top: 30px;
+  right: 50px;
+}
+
+/* .auto-list-city{
+  padding: 40px;
+} */
