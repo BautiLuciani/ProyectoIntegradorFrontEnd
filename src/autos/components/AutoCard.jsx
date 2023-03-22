@@ -31,7 +31,7 @@ const AutoCard = ({ id, titulo, ciudad, categoria }) => {
             }
           })
         }
-        <Link to={`/producto/${id}`}>
+        <Link className='info-view-more' to={`/producto/${id}`}>
           Ver mas
         </Link>
       </div>

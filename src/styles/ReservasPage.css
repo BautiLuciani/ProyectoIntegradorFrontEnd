@@ -1,0 +1,168 @@
+
+.start-booking-section{
+  background-color: #dfe4ea;
+}
+
+.title-section  {
+  background-color: #31363f;
+  color: #f0572d;
+  padding: 30px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.title-of-product{
+  margin-top: 10px;
+  color: #ffffff;
+}
+
+.button-back-menu{
+  background-color: #f0572d;
+  color: #31363f;
+  border-radius: 4px;
+  width: 90px;
+  height: 40px;
+  border: none;
+}
+
+.button-back-menu:hover{
+  background-color: #ffffff;
+  color: #31363f;
+}
+
+/* Complete details */
+
+.form-and-booking-details{
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  padding: 30px;
+  position: relative;
+}
+
+.complete-details-section{
+  /* padding: 30px; */
+  background-color: #dfe4ea;
+}
+
+.reserve-form{
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-columns: 1fr 1fr;
+  width: 900px;
+  height: 280px;
+  padding: 20px;
+  margin-top: 10px;
+  border-radius: 8px;
+  background-color: #ffffff;
+}
+
+.reserve-form input{
+  width: 400px;
+  margin-top: 10px;
+  height: 55px;
+  border-radius: 4px;
+  border-width: 1px;
+  padding: 20px;
+  background-color: #dfe4ea;
+} 
+
+
+.detail-input{
+  display: flex;
+  flex-direction: column;
+}
+
+.booking-details{
+  width: 90%;
+  height: 500px;
+  padding: 20px;
+  margin-top: 35px;
+  border-radius: 8px;
+  background-color: #ffffff;
+  margin-left: 50px;
+
+}
+
+.booking-details h3{
+  font-size: 20pt;
+}
+
+/* .booking-details img{
+ 
+} */
+
+.product-details{
+  margin-top: 40px;
+}
+
+.category-of-product{
+  color: #b7c2cf;
+}
+
+.product-details p{
+  margin-top: 8px;
+  margin-bottom: 10px;
+}
+
+.confirm-booking-button{
+  display: flex;
+  align-items: center;
+  border-radius: 4px;
+  height: 40px;
+  border: none;
+  padding: 10px;
+  margin-top: 30px;
+  background-color: #f0572d;
+  color: #31363f;
+}
+.confirm-booking-button:hover{
+  display: flex;
+  align-items: center;
+  border-radius: 4px;
+  height: 40px;
+  border: none;
+  padding: 10px;
+  justify-content: space-between;
+  background-color: #31363f;
+  color: #f0572d;
+}
+
+.select-schedule-section{
+  padding: 30px;
+  position: absolute;
+  top: 580px;
+}
+
+.select-schedule-section h3{
+  margin-bottom: 20px;
+}
+
+.select-time{
+  position: relative;
+  margin-top: 150px;
+  /* margin-bottom: 20px; */
+  padding: 30px
+}
+
+.select-time h3{
+  margin-bottom: 10px;
+}
+
+.select-time-label{
+  margin-right: 20px;
+}
+
+.more-info{
+  padding: 30px;
+  margin-bottom: 40px;
+  background-color: #ffffff;
+}
+
+.more-info h3{
+  margin-bottom: 20px;
+  color: #f0572d;
+}
+
+.more-info div{
+  margin-bottom: 10px;
+}
