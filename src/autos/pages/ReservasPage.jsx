@@ -99,7 +99,7 @@ const ReservasPage = () => {
         </div>
         <div className='more-info'>
           <h3>Que tenes que saber</h3>
-          <div>
+          <div className='more-info-and-rules'>
             <div>
               <h4>Normas del auto</h4>
               <p>Devolver con tanque lleno</p> 
