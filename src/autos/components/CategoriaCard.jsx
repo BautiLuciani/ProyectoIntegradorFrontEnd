@@ -20,7 +20,7 @@ const CategoriaCard = ({ titulo, imagen, cantidad }) => {
                   ? <p className='quantity'>{cantidad[2]} disponible(s)</p>
                   : (titulo == "Camioneta")
                     ? <p className='quantity'>{cantidad[3]} disponible(s)</p>
-                    : <p> 0 disponible(s)</p>
+                    : <p className='quantity'> 0 disponible(s)</p>
           }
         </div>
       </div>

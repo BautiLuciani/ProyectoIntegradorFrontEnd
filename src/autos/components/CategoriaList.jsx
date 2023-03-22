@@ -46,7 +46,7 @@ const CategoriaList = () => {
       }
       <div className="categorys">
         {categorias.map((cate) => (
-          <Link
+          <Link className='link-to-category'
             to={"producto/categoria"}
             state={cate.titulo}
             key={cate.id}

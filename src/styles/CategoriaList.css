@@ -10,3 +10,7 @@
     flex-direction: column;
   }
 }
+
+.link-to-category{
+  text-decoration: none;
+}
