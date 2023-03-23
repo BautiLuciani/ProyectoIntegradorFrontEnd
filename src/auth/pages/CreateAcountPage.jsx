@@ -6,7 +6,6 @@ import Header from '../../ui/components/Header'
 import AuthContext from '../context/AuthContext'
 import validate from '../data/validate'
 import '../../styles/CreateAccount.css'
-import { useCookies } from 'react-cookie'
 
 const CreateAcountPage = () => {
 
@@ -15,6 +14,7 @@ const CreateAcountPage = () => {
   const navegar = useNavigate()
 
   const [errors, setErrors] = useState({})
+  const [errorApi, setErrorApi] = useState(false)
   const [firstName, setFirstName] = useState("")
   const [lastName, setLastName] = useState("")
   const [email, setEmail] = useState("")
@@ -36,6 +36,10 @@ const CreateAcountPage = () => {
         password: password
       })
     });
+
+    if(!response.ok){
+      setErrorApi(true)
+    }
 
     return response
   }
@@ -119,7 +123,8 @@ const CreateAcountPage = () => {
           </section>
 
           {errors.ingresar && <p className='mensajeError'>{errors.ingresar}</p>}
-
+          {(errorApi) && <p className='mensajeError'>Lamentablemente no ha podido registrarse. Por favor intente más tarde</p>}
+          
           <section className='caButton'>
             <button className='createAccount-button'>
               Crear cuenta
