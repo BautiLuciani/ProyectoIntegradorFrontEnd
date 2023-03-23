@@ -53,16 +53,20 @@
 /* auto images section */
 
 .img-auto {
-  padding: 30px;
-  position: relative;
+  padding: 20px;
+  /* position: relative; */
 }
 
 .images-group {
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr 1fr;
+  grid-template-columns: 1fr 1fr 1fr 1fr; 
   grid-template-rows: 1fr 1fr;
   margin-bottom: 10px;
   gap: 1rem;
+  max-width: 800px; /* aca pones el ancho que quieras*/
+  max-height: 800px;
+  margin-left: auto;
+  margin-right: auto; /*esto es para que te quede centrado*/
 }
 
 .images-group img {

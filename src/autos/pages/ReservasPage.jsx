@@ -1,5 +1,5 @@
 import React from 'react'
-import { useNavigate } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import CalendarRangePicker from '../../ui/components/CalendarRangePicker'
 import Footer from '../../ui/components/Footer'
 import Header from '../../ui/components/Header'
@@ -76,46 +76,46 @@ const ReservasPage = () => {
             </div>
           </div>
           </section>
-          {/* Selecciona tu fecha de reserva */}
-          <div className='select-schedule-section'>
-            <h3>Selecciona tu fecha de reserva</h3>
-            <div>
-              <CalendarRangePicker />
-            </div>
-          </div>
-          {/* Tu horario de llegada */}
-          <div className='select-time'>
-            <h3>Tu horario de llegada</h3>
-            <p>Podes retirar el auto en cualquier momento del dia</p>
-            <form>
-              <label className='select-time-label'>Indicá tu horario estimado de llegada</label>
-              <select>
-                {horario.map(hor => (
-                  <option key={hor} value={hor}>{hor}</option>
-                ))}
-              </select>
-            </form>
+        </div>
+        {/* Selecciona tu fecha de reserva */}
+        <div className='select-schedule-section'>
+          <h3>Selecciona tu fecha de reserva</h3>
+          <div>
+            <CalendarRangePicker />
           </div>
         </div>
-        <div className='more-info'>
-          <h3>Que tenes que saber</h3>
-          <div className='more-info-and-rules'>
-            <div>
-              <h4>Normas del auto</h4>
-              <p>Devolver con tanque lleno</p> 
-              <p>No fumar</p>
-              <p>Cantidad maxima de personas segun cantidad de asientos</p>
-            </div>
-            <div>
-              <h4>Salud y seguridad</h4>
-              <p>Contar con seguro basico</p>
-              <p>Menores de 12 años no pueden ir adelante</p>
-              <p>Deposito de seguridad</p>
-            </div>
-            <div>
-              <h4>Politicas de cancelacion</h4>
-              <p>Agrega las fechas de tu viaje para obtener los detalles de cancelacion de este auto</p>
-            </div>
+        {/* Tu horario de llegada */}
+        <div className='select-time'>
+          <h3>Tu horario de llegada</h3>
+          <p>Podes retirar el auto en cualquier momento del dia</p>
+          <div>
+            <p>Indicá tu horario estimado de llegada</p>
+            <select>
+              {horario.map(hor => (
+                <option key={hor} value={hor}>{hor}</option>
+              ))}
+            </select>
+          </div>
+        </div>
+      </div>
+      <div className='more-info'>
+        <h3>Que tenes que saber</h3>
+        <div className='more-info-and-rules'>
+          <div>
+            <h4>Normas del auto</h4>
+            <p>Devolver con tanque lleno</p>
+            <p>No fumar</p>
+            <p>Cantidad maxima de personas segun cantidad de asientos</p>
+          </div>
+          <div>
+            <h4>Salud y seguridad</h4>
+            <p>Contar con seguro basico</p>
+            <p>Menores de 12 años no pueden ir adelante</p>
+            <p>Deposito de seguridad</p>
+          </div>
+          <div>
+            <h4>Politicas de cancelacion</h4>
+            <p>Agrega las fechas de tu viaje para obtener los detalles de cancelacion de este auto</p>
           </div>
         </div>
       </div>

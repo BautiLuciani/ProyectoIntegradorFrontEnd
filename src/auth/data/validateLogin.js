@@ -1,18 +1,13 @@
-const validateLogin = (values, email)=> {
+const validateLogin = (email, password)=> {
     const errores = {}
-    const user = JSON.parse(localStorage.getItem(`${email}`))
 
-    if(!values.email){
+    if(!email){
         errores.login = "Los datos ingresados son incorrectos"
-    } else if (!(values.email.includes('@')) || !(values.email.includes('.com'))){
+    } else if (!(email.includes('@')) || !(email.includes('.com'))){
         errores.login = "Los datos ingresados son incorrectos"
-    } else if(!values.contrasena){
+    } else if(!password){
         errores.login = "Los datos ingresados son incorrectos"
-    } else if (values.contrasena.length < 7) {
-        errores.login = "Los datos ingresados son incorrectos"
-    } else if(values.email !== user?.email){
-        errores.login = "Los datos ingresados son incorrectos"
-    } else if(values.contrasena !== user?.contraseña){
+    } else if (password.length < 7) {
         errores.login = "Los datos ingresados son incorrectos"
     }
 
