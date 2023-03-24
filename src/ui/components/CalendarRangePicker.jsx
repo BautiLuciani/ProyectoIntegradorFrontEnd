@@ -3,9 +3,8 @@ import Calendar from 'react-calendar'
 import 'react-calendar/dist/Calendar.css';
 import '../../styles/ProductPage.css'
 
-const CalendarRangePicker = () => {
+const CalendarRangePicker = ({calendarRange, setCalendarRange}) => {
 
-    const [calendarRange, setCalendarRange] = useState([null, null]);
     const ayer = new Date(Date.now() - 1);
 
     return (

@@ -1,103 +1,186 @@
-import React from 'react'
-import { Link, useNavigate } from 'react-router-dom'
+import React, { useEffect, useState } from 'react'
+import { Link, useNavigate, useParams } from 'react-router-dom'
+import useFetchImagenes from '../../hooks/useFetchImagenes'
+import useFetchProductosId from '../../hooks/useFetchProductosId'
 import CalendarRangePicker from '../../ui/components/CalendarRangePicker'
 import Footer from '../../ui/components/Footer'
 import Header from '../../ui/components/Header'
 import horario from '../data/horarioLlegada'
-import '../../styles/ReservasPage.css'
+import '../../styles/BookingPage.css'
 
 const ReservasPage = () => {
 
   const navigate = useNavigate()
+  const { id } = useParams()
+  const { loading, products } = useFetchProductosId(id)
+  const { imagenes } = useFetchImagenes()
+  const [calendarRange, setCalendarRange] = useState([null, null]);
+  const [error, setError] = useState(false)
+  const [errorApi, setErrorApi] = useState(false)
+
+  const checkInDate = calendarRange[0]?.getDate()
+  const checkInMonth = calendarRange[0]?.getMonth()
+  const checkInYear = calendarRange[0]?.getFullYear()
+  const checkIn = `${checkInDate}/${checkInMonth}/${checkInYear}`
+
+  const checkOutDate = calendarRange[1]?.getDate()
+  const checkOutMonth = calendarRange[1]?.getMonth()
+  const checkOutYear = calendarRange[1]?.getFullYear()
+  const checkOut = `${checkOutDate}/${checkOutMonth}/${checkOutYear}`
 
   const onNavigateBack = () => {
     navigate(-1)
   }
 
+  const onHandleSubmit = async (e) => {
+    e.preventDefault();
+    if (checkIn.includes("undefined") || checkOut.includes("undefined")) {
+      setError(true)
+      return
+    }
+
+    const response = await fetch('http://ec2-3-133-79-117.us-east-2.compute.amazonaws.com:8085/reserva/agregar', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        fechaInicial: checkIn,
+        fechaFinal: checkOut,
+        titulo: products.titulo,
+        email: "bautiluciani@hotmail.com"
+      })
+    });
+
+    if (response.ok) {
+      navigate(`/producto/reservaok`)
+    } else {
+      setErrorApi(true)
+    }
+
+    return response
+  }
+
+  useEffect(() => {
+    setError(false)
+  }, [checkIn])
+
+
   return (
     <>
       <Header />
-      <div className='start-booking-section'>
-        <div>
-          <section className='title-section'>
-            <div>
-              <p>CategoriaCategoria</p>
-              <h3 className='title-of-product'>TituloProducto</h3>
-            </div>
-            <button className='button-back-menu'
-              onClick={onNavigateBack}
-            >
-              Volver
-            </button>
-          </section>
-        </div>
-        <div>
-          {/* eliminar section */}
-        <section className='form-and-booking-details'> 
+      {
+        loading && (<h2>Cargando...</h2>)
+      }
+      <div>
+        <section className='title-section'>
+          <div>
+            <p>{products.categoria?.titulo}</p>
+            <h3 className='title-of-product'>{products.titulo}</h3>
+          </div>
+          <button className='button-back-menu'
+            onClick={onNavigateBack}
+          >
+            Volver
+          </button>
+        </section>
+      </div>
+      <form onSubmit={onHandleSubmit}>
+        <div className='form-and-booking'>
           {/* Completa tus datos */}
-          <div className='complete-details-section'>
-            <h3>Completa tus datos</h3>
-            <form className='reserve-form'>
-              <div className='detail-input'>
+          <div className='start-booking'>
+            <div className='form-and-booking-details'>
+              <h3>Completa tus datos</h3>
+              <div className='product-details'>
+                <p className='category-title-reserve'>CategoriaCategoria</p>
+                <h3 className='product-title'>TituloProducto</h3>
+              </div>
+
+              <section className='form' >
+              <div>
                 <label>Nombre</label>
                 <input type="text" />
               </div>
-              <div className='detail-input'>
+              <div>
                 <label>Apellido</label>
                 <input type="text" />
               </div>
-              <div className='detail-input'>
+              <div>
                 <label>Correo Electronico</label>
                 <input type="email" />
               </div>
-              <div className='detail-input'>
+              <div>
                 <label>Pais</label>
                 <input type="text" />
               </div>
-            </form>
-          </div>
+              </section>
+            </div>
+          
           {/* Detalle de la reserva */}
           <div className='booking-details'>
             <h3>Detalle de la reserva</h3>
-            <img src="" alt="imagenProducto" />
-            <div className='product-details'>
-              <p className='category-of-product'>CATEGORIA_PRODUCTO</p>
-              <h2>TITULO_PRODUCTO</h2>
-              <p>CIUDAD_PRODUCTO</p>
-              <div>
-                <p>Check In</p>
-                <p>VALOR_CHECKIN</p>
-              </div>
-              <div>
-                <p>Check Out</p>
-                <p>VALOR_CHECKOUT</p>
-              </div>
-              <button className='confirm-booking-button'>Confirmar reserva</button>
+            {
+              imagenes.map(img => {
+                if ((img.producto.id == id) && (img.titulo.includes("Imagen Principal"))) {
+                  return <img key={img.id} src={img.url} alt={img.titulo} />
+                }
+              })
+            }
+            <div className='details-of-booking'>
+              <p>{products.categoria?.titulo}</p>
+              <h2>{products.titulo}</h2>
+              <p>{products.ciudad?.titulo}</p>
+              {
+                (checkIn.includes("undefined") || checkOut.includes("undefined"))
+                  ? <>
+                    <div>
+                      <p>Check In</p>
+                      <p>--</p>
+                    </div>
+                    <div>
+                      <p>Check Out</p>
+                      <p>--</p>
+                    </div>
+                  </>
+                  : <>
+                    <div>
+                      <p>Check In</p>
+                      <p>{checkIn}</p>
+                    </div>
+                    <div>
+                      <p>Check Out</p>
+                      <p>{checkOut}</p>
+                    </div>
+                  </>
+              }
+              <button>Confirmar reserva</button>
+              <p className='error'>{(error) && "Para realizar la reserva debe seleccionar fechas"}</p>
+              <p className='error'>{(errorApi) && "Lamentablemente la reserva no ha podido realizarse. Por favor, vuelva a intentarlo."}</p>
             </div>
           </div>
-          </section>
-        </div>
-        {/* Selecciona tu fecha de reserva */}
-        <div className='select-schedule-section'>
-          <h3>Selecciona tu fecha de reserva</h3>
-          <div>
-            <CalendarRangePicker />
+          </div>
+          {/* Selecciona tu fecha de reserva */}
+          <div className='select-schedule'>
+            <h3>Selecciona tu fecha de reserva</h3>
+            <div>
+              <CalendarRangePicker calendarRange={calendarRange} setCalendarRange={setCalendarRange} />
+            </div>
+          </div>
+          {/* Tu horario de llegada */}
+          <div className='select-hour'>
+            <h3>Tu horario de llegada</h3>
+            <p>Podes retirar el auto en cualquier momento del dia</p>
+            <div>
+              <p>Indicá tu horario estimado de llegada</p>
+              <select>
+                {horario.map(hor => (
+                  <option key={hor} value={hor}>{hor}</option>
+                ))}
+              </select>
+            </div>
           </div>
         </div>
-        {/* Tu horario de llegada */}
-        <div className='select-time'>
-          <h3>Tu horario de llegada</h3>
-          <p>Podes retirar el auto en cualquier momento del dia</p>
-          <div>
-            <p>Indicá tu horario estimado de llegada</p>
-            <select>
-              {horario.map(hor => (
-                <option key={hor} value={hor}>{hor}</option>
-              ))}
-            </select>
-          </div>
-        </div>
-      </div>
+      </form>
       <div className='more-info'>
         <h3>Que tenes que saber</h3>
         <div className='more-info-and-rules'>
@@ -119,7 +202,7 @@ const ReservasPage = () => {
           </div>
         </div>
       </div>
-      <Footer/>
+      <Footer />
     </>
   )
 }
