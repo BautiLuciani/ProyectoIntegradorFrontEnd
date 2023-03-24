@@ -106,7 +106,6 @@
 }
 
 
-
 .details-of-booking{
   background-color: #ffffff;
   padding: 10px;
@@ -165,8 +164,9 @@
 
 
 .select-hour{
-  position: absolute ;
-  top: 1100px;
+  position: relative;
+  top: 100;
+  margin-bottom: 50px;
 }
 
 .select-hour h3{
