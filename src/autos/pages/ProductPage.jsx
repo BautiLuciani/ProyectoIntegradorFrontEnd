@@ -136,11 +136,7 @@ const ProductPage = () => {
                         </div>
                         <div>
                             <p>Agrega tus fechas de viaje para obtener precios exactos</p>
-                            <Link
-                                to={`/producto/${id}/reserva`}
-                            >
-                                Iniciar Reserva
-                            </Link>
+                            <button> Iniciar Reserva </button>
                         </div>
                     </div>
                 </section>

@@ -1,25 +1,57 @@
-import React, {useContext} from 'react'
+import React, { useEffect, useState} from 'react'
 import {NavLink, useLocation, useNavigate} from 'react-router-dom'
-import AuthContext from '../../auth/context/AuthContext'
 import '../../styles/Header.css'
+import { useJwt } from 'react-jwt'
 
 
 const Header = () => {
-  const {logged, user, logout} = useContext(AuthContext)
+  const [loggedIn, setLoggedIn] = useState(false)
   const navigate = useNavigate()
   const {pathname, search} = useLocation()
   const lastPath = pathname + search
+  
+  const cookie = document.cookie
+  .split('; ')
+  .find(row => row.startsWith('jwt='))
+  ?.split('=')[1];
 
-  const primeraLetraNombre = user?.nombre.charAt(0).toUpperCase()
-  const primeraLetraApellido = user?.apellido.charAt(0).toUpperCase()
+  const { decodedToken } = useJwt(cookie);
+  const usuario = JSON.stringify(decodedToken)
+  const user = JSON.parse(usuario)
+  
+  useEffect(() => {
+    if (cookie) {
+      fetch('http://ec2-3-133-79-117.us-east-2.compute.amazonaws.com:8085/users/listar', {
+        headers: {
+          Authorization: `Bearer ${cookie}`
+        }
+      })
+      .then(response => {
+        setLoggedIn(true);
+      })
+      .catch(error => {
+        console.log(error);
+      });
+    }
+  }, []);
 
-  const nombreMayuscula = () => {
+
+  const handleLogout = ()=> {
+    document.cookie = 'jwt=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;';
+    setLoggedIn(false);
+
+    navigate('/', {
+      replace: true
+    })
+  }
+
+  /*const nombreMayuscula = () => {
     const restoNombre = user?.nombre.slice(1)
     const restoApellido = user?.apellido.slice(1)
     const nombreCompleto = primeraLetraNombre + restoNombre
     const apellidoCompleto = primeraLetraApellido + restoApellido
     return `${nombreCompleto} ${apellidoCompleto}`
-  }
+  }*/
 
   const onCreateAcount = () => {
     navigate('/acount')
@@ -27,14 +59,6 @@ const Header = () => {
 
   const onLogin = () => {
     navigate('/login')
-  }
-
-  const onLogout = () => {
-    logout()
-
-    navigate('/', {
-      replace: true
-    })
   }
 
   return (
@@ -52,16 +76,15 @@ const Header = () => {
       </NavLink>
 
       <div className="usuario">
-        {logged ? (
+        {loggedIn ? (
           <>
             <section className="iniciales">
               <b>
-                {primeraLetraNombre}
-                {primeraLetraApellido}
+                BL
               </b>
             </section>
-            <p>Bienvenido, {nombreMayuscula()}</p>
-            <button className="buttons" onClick={onLogout}>
+            <p>Bienvenido, {user?.sub}</p>
+            <button className="buttons" onClick={handleLogout}>
               Cerrar Sesion
             </button>
           </>

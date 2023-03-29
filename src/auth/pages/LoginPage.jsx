@@ -1,59 +1,56 @@
-import React, { useContext, useEffect, useState } from 'react'
-import { Cookies } from 'react-cookie';
+import React, { useEffect, useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
-import useForm from '../../hooks/useForm'
 import Footer from '../../ui/components/Footer'
 import Header from '../../ui/components/Header'
-import AuthContext from '../context/AuthContext'
 import validateLogin from '../data/validateLogin'
 import '../../styles/Login.css'
+import Cookies from 'js-cookie'
 
 const LoginPage = () => {
 
-  const {login} = useContext(AuthContext)
   const navegar = useNavigate()
   const [errores, setErrores] = useState({})
   const [email, setEmail] = useState("")
   const [password, setPassword] = useState("")
-  const cookies = new Cookies
+  const [registradoError, setRegistradoError] = useState(false)
 
   const handleLogin = async (event) => {
     event.preventDefault();
-    setErrores(validateLogin(email, password))
 
-    const response = await fetch('http://ec2-3-133-79-117.us-east-2.compute.amazonaws.com:8085/authenticate', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify({
-        email: email,
-        password: password
-      })
-    });
-
-    
-    const token = response.headers.get('JWT'); // Obtener el valor de la cookie
-    console.log(token);
-    if (response.ok) {
-      cookies.set('JWT', token); // almacenar la cookie en el navegador
-    } else {
-      console.log('Error al iniciar sesión'); // manejar el error de autenticación
+    if (!email || !password) {
+      setErrores(validateLogin(email, password))
+      return;
     }
 
-    return response
+    try {
+      fetch('http://ec2-3-133-79-117.us-east-2.compute.amazonaws.com:8085/authenticate', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+          email: email,
+          password: password
+        })
+      })
+        .then(respuesta => respuesta.text())
+        .then(token => {
+          document.cookie = `jwt=${token}; path=/;`
+          handleLoginSuccess()
+        })
+    } catch (error) {
+      console.log(error);
+    }
   }
 
-  useEffect(() => {
-    if((Object.keys(errores).length === 0) && (email !== "") && (password !== "")){
-      login(email)
-      navegar('/', {
-        replace: true
-      })
+  const handleLoginSuccess = ()=> {
+    const token = Cookies.get('jwt')
+    if (!token || token.includes('Credenciales erróneas')) {
+      setRegistradoError(true)
+    } else {
+      navegar('/home')
     }
-  
-  }, [errores])
-  
+  }
 
   return (
     <>
@@ -83,7 +80,7 @@ const LoginPage = () => {
             onChange={(e) => setPassword(e.target.value)}
           />
           {errores.login && <p className='mensajeError'>{errores.login}</p>}
-
+          {registradoError && <p className='mensajeError'>Usuario incorrecto</p>}
           <button className='button-login'>
             Ingresar
           </button>
