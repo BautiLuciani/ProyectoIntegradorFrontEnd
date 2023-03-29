@@ -12,8 +12,12 @@ import useFetchProductosId from '../../hooks/useFetchProductosId'
 import Carrusel from '../components/Carrusel'
 import useFetchImagenes from '../../hooks/useFetchImagenes'
 import useFetchDescripcion from '../../hooks/useFetchDescripcion'
+import { useState } from 'react'
 
 const ProductPage = () => {
+
+    
+    const [calendarRange, setCalendarRange] = useState([null, null]);
 
     const { id } = useParams()
     const { products, loading } = useFetchProductosId(id)
@@ -132,7 +136,7 @@ const ProductPage = () => {
                     <h3>Fechas disponibles</h3>
                     <div>
                         <div>
-                            <CalendarRangePicker />
+                            <CalendarRangePicker calendarRange={calendarRange} setCalendarRange={setCalendarRange}/>
                         </div>
                         <div>
                             <p>Agrega tus fechas de viaje para obtener precios exactos</p>
