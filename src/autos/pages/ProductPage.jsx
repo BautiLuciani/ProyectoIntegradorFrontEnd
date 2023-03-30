@@ -13,9 +13,9 @@ import Carrusel from '../components/Carrusel'
 import useFetchImagenes from '../../hooks/useFetchImagenes'
 import useFetchDescripcion from '../../hooks/useFetchDescripcion'
 import { useState } from 'react'
+import Cookies from 'js-cookie'
 
 const ProductPage = () => {
-
     
     const [calendarRange, setCalendarRange] = useState([null, null]);
 
@@ -25,9 +25,18 @@ const ProductPage = () => {
     const { descripcion } = useFetchDescripcion()
 
     const galeria = imagenes.filter(img => (img.producto.id == id))
-    console.log(galeria);
 
     const navigate = useNavigate()
+
+    const onReserva = ()=> {
+        const token = Cookies.get('jwt')
+        if(!token) {
+            alert("Para hacer una reserva debe inicar sesion")
+            navigate(`/login`)
+        } else {
+            navigate(`/producto/${id}/reserva`)
+        }
+    }
 
     const onNavigateBack = () => {
         navigate(-1)
@@ -140,7 +149,7 @@ const ProductPage = () => {
                         </div>
                         <div>
                             <p>Agrega tus fechas de viaje para obtener precios exactos</p>
-                            <button> Iniciar Reserva </button>
+                            <button onClick={onReserva}> Iniciar Reserva </button>
                         </div>
                     </div>
                 </section>

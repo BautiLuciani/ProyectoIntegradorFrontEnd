@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react'
+import { useJwt } from 'react-jwt'
 import { Link, useNavigate, useParams } from 'react-router-dom'
 import useFetchImagenes from '../../hooks/useFetchImagenes'
 import useFetchProductosId from '../../hooks/useFetchProductosId'
@@ -14,18 +15,34 @@ const ReservasPage = () => {
   const { loading, products } = useFetchProductosId(id)
   const { imagenes } = useFetchImagenes()
   const [calendarRange, setCalendarRange] = useState([null, null]);
-  const [error, setError] = useState(false)
   const [errorApi, setErrorApi] = useState(false)
+  const [mail, setMail] = useState("")
+
+  console.log(mail);
 
   const checkInDate = calendarRange[0]?.getDate()
   const checkInMonth = calendarRange[0]?.getMonth()
   const checkInYear = calendarRange[0]?.getFullYear()
-  const checkIn = `${checkInDate}/${checkInMonth}/${checkInYear}`
-
+  const checkIn = `${checkInYear}-0${checkInMonth}-${checkInDate}`
+  
   const checkOutDate = calendarRange[1]?.getDate()
   const checkOutMonth = calendarRange[1]?.getMonth()
   const checkOutYear = calendarRange[1]?.getFullYear()
-  const checkOut = `${checkOutDate}/${checkOutMonth}/${checkOutYear}`
+  const checkOut = `${checkOutYear}-0${checkOutMonth}-${checkOutDate}`
+  
+  const cookie = document.cookie
+  .split('; ')
+  .find(row => row.startsWith('jwt='))
+  ?.split('=')[1];
+
+  const { decodedToken } = useJwt(cookie);
+  const usuario = JSON.stringify(decodedToken)
+  const user = JSON.parse(usuario)
+
+  const cookie2 = document.cookie
+
+  console.log(cookie);
+  console.log(user?.sub);
 
   const onNavigateBack = () => {
     navigate(-1)
@@ -33,36 +50,35 @@ const ReservasPage = () => {
 
   const onHandleSubmit = async (e) => {
     e.preventDefault();
-    if(checkIn.includes("undefined") || checkOut.includes("undefined")){
-      setError(true)
-      return
-    }
 
-    const response = await fetch('http://ec2-3-133-79-117.us-east-2.compute.amazonaws.com:8085/reserva/agregar', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify({
-        fechaInicial: checkIn,
-        fechaFinal: checkOut,
-        titulo: products.titulo,
-        email: "bautiluciani@hotmail.com"
+      const response = await fetch('http://ec2-3-133-79-117.us-east-2.compute.amazonaws.com:8085/reserva/agregar', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${cookie}`,
+          'Cookie': `${cookie2}`
+        },
+        body: JSON.stringify({
+          fechaInicial: checkIn,
+          fechaFinal: checkOut,
+          titulo: products.titulo,
+          email: mail
+        })
       })
-    });
+      .then(respuesta => {
+        if (!respuesta.ok) {
+          throw new Error('Error en la petición');
+        }
+        return respuesta.json();
+      })
+      .then(data => {
+        console.log(data);
+      })
+      .catch(error => {
+        console.error(error);
+      });
 
-    if (response.ok) {
-      navigate(`/producto/reservaok`)
-    } else {
-      setErrorApi(true)
-    }
-
-    return response
   }
-
-  useEffect(() => {
-    setError(false)
-  }, [checkIn])
   
 
   return (
@@ -91,19 +107,19 @@ const ReservasPage = () => {
             <h3>Completa tus datos</h3>
             <div>
               <label>Nombre</label>
-              <input type="text" />
+              <input type="text" value={user?.sub} disabled/>
             </div>
             <div>
               <label>Apellido</label>
-              <input type="text" />
+              <input type="text" value={user?.sub} disabled/>
             </div>
             <div>
               <label>Correo Electronico</label>
-              <input type="email" />
+              <input type="email" value={mail} onChange={(e) => setMail(e.target.value)}/>
             </div>
             <div>
               <label>Pais</label>
-              <input type="text" />
+              <input type="text" value="Argentina" disabled/>
             </div>
           </div>
           {/* Detalle de la reserva */}
@@ -144,7 +160,6 @@ const ReservasPage = () => {
                   </>
               }
               <button>Confirmar reserva</button>
-              <p>{(error) && "Para realizar la reserva debe seleccionar fechas"}</p>
               <p>{(errorApi) && "Lamentablemente la reserva no ha podido realizarse. Por favor, vuelva a intentarlo."}</p>
             </div>
           </div>
