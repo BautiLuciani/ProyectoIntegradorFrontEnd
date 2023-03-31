@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { useJwt } from 'react-jwt'
-import { Link, useNavigate, useParams } from 'react-router-dom'
+import { useNavigate, useParams } from 'react-router-dom'
 import useFetchImagenes from '../../hooks/useFetchImagenes'
 import useFetchProductosId from '../../hooks/useFetchProductosId'
 import CalendarRangePicker from '../../ui/components/CalendarRangePicker'
@@ -16,19 +16,18 @@ const ReservasPage = () => {
   const { imagenes } = useFetchImagenes()
   const [calendarRange, setCalendarRange] = useState([null, null]);
   const [errorApi, setErrorApi] = useState(false)
-  const [mail, setMail] = useState("")
-
-  console.log(mail);
 
   const checkInDate = calendarRange[0]?.getDate()
   const checkInMonth = calendarRange[0]?.getMonth()
   const checkInYear = calendarRange[0]?.getFullYear()
   const checkIn = `${checkInYear}-0${checkInMonth}-${checkInDate}`
+  const checkInNew = new Date(checkIn)
   
   const checkOutDate = calendarRange[1]?.getDate()
   const checkOutMonth = calendarRange[1]?.getMonth()
   const checkOutYear = calendarRange[1]?.getFullYear()
   const checkOut = `${checkOutYear}-0${checkOutMonth}-${checkOutDate}`
+  const checkOutNew = new Date(checkOut)
   
   const cookie = document.cookie
   .split('; ')
@@ -39,45 +38,33 @@ const ReservasPage = () => {
   const usuario = JSON.stringify(decodedToken)
   const user = JSON.parse(usuario)
 
-  const cookie2 = document.cookie
-
-  console.log(cookie);
-  console.log(user?.sub);
-
   const onNavigateBack = () => {
     navigate(-1)
   }
 
   const onHandleSubmit = async (e) => {
     e.preventDefault();
-
-      const response = await fetch('http://ec2-3-133-79-117.us-east-2.compute.amazonaws.com:8085/reserva/agregar', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          'Authorization': `Bearer ${cookie}`,
-          'Cookie': `${cookie2}`
-        },
-        body: JSON.stringify({
-          fechaInicial: checkIn,
-          fechaFinal: checkOut,
+    setTime(horaActualString)
+    const role = user?.authorities[0]?.authority
+    
+    if(role == 'ROLE_USER') {
+      fetch('http://ec2-3-133-79-117.us-east-2.compute.amazonaws.com:8085/reserva/agregar', {
+      method: 'POST',
+      body: JSON.stringify({
+          fechaInicial: checkInNew.toISOString(),
+          fechaFinal: checkOutNew.toISOString(),
           titulo: products.titulo,
-          email: mail
-        })
-      })
-      .then(respuesta => {
-        if (!respuesta.ok) {
-          throw new Error('Error en la petición');
-        }
-        return respuesta.json();
-      })
-      .then(data => {
-        console.log(data);
-      })
-      .catch(error => {
-        console.error(error);
-      });
-
+          email: user?.sub
+      }),
+      headers: {
+        "Content-Type": "application/json"
+      }
+    })
+    .then(response => navigate('/producto/reservaok'))
+    .catch(error => setErrorApi(true));
+    } else {
+      setErrorApi(true)
+    }
   }
   
 
@@ -115,7 +102,7 @@ const ReservasPage = () => {
             </div>
             <div>
               <label>Correo Electronico</label>
-              <input type="email" value={mail} onChange={(e) => setMail(e.target.value)}/>
+              <input type="email" value={user?.sub} disabled/>
             </div>
             <div>
               <label>Pais</label>
