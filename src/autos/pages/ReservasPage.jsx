@@ -20,13 +20,13 @@ const ReservasPage = () => {
   const checkInDate = calendarRange[0]?.getDate()
   const checkInMonth = calendarRange[0]?.getMonth()
   const checkInYear = calendarRange[0]?.getFullYear()
-  const checkIn = `${checkInYear}-0${checkInMonth}-${checkInDate}`
+  const checkIn = `${checkInYear}-${(checkInMonth?.toString().length == 1)?'0'+checkInMonth:checkInMonth}-${(checkInDate?.toString().length == 1)?'0'+checkInDate:checkInDate}`
   const checkInNew = new Date(checkIn)
   
   const checkOutDate = calendarRange[1]?.getDate()
   const checkOutMonth = calendarRange[1]?.getMonth()
   const checkOutYear = calendarRange[1]?.getFullYear()
-  const checkOut = `${checkOutYear}-0${checkOutMonth}-${checkOutDate}`
+  const checkOut = `${checkOutYear}-${(checkOutMonth?.toString().length == 1)?'0'+checkOutMonth:checkOutMonth}-${(checkOutDate?.toString().length == 1)?'0'+checkOutDate:checkOutDate}`
   const checkOutNew = new Date(checkOut)
   
   const cookie = document.cookie
