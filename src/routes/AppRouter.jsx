@@ -2,6 +2,7 @@ import React from 'react'
 import { Route, Routes } from 'react-router-dom'
 import CreateAcountPage from '../auth/pages/CreateAcountPage'
 import LoginPage from '../auth/pages/LoginPage'
+import RegistroSuccessPage from '../auth/pages/RegistroSuccessPage'
 import FiltroCategoria from '../autos/pages/FiltroCategoria'
 import FiltroCiudad from '../autos/pages/FiltroCiudad'
 import HomePage from '../autos/pages/HomePage'
@@ -30,6 +31,8 @@ const AppRouter = () => {
         <Route path="login" element={<LoginPage />} />
 
         <Route path="acount" element={<CreateAcountPage />} />
+
+        <Route path='registro' element={<RegistroSuccessPage/>}/>
       </Routes>
     </>
   )

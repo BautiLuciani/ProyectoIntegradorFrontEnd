@@ -2,13 +2,9 @@ const validateLogin = (email, password)=> {
     const errores = {}
 
     if(!email){
-        errores.login = "Los datos ingresados son incorrectos"
-    } else if (!(email.includes('@')) || !(email.includes('.com'))){
-        errores.login = "Los datos ingresados son incorrectos"
+        errores.login = "Los campos no pueden estar vacios"
     } else if(!password){
-        errores.login = "Los datos ingresados son incorrectos"
-    } else if (password.length < 7) {
-        errores.login = "Los datos ingresados son incorrectos"
+        errores.login = "Los campos no pueden estar vacios"
     }
 
     return errores

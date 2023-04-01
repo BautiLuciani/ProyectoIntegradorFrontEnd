@@ -1,19 +1,16 @@
-import React, { useContext, useEffect, useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
-import useForm from '../../hooks/useForm'
 import Footer from '../../ui/components/Footer'
 import Header from '../../ui/components/Header'
-import AuthContext from '../context/AuthContext'
 import validate from '../data/validate'
 import '../../styles/CreateAccount.css'
 
 const CreateAcountPage = () => {
 
-  const { createAcount } = useContext(AuthContext)
   const navegar = useNavigate()
 
   const [errors, setErrors] = useState({})
-  const [errorApi, setErrorApi] = useState(false)
+  const [registradoError, setRegistradoError] = useState(false)
   const [firstName, setFirstName] = useState("")
   const [lastName, setLastName] = useState("")
   const [email, setEmail] = useState("")
@@ -21,38 +18,36 @@ const CreateAcountPage = () => {
 
   const handleLogin = async (event) => {
     event.preventDefault();
-    setErrors(validate(firstName, lastName, email, password))
 
-    const response = await fetch('http://ec2-3-133-79-117.us-east-2.compute.amazonaws.com:8085/register', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify({
-        first_name: firstName,
-        last_name: lastName,
-        email: email,
-        password: password
-      })
-    });
-
-    if(!response.ok){
-      setErrorApi(true)
+    if (!email || !password || !firstName || !lastName) {
+      setErrors(validate(firstName, lastName, email, password))
+      return;
     }
 
-    return response
+    try {
+      const response = await fetch('http://ec2-3-133-79-117.us-east-2.compute.amazonaws.com:8085/register', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+          first_name: firstName,
+          last_name: lastName,
+          email: email,
+          password: password
+        })
+      });
+      if (response.ok) {
+        navegar('/registro')
+      } else if (response.status === 500) {
+        setRegistradoError(true)
+      } else {
+        throw new Error('Error al registrar usuario');
+      }
+    } catch (error) {
+      console.error(error);
+    }
   }
-
-  useEffect(() => {
-    if ((Object.keys(errors).length === 0) && (firstName !== "") && (lastName !== "") && (email !== "") && (password !== "") && (password !== "")) {
-      createAcount(firstName, lastName, email, password)
-
-      navegar('/', {
-        replace: true
-      })
-    }
-  }, [errors])
-
 
   return (
     <>
@@ -122,8 +117,8 @@ const CreateAcountPage = () => {
           </section>
 
           {errors.ingresar && <p className='mensajeError'>{errors.ingresar}</p>}
-          {(errorApi) && <p className='mensajeError'>Lamentablemente no ha podido registrarse. Por favor intente más tarde</p>}
-          
+          {registradoError && <p className='mensajeError'>Usuario ya registrado</p>}
+
           <section className='caButton'>
             <button className='createAccount-button'>
               Crear cuenta

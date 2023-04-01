@@ -1,6 +1,5 @@
 const validate = (firstName, lastName, email, password) => {
     const errores = {}
-    const user = JSON.parse(localStorage.getItem(`${email}`))
 
     if (!firstName) {
         errores.nombre = "Nombre no puede estar vacio"
@@ -18,9 +17,6 @@ const validate = (firstName, lastName, email, password) => {
     } else if (password.length < 7) {
         errores.contrasenia = "La contraseña es muy corta"
     } 
-    if(email === user?.email){
-        errores.ingresar = "Este correo ya esta utilizado"
-    }
 
     return errores
 }

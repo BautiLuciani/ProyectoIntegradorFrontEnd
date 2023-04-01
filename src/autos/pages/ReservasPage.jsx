@@ -1,12 +1,12 @@
 import React, { useEffect, useState } from 'react'
-import { Link, useNavigate, useParams } from 'react-router-dom'
+import { useJwt } from 'react-jwt'
+import { useNavigate, useParams } from 'react-router-dom'
 import useFetchImagenes from '../../hooks/useFetchImagenes'
 import useFetchProductosId from '../../hooks/useFetchProductosId'
 import CalendarRangePicker from '../../ui/components/CalendarRangePicker'
 import Footer from '../../ui/components/Footer'
 import Header from '../../ui/components/Header'
 import horario from '../data/horarioLlegada'
-import '../../styles/BookingPage.css'
 
 const ReservasPage = () => {
 
@@ -15,18 +15,28 @@ const ReservasPage = () => {
   const { loading, products } = useFetchProductosId(id)
   const { imagenes } = useFetchImagenes()
   const [calendarRange, setCalendarRange] = useState([null, null]);
-  const [error, setError] = useState(false)
   const [errorApi, setErrorApi] = useState(false)
 
   const checkInDate = calendarRange[0]?.getDate()
   const checkInMonth = calendarRange[0]?.getMonth()
   const checkInYear = calendarRange[0]?.getFullYear()
-  const checkIn = `${checkInDate}/${checkInMonth}/${checkInYear}`
-
+  const checkIn = `${checkInYear}-0${checkInMonth}-${checkInDate}`
+  const checkInNew = new Date(checkIn)
+  
   const checkOutDate = calendarRange[1]?.getDate()
   const checkOutMonth = calendarRange[1]?.getMonth()
   const checkOutYear = calendarRange[1]?.getFullYear()
-  const checkOut = `${checkOutDate}/${checkOutMonth}/${checkOutYear}`
+  const checkOut = `${checkOutYear}-0${checkOutMonth}-${checkOutDate}`
+  const checkOutNew = new Date(checkOut)
+  
+  const cookie = document.cookie
+  .split('; ')
+  .find(row => row.startsWith('jwt='))
+  ?.split('=')[1];
+
+  const { decodedToken } = useJwt(cookie);
+  const usuario = JSON.stringify(decodedToken)
+  const user = JSON.parse(usuario)
 
   const onNavigateBack = () => {
     navigate(-1)
@@ -34,37 +44,29 @@ const ReservasPage = () => {
 
   const onHandleSubmit = async (e) => {
     e.preventDefault();
-    if (checkIn.includes("undefined") || checkOut.includes("undefined")) {
-      setError(true)
-      return
-    }
-
-    const response = await fetch('http://ec2-3-133-79-117.us-east-2.compute.amazonaws.com:8085/reserva/agregar', {
+    setTime(horaActualString)
+    const role = user?.authorities[0]?.authority
+    
+    if(role == 'ROLE_USER') {
+      fetch('http://ec2-3-133-79-117.us-east-2.compute.amazonaws.com:8085/reserva/agregar', {
       method: 'POST',
-      headers: {
-        'Content-Type': 'application/json'
-      },
       body: JSON.stringify({
-        fechaInicial: checkIn,
-        fechaFinal: checkOut,
-        titulo: products.titulo,
-        email: "bautiluciani@hotmail.com"
-      })
-    });
-
-    if (response.ok) {
-      navigate(`/producto/reservaok`)
+          fechaInicial: checkInNew.toISOString(),
+          fechaFinal: checkOutNew.toISOString(),
+          titulo: products.titulo,
+          email: user?.sub
+      }),
+      headers: {
+        "Content-Type": "application/json"
+      }
+    })
+    .then(response => navigate('/producto/reservaok'))
+    .catch(error => setErrorApi(true));
     } else {
       setErrorApi(true)
     }
-
-    return response
   }
-
-  useEffect(() => {
-    setError(false)
-  }, [checkIn])
-
+  
 
   return (
     <>
@@ -73,12 +75,12 @@ const ReservasPage = () => {
         loading && (<h2>Cargando...</h2>)
       }
       <div>
-        <section className='title-section'>
+        <section>
           <div>
             <p>{products.categoria?.titulo}</p>
-            <h3 className='title-of-product'>{products.titulo}</h3>
+            <h3>{products.titulo}</h3>
           </div>
-          <button className='button-back-menu'
+          <button
             onClick={onNavigateBack}
           >
             Volver
@@ -86,38 +88,29 @@ const ReservasPage = () => {
         </section>
       </div>
       <form onSubmit={onHandleSubmit}>
-        <div className='form-and-booking'>
+        <div>
           {/* Completa tus datos */}
-          <div className='start-booking'>
-            <div className='form-and-booking-details'>
-              <h3>Completa tus datos</h3>
-              <div className='product-details'>
-                <p className='category-title-reserve'>CategoriaCategoria</p>
-                <h3 className='product-title'>TituloProducto</h3>
-              </div>
-
-              <section className='form' >
-              <div>
-                <label>Nombre</label>
-                <input type="text" />
-              </div>
-              <div>
-                <label>Apellido</label>
-                <input type="text" />
-              </div>
-              <div>
-                <label>Correo Electronico</label>
-                <input type="email" />
-              </div>
-              <div>
-                <label>Pais</label>
-                <input type="text" />
-              </div>
-              </section>
+          <div>
+            <h3>Completa tus datos</h3>
+            <div>
+              <label>Nombre</label>
+              <input type="text" value={user?.sub} disabled/>
             </div>
-          
+            <div>
+              <label>Apellido</label>
+              <input type="text" value={user?.sub} disabled/>
+            </div>
+            <div>
+              <label>Correo Electronico</label>
+              <input type="email" value={user?.sub} disabled/>
+            </div>
+            <div>
+              <label>Pais</label>
+              <input type="text" value="Argentina" disabled/>
+            </div>
+          </div>
           {/* Detalle de la reserva */}
-          <div className='booking-details'>
+          <div>
             <h3>Detalle de la reserva</h3>
             {
               imagenes.map(img => {
@@ -126,7 +119,7 @@ const ReservasPage = () => {
                 }
               })
             }
-            <div className='details-of-booking'>
+            <div>
               <p>{products.categoria?.titulo}</p>
               <h2>{products.titulo}</h2>
               <p>{products.ciudad?.titulo}</p>
@@ -154,20 +147,18 @@ const ReservasPage = () => {
                   </>
               }
               <button>Confirmar reserva</button>
-              <p className='error'>{(error) && "Para realizar la reserva debe seleccionar fechas"}</p>
-              <p className='error'>{(errorApi) && "Lamentablemente la reserva no ha podido realizarse. Por favor, vuelva a intentarlo."}</p>
+              <p>{(errorApi) && "Lamentablemente la reserva no ha podido realizarse. Por favor, vuelva a intentarlo."}</p>
             </div>
           </div>
-          </div>
           {/* Selecciona tu fecha de reserva */}
-          <div className='select-schedule'>
+          <div>
             <h3>Selecciona tu fecha de reserva</h3>
             <div>
               <CalendarRangePicker calendarRange={calendarRange} setCalendarRange={setCalendarRange} />
             </div>
           </div>
           {/* Tu horario de llegada */}
-          <div className='select-hour'>
+          <div>
             <h3>Tu horario de llegada</h3>
             <p>Podes retirar el auto en cualquier momento del dia</p>
             <div>
@@ -181,9 +172,9 @@ const ReservasPage = () => {
           </div>
         </div>
       </form>
-      <div className='more-info'>
+      <div>
         <h3>Que tenes que saber</h3>
-        <div className='more-info-and-rules'>
+        <div>
           <div>
             <h4>Normas del auto</h4>
             <p>Devolver con tanque lleno</p>

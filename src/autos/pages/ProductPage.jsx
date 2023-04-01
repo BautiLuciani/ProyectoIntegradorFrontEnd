@@ -13,8 +13,12 @@ import useFetchProductosId from '../../hooks/useFetchProductosId'
 import Carrusel from '../components/Carrusel'
 import useFetchImagenes from '../../hooks/useFetchImagenes'
 import useFetchDescripcion from '../../hooks/useFetchDescripcion'
+import { useState } from 'react'
+import Cookies from 'js-cookie'
 
 const ProductPage = () => {
+    
+    const [calendarRange, setCalendarRange] = useState([null, null]);
 
     const { id } = useParams()
     const { products, loading } = useFetchProductosId(id)
@@ -22,9 +26,18 @@ const ProductPage = () => {
     const { descripcion } = useFetchDescripcion()
 
     const galeria = imagenes.filter(img => (img.producto.id == id))
-    console.log(galeria);
 
     const navigate = useNavigate()
+
+    const onReserva = ()=> {
+        const token = Cookies.get('jwt')
+        if(!token) {
+            alert("Para hacer una reserva debe inicar sesion")
+            navigate(`/login`)
+        } else {
+            navigate(`/producto/${id}/reserva`)
+        }
+    }
 
     const onNavigateBack = () => {
         navigate(-1)
@@ -132,19 +145,15 @@ const ProductPage = () => {
                         </div>
                     </div>
                 </section>
-                <section className='bookings-zone'>
-                    <h3 className='bookings-zone-title'>Fechas disponibles</h3>
-                    <div className='calendary-and-booking'>
-                        <div className='calendary'>
-                            <CalendarRangePicker />
+                <section>
+                    <h3>Fechas disponibles</h3>
+                    <div>
+                        <div>
+                            <CalendarRangePicker calendarRange={calendarRange} setCalendarRange={setCalendarRange}/>
                         </div>
-                        <div className='starting-reservation'>
-                            <p className='reservation-mensagge'>Agrega tus fechas de viaje para obtener precios exactos</p>
-                            <Link className='booking-button'
-                                to={`/producto/${id}/reserva`}
-                            >
-                                Iniciar Reserva
-                            </Link>
+                        <div>
+                            <p>Agrega tus fechas de viaje para obtener precios exactos</p>
+                            <button className='button-booking' onClick={onReserva}> Iniciar Reserva </button>
                         </div>
                     </div>
                 </section>
