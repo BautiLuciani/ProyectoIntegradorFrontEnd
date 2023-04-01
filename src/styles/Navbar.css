@@ -77,7 +77,7 @@
 /* Responsive */
 
 
-@media (max-width: 400px) {
+@media (max-width: 500px) {
 
   .navbar {
     display: flex;
@@ -107,7 +107,8 @@
   }
 
   .button-submit {
-    margin-left: 50px;
+    margin: auto;
+    margin-top: 10px;
   }
 
 }

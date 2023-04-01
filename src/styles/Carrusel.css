@@ -38,3 +38,10 @@
   max-width: 600px;
   /* margin-right: 600px; */
 }
+
+@media (max-width: 500px) {
+  .open-galery-button{
+    right: 20px;
+    top: 730px;
+  }
+}

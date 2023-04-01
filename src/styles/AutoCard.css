@@ -13,6 +13,7 @@
 .auto-card img {
   width: 700px;
   height: 290px;
+  /* margin: auto; */
   display: flex;
   border-top-left-radius: 8px;
   border-bottom-left-radius: 8px;
@@ -60,5 +61,10 @@
 @media (max-width: 600px){
   .auto-card{
     flex-direction: column;
+  }
+
+  .info-view-more{
+    margin: auto;
+    margin-top: 20px;
   }
 }

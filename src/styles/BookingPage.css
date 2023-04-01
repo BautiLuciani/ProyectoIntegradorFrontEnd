@@ -218,3 +218,14 @@
 .more-info-and-rules p{
   margin: 20px;
 }
+
+@media (max-width: 500px) {
+  .start-booking{
+    display: flex;
+    flex-direction: column;
+  }
+
+  .form div label{
+    display: flex;
+  }
+}
