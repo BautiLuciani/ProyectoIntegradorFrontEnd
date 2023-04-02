@@ -1,5 +1,5 @@
-import React, { useEffect, useState} from 'react'
-import {NavLink, useLocation, useNavigate} from 'react-router-dom'
+import React, { useEffect, useState } from 'react'
+import { Link, NavLink, useLocation, useNavigate } from 'react-router-dom'
 import '../../styles/Header.css'
 import { useJwt } from 'react-jwt'
 
@@ -7,18 +7,20 @@ import { useJwt } from 'react-jwt'
 const Header = () => {
   const [loggedIn, setLoggedIn] = useState(false)
   const navigate = useNavigate()
-  const {pathname, search} = useLocation()
+  const { pathname, search } = useLocation()
   const lastPath = pathname + search
-  
+
   const cookie = document.cookie
-  .split('; ')
-  .find(row => row.startsWith('jwt='))
-  ?.split('=')[1];
+    .split('; ')
+    .find(row => row.startsWith('jwt='))
+    ?.split('=')[1];
 
   const { decodedToken } = useJwt(cookie);
   const usuario = JSON.stringify(decodedToken)
   const user = JSON.parse(usuario)
-  
+
+  const role = user?.authorities[0]?.authority
+
   useEffect(() => {
     if (cookie) {
       fetch('http://ec2-3-133-79-117.us-east-2.compute.amazonaws.com:8085/users/listar', {
@@ -26,17 +28,17 @@ const Header = () => {
           Authorization: `Bearer ${cookie}`
         }
       })
-      .then(response => {
-        setLoggedIn(true);
-      })
-      .catch(error => {
-        console.log(error);
-      });
+        .then(response => {
+          setLoggedIn(true);
+        })
+        .catch(error => {
+          console.log(error);
+        });
     }
   }, []);
 
 
-  const handleLogout = ()=> {
+  const handleLogout = () => {
     document.cookie = 'jwt=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;';
     setLoggedIn(false);
 
@@ -67,8 +69,8 @@ const Header = () => {
         lastPath == '/login'
           ? 'login'
           : lastPath == '/acount'
-          ? 'createAcount'
-          : 'header'
+            ? 'createAcount'
+            : 'header'
       }>
       <NavLink to="/home" className="logo">
         <img src="/assets/logo 1.png" alt="Logo DB" />
@@ -78,15 +80,26 @@ const Header = () => {
       <div className="usuario">
         {loggedIn ? (
           <>
-            <section className="iniciales">
-              <b>
-                BL
-              </b>
-            </section>
-            <p>Bienvenido, {user?.sub}</p>
-            <button className="buttons" onClick={handleLogout}>
-              Cerrar Sesion
-            </button>
+            {(role == 'ROLE_USER') &&
+              <div>
+                <Link
+                  to={'/administracion'}
+                >
+                  Administracion
+                </Link>
+              </div>
+            }
+            <div>
+              <section className="iniciales">
+                <b>
+                  BL
+                </b>
+              </section>
+              <p>Bienvenido, {user?.sub}</p>
+              <button className="buttons" onClick={handleLogout}>
+                Cerrar Sesion
+              </button>
+            </div>
           </>
         ) : lastPath === '/login' ? (
           <button className="buttons" onClick={onCreateAcount}>
