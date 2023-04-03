@@ -15,12 +15,13 @@ const CreateAcountPage = () => {
   const [lastName, setLastName] = useState("")
   const [email, setEmail] = useState("")
   const [password, setPassword] = useState("")
+  const [passwordDbl, setPasswordDbl] = useState("")
 
   const handleLogin = async (event) => {
     event.preventDefault();
 
-    if (!email || !password || !firstName || !lastName) {
-      setErrors(validate(firstName, lastName, email, password))
+    if (!email || !password || !firstName || !lastName || !passwordDbl || password.length < 7 || password !== passwordDbl) {
+      setErrors(validate(firstName, lastName, email, password, passwordDbl))
       return;
     }
 
@@ -110,10 +111,10 @@ const CreateAcountPage = () => {
               id='password'
               placeholder='Confirme su contraseña'
               name='password'
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
+              value={passwordDbl}
+              onChange={(e) => setPasswordDbl(e.target.value)}
             />
-            {errors.password && <p className='mensajeError'>{errors.password}</p>}
+            {errors.passwordDbl && <p className='mensajeError'>{errors.passwordDbl}</p>}
           </section>
 
           {errors.ingresar && <p className='mensajeError'>{errors.ingresar}</p>}
