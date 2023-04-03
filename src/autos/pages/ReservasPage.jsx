@@ -45,7 +45,7 @@ const ReservasPage = () => {
 
   const onHandleSubmit = async (e) => {
     e.preventDefault();
-    setTime(horaActualString)
+    // setTime(horaActualString)
     const role = user?.authorities[0]?.authority
 
     if (role == 'ROLE_USER') {
