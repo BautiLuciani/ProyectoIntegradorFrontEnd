@@ -38,7 +38,7 @@ const CreateAcountPage = () => {
         })
       });
       if (response.ok) {
-        navegar('/registro')
+        navegar('/administracion/creadook')
       } else if (response.status === 500) {
         setRegistradoError(true)
       } else {
