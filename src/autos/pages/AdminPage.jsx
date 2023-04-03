@@ -5,6 +5,8 @@ import Footer from '../../ui/components/Footer'
 import useFetchProvincias from '../../hooks/useFetchProvincias'
 import useFetchCategorias from '../../hooks/useFetchCategorias'
 import validateProduct from '../data/validateProduct'
+import '../../styles/adminPage.css'
+
 
 const AdminPage = () => {
 
@@ -76,20 +78,20 @@ const AdminPage = () => {
     return (
         <>
             <Header />
-            <div>
+            <div className='title-admin-section'>
                 <h3>Administracion de productos</h3>
-                <button
+                <button className='button-back-menu'
                     onClick={onNavigateBack}
                 >
                     Volver
                 </button>
             </div>
-            <div>
+            <div className='form'>
                 <h3>Agregar Auto</h3>
                 <div>
                     <form onSubmit={onHandleSubmit}>
                         <section>
-                            <div>
+                            <div className='name-product-section'>
                                 <label>Nombre del producto</label>
                                 <input
                                     type='text'
@@ -146,7 +148,7 @@ const AdminPage = () => {
                             </div>
                         </section>
                         {productoError && <p className='mensajeError'>No se pudo crear el producto. Por favor, vuelva a intentarlo</p>}
-                        <button>Crear Producto</button>
+                        <button className='create-product-button'>Crear Producto</button>
                     </form>
                 </div>
             </div>

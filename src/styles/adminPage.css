@@ -1,0 +1,43 @@
+
+.title-admin-section{
+  background-color: #31363f;
+  display: flex;
+  justify-content: space-between;
+  padding: 30px;
+  color: #ffffff;
+}
+
+.form{
+  margin-top: 30px;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  text-align: center;
+  margin-bottom: 80px;
+}
+
+.form input{
+  margin-top: 10px;
+}
+
+.form div{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.form div input{
+  width: 400px;
+  height: 30px;
+  padding: 10px;
+  border-radius: 8px;
+}
+
+.create-product-button{
+  border: none;
+  border-radius: 8px;
+  padding: 10px;
+  background-color: #f0572d;
+}
