@@ -145,15 +145,15 @@ const ProductPage = () => {
                         </div>
                     </div>
                 </section>
-                <section>
-                    <h3>Fechas disponibles</h3>
-                    <div>
-                        <div>
+                <section className='bookings-zone'>
+                    <h3 className='bookings-zone-title'>Fechas disponibles</h3>
+                    <div className='calendary-and-booking'>
+                        <div className='calendary'>
                             <CalendarRangePicker calendarRange={calendarRange} setCalendarRange={setCalendarRange}/>
                         </div>
-                        <div>
+                        <div className='starting-reservation'>
                             <p>Agrega tus fechas de viaje para obtener precios exactos</p>
-                            <button className='button-booking' onClick={onReserva}> Iniciar Reserva </button>
+                            <button className='booking-button' onClick={onReserva}> Iniciar Reserva </button>
                         </div>
                     </div>
                 </section>

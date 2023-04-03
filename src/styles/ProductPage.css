@@ -204,7 +204,7 @@ hr {
 }
 
 /* boton de reserva */
-/* .booking-button {
+.booking-button {
   background-color: #F0572D;
   color: #31363F;
   padding: 10px;
@@ -218,9 +218,9 @@ hr {
 .booking-button:hover {
   background-color: #31363F;
   color: #F0572D;
-} */
+}
 
-.button-booking{
+/* .button-booking{
   position: relative;
   bottom: 200px;
   left: 800px;
@@ -237,7 +237,7 @@ hr {
 .button-booking:hover{
   background-color: #31363F;
   color: #F0572D;
-}
+} */
 
 
 @media (max-width: 500px) {
