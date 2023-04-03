@@ -7,15 +7,20 @@ import CalendarRangePicker from '../../ui/components/CalendarRangePicker'
 import Footer from '../../ui/components/Footer'
 import Header from '../../ui/components/Header'
 import horario from '../data/horarioLlegada'
+import useFetchUsuarios from '../../hooks/useFetchUsuarios'
 
 const ReservasPage = () => {
 
+  const [reservas, setReservas] = useState([])
   const navigate = useNavigate()
   const { id } = useParams()
   const { loading, products } = useFetchProductosId(id)
   const { imagenes } = useFetchImagenes()
   const [calendarRange, setCalendarRange] = useState([null, null]);
   const [errorApi, setErrorApi] = useState(false)
+  const [nombre, setNombre] = useState("")
+  const [apellido, setApellido] = useState("")
+  const {usuarios} = useFetchUsuarios()
 
   const checkInDate = calendarRange[0]?.getDate()
   const checkInMonth = calendarRange[0]?.getMonth()
@@ -66,7 +71,27 @@ const ReservasPage = () => {
       setErrorApi(true)
     }
   }
-  
+
+  useEffect(() => {
+    fetch(`http://ec2-3-133-79-117.us-east-2.compute.amazonaws.com:8085/producto/${id}/reservas`)
+    .then(response => response.json())
+    .then(data => setReservas(data))
+    .catch(error => console.error(error))
+  }, [id])
+
+  const usuarioDatos = usuarios.filter(u => u.email == user?.sub)
+
+  useEffect(() => {
+    setNombre(usuarioDatos[0]?.first_name)
+    setApellido(usuarioDatos[0]?.last_name)
+  }, [usuarioDatos])
+
+  const primeraLetraNombre = nombre?.toUpperCase().charAt(0)
+  const restoNombre = nombre?.slice(1)
+  const nombreCompleto = primeraLetraNombre + restoNombre
+  const primeraLetraApellido = apellido?.toUpperCase().charAt(0)
+  const restoApellido = apellido?.slice(1)
+  const apellidoCompleto = primeraLetraApellido + restoApellido
 
   return (
     <>
@@ -94,11 +119,11 @@ const ReservasPage = () => {
             <h3>Completa tus datos</h3>
             <div>
               <label>Nombre</label>
-              <input type="text" value={user?.sub} disabled/>
+              <input type="text" value={nombreCompleto} disabled/>
             </div>
             <div>
               <label>Apellido</label>
-              <input type="text" value={user?.sub} disabled/>
+              <input type="text" value={apellidoCompleto} disabled/>
             </div>
             <div>
               <label>Correo Electronico</label>
@@ -154,7 +179,7 @@ const ReservasPage = () => {
           <div>
             <h3>Selecciona tu fecha de reserva</h3>
             <div>
-              <CalendarRangePicker calendarRange={calendarRange} setCalendarRange={setCalendarRange} />
+              <CalendarRangePicker calendarRange={calendarRange} setCalendarRange={setCalendarRange}/>
             </div>
           </div>
           {/* Tu horario de llegada */}

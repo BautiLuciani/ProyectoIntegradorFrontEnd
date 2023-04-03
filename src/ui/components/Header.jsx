@@ -2,12 +2,17 @@ import React, { useEffect, useState } from 'react'
 import { Link, NavLink, useLocation, useNavigate } from 'react-router-dom'
 import '../../styles/Header.css'
 import { useJwt } from 'react-jwt'
+import useFetchUsuarios from '../../hooks/useFetchUsuarios'
 
 
 const Header = () => {
+  const [menuOpen, setMenuOpen] = useState(false)
   const [loggedIn, setLoggedIn] = useState(false)
+  const [nombre, setNombre] = useState("")
+  const [apellido, setApellido] = useState("")
   const navigate = useNavigate()
   const { pathname, search } = useLocation()
+  const {usuarios} = useFetchUsuarios()
   const lastPath = pathname + search
 
   const cookie = document.cookie
@@ -20,6 +25,13 @@ const Header = () => {
   const user = JSON.parse(usuario)
 
   const role = user?.authorities[0]?.authority
+
+  const usuarioDatos = usuarios.filter(u => u.email == user?.sub)
+  
+  useEffect(() => {
+    setNombre(usuarioDatos[0]?.first_name)
+    setApellido(usuarioDatos[0]?.last_name)
+  }, [usuarioDatos])
 
   useEffect(() => {
     if (cookie) {
@@ -47,13 +59,20 @@ const Header = () => {
     })
   }
 
-  /*const nombreMayuscula = () => {
-    const restoNombre = user?.nombre.slice(1)
-    const restoApellido = user?.apellido.slice(1)
+  const primeraLetraNombre = nombre?.toUpperCase().charAt(0)
+  const primeraLetraApellido = apellido?.toUpperCase().charAt(0)
+
+  const nombreMayuscula = () => {
+    const restoNombre = nombre.slice(1)
+    const restoApellido = apellido.slice(1)
     const nombreCompleto = primeraLetraNombre + restoNombre
     const apellidoCompleto = primeraLetraApellido + restoApellido
     return `${nombreCompleto} ${apellidoCompleto}`
-  }*/
+  }
+
+  const toggleMenu = ()=> {
+    setMenuOpen(!menuOpen)
+  }
 
   const onCreateAcount = () => {
     navigate('/acount')
@@ -92,10 +111,10 @@ const Header = () => {
             <div>
               <section className="iniciales">
                 <b>
-                  BL
+                  {`${primeraLetraNombre}${primeraLetraApellido}`}
                 </b>
               </section>
-              <p>Bienvenido, {user?.sub}</p>
+              <p>Bienvenido, {nombreMayuscula()}</p>
               <button className="buttons" onClick={handleLogout}>
                 Cerrar Sesion
               </button>
