@@ -99,7 +99,7 @@ const Header = () => {
       <div className="usuario">
         {loggedIn ? (
           <>
-            {(role == 'ROLE_USER') &&
+            {(role == 'ROLE_ADMIN') &&
               <div>
                 <Link
                   to={'/administracion'}
