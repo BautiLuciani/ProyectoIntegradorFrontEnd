@@ -8,6 +8,7 @@ import Footer from '../../ui/components/Footer'
 import Header from '../../ui/components/Header'
 import horario from '../data/horarioLlegada'
 import useFetchUsuarios from '../../hooks/useFetchUsuarios'
+import { useContextGlobal } from '../../context/globalContext'
 
 const ReservasPage = () => {
 
@@ -21,6 +22,9 @@ const ReservasPage = () => {
   const [nombre, setNombre] = useState("")
   const [apellido, setApellido] = useState("")
   const {usuarios} = useFetchUsuarios()
+  const {setUserReserva, idProducto} = useContextGlobal()
+
+  setUserReserva(false)
 
   const checkInDate = calendarRange[0]?.getDate()
   const checkInMonth = (calendarRange[0]?.getMonth()) + 1
@@ -44,7 +48,7 @@ const ReservasPage = () => {
   const user = JSON.parse(usuario)
 
   const onNavigateBack = () => {
-    navigate(-1)
+    navigate(`/producto/${idProducto}`)
   }
 
   const onHandleSubmit = async (e) => {

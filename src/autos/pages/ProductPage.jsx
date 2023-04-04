@@ -15,6 +15,7 @@ import { useState } from 'react'
 import Cookies from 'js-cookie'
 import CalendarPicker from '../../ui/components/CalendarPicker'
 import { useEffect } from 'react'
+import { useContextGlobal } from '../../context/globalContext'
 
 const ProductPage = () => {
 
@@ -23,6 +24,7 @@ const ProductPage = () => {
     const { products, loading } = useFetchProductosId(id)
     const { imagenes } = useFetchImagenes()
     const { descripcion } = useFetchDescripcion()
+    const {setUserReserva, setIdProducto} = useContextGlobal()
 
     const galeria = imagenes.filter(img => (img.producto.id == id))
 
@@ -38,7 +40,9 @@ const ProductPage = () => {
     const onReserva = () => {
         const token = Cookies.get('jwt')
         if (!token) {
-            alert("Para hacer una reserva debe inicar sesion")
+            /*alert("Para hacer una reserva debe inicar sesion")*/
+            setUserReserva(true)
+            setIdProducto(id)
             navigate(`/login`)
         } else {
             navigate(`/producto/${id}/reserva`)
@@ -46,7 +50,7 @@ const ProductPage = () => {
     }
 
     const onNavigateBack = () => {
-        navigate(-1)
+        navigate('/home')
     }
 
     return (

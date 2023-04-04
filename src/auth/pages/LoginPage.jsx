@@ -5,6 +5,7 @@ import Header from '../../ui/components/Header'
 import validateLogin from '../data/validateLogin'
 import '../../styles/Login.css'
 import Cookies from 'js-cookie'
+import { useContextGlobal } from '../../context/globalContext'
 
 const LoginPage = () => {
 
@@ -13,6 +14,7 @@ const LoginPage = () => {
   const [email, setEmail] = useState("")
   const [password, setPassword] = useState("")
   const [registradoError, setRegistradoError] = useState(false)
+  const {userReserva, idProducto} = useContextGlobal()
 
   const handleLogin = async (event) => {
     event.preventDefault();
@@ -48,7 +50,9 @@ const LoginPage = () => {
     if (!token || token.includes('Credenciales erróneas')) {
       setRegistradoError(true)
     } else {
-      navegar('/home')
+      (userReserva)
+      ? navegar(`/producto/${idProducto}/reserva`)
+      : navegar('/home')
     }
   }
 
@@ -57,6 +61,7 @@ const LoginPage = () => {
       <Header />
 
       <div className='formLogin'>
+        {(userReserva) && <p className='mensajeError'>Para hacer una reserva debe iniciar sesion</p>}
         <h3>Iniciar Sesion</h3>
         <form className='formualarioLogin' onSubmit={handleLogin}>
 
