@@ -2,26 +2,27 @@ import React, { useState } from 'react'
 import Calendar from 'react-calendar'
 import 'react-calendar/dist/Calendar.css';
 
-const CalendarRangePicker = ({calendarRange, setCalendarRange, reservas}) => {
+const CalendarPicker = ({ reservas }) => {
 
+    const [CalendarPicker, setCalendarPicker] = useState([null, null])
     const ayer = new Date(Date.now() - 1);
 
-    const tileDisabled = ({date})=> {
+    const tileDisabled = ({ date }) => {
         for (const usuario of reservas) {
             const startDate = new Date(usuario.fechaInicial);
             const endDate = new Date(usuario.fechaFinal);
             if (date >= startDate && date <= endDate) {
-              return true;
+                return true;
             }
-          }
-          return false;
+        }
+        return false;
     }
 
     return (
         <Calendar
-            value={calendarRange}
+            value={CalendarPicker}
             onChange={(update) => {
-                setCalendarRange(update);
+                setCalendarPicker(update);
             }}
             minDate={ayer}
             showDoubleView={true}
@@ -31,4 +32,4 @@ const CalendarRangePicker = ({calendarRange, setCalendarRange, reservas}) => {
     )
 }
 
-export default CalendarRangePicker
+export default CalendarPicker

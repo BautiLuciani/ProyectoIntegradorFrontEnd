@@ -49,7 +49,6 @@ const ReservasPage = () => {
 
   const onHandleSubmit = async (e) => {
     e.preventDefault();
-    setTime(horaActualString)
     const role = user?.authorities[0]?.authority
     
     if(role == 'ROLE_USER') {
@@ -179,7 +178,7 @@ const ReservasPage = () => {
           <div>
             <h3>Selecciona tu fecha de reserva</h3>
             <div>
-              <CalendarRangePicker calendarRange={calendarRange} setCalendarRange={setCalendarRange}/>
+              <CalendarRangePicker calendarRange={calendarRange} setCalendarRange={setCalendarRange} reservas={reservas}/>
             </div>
           </div>
           {/* Tu horario de llegada */}
