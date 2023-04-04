@@ -42,6 +42,10 @@
 
 /* responsive */
 
+.menuMobile {
+  display: none;
+}
+
 @media (max-width: 600px){
   .header{
     display: flex;
@@ -62,4 +66,33 @@
   .buttons {
     /* display: none; */
   }
+
+  .usuario {
+    display: none;
+  }
+
+  .menuMobile {
+    display: flex;
+    align-items: center;
+  }
+
+  .menuOptionDisable {
+    display: none;
+  }
+
+  .menuOptions {
+    position: absolute;
+    top: 90px;
+    left: 0;
+    background-color: #31363f;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: 200px;
+  }
+
+  .menuOptions button {
+    position: relative;
+  }
+
 }
