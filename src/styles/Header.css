@@ -46,6 +46,10 @@
   display: none;
 }
 
+.menuMobileDisable {
+  display: none;
+}
+
 @media (max-width: 600px){
   .header{
     display: flex;
@@ -68,10 +72,6 @@
   }
 
   .usuario {
-    display: none;
-  }
-
-  .menuMobileDisable {
     display: none;
   }
 
