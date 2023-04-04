@@ -148,7 +148,7 @@ const Header = () => {
           </>
         )}
       </div>
-      <div className='menuMobile'>
+      <div className={(lastPath === '/login' || lastPath === '/acount') ? 'menuMobileDisable' : 'menuMobile'}>
         <div className={menuOpen ? 'menuOptions' : 'menuOptionDisable'}>
           <button className="buttons" onClick={onCreateAcountResponsive}>
             Crear Cuenta
