@@ -23,13 +23,13 @@ const ReservasPage = () => {
   const {usuarios} = useFetchUsuarios()
 
   const checkInDate = calendarRange[0]?.getDate()
-  const checkInMonth = calendarRange[0]?.getMonth()
+  const checkInMonth = (calendarRange[0]?.getMonth()) + 1
   const checkInYear = calendarRange[0]?.getFullYear()
   const checkIn = `${checkInYear}-${(checkInMonth?.toString().length == 1)?'0'+checkInMonth:checkInMonth}-${(checkInDate?.toString().length == 1)?'0'+checkInDate:checkInDate}`
   const checkInNew = new Date(checkIn)
   
   const checkOutDate = calendarRange[1]?.getDate()
-  const checkOutMonth = calendarRange[1]?.getMonth()
+  const checkOutMonth = (calendarRange[1]?.getMonth()) + 1
   const checkOutYear = calendarRange[1]?.getFullYear()
   const checkOut = `${checkOutYear}-${(checkOutMonth?.toString().length == 1)?'0'+checkOutMonth:checkOutMonth}-${(checkOutDate?.toString().length == 1)?'0'+checkOutDate:checkOutDate}`
   const checkOutNew = new Date(checkOut)
