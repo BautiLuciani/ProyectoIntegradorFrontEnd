@@ -1,0 +1,13 @@
+.booking-confirmed{
+  padding: 30px;
+}
+
+.booking-confirmed p{
+  font-size: 20pt;
+  margin-top: 10px;
+}
+
+.link-to-home{
+  color: #f0572d;
+  font-size: 30px;
+}
