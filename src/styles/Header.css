@@ -13,6 +13,7 @@
 .logo {
   display: flex;
   margin: 15px;
+  margin-top: 30px;
   height: 60px;
   text-decoration: none;
 }
