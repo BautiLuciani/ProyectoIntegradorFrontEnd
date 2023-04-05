@@ -8,24 +8,33 @@ import Footer from '../../ui/components/Footer'
 import Header from '../../ui/components/Header'
 import horario from '../data/horarioLlegada'
 import '../../styles/BookingPage.css'
+import useFetchUsuarios from '../../hooks/useFetchUsuarios'
+import { useContextGlobal } from '../../context/globalContext'
 
 const ReservasPage = () => {
 
+  const [reservas, setReservas] = useState([])
   const navigate = useNavigate()
   const { id } = useParams()
   const { loading, products } = useFetchProductosId(id)
   const { imagenes } = useFetchImagenes()
   const [calendarRange, setCalendarRange] = useState([null, null]);
   const [errorApi, setErrorApi] = useState(false)
+  const [nombre, setNombre] = useState("")
+  const [apellido, setApellido] = useState("")
+  const { usuarios } = useFetchUsuarios()
+  const { setUserReserva, idProducto } = useContextGlobal()
+
+  setUserReserva(false)
 
   const checkInDate = calendarRange[0]?.getDate()
-  const checkInMonth = calendarRange[0]?.getMonth()
+  const checkInMonth = (calendarRange[0]?.getMonth()) + 1
   const checkInYear = calendarRange[0]?.getFullYear()
   const checkIn = `${checkInYear}-${(checkInMonth?.toString().length == 1) ? '0' + checkInMonth : checkInMonth}-${(checkInDate?.toString().length == 1) ? '0' + checkInDate : checkInDate}`
   const checkInNew = new Date(checkIn)
 
   const checkOutDate = calendarRange[1]?.getDate()
-  const checkOutMonth = calendarRange[1]?.getMonth()
+  const checkOutMonth = (calendarRange[1]?.getMonth()) + 1
   const checkOutYear = calendarRange[1]?.getFullYear()
   const checkOut = `${checkOutYear}-${(checkOutMonth?.toString().length == 1) ? '0' + checkOutMonth : checkOutMonth}-${(checkOutDate?.toString().length == 1) ? '0' + checkOutDate : checkOutDate}`
   const checkOutNew = new Date(checkOut)
@@ -40,12 +49,11 @@ const ReservasPage = () => {
   const user = JSON.parse(usuario)
 
   const onNavigateBack = () => {
-    navigate(-1)
+    navigate(`/producto/${idProducto}`)
   }
 
   const onHandleSubmit = async (e) => {
     e.preventDefault();
-    // setTime(horaActualString)
     const role = user?.authorities[0]?.authority
 
     if (role == 'ROLE_USER') {
@@ -68,6 +76,26 @@ const ReservasPage = () => {
     }
   }
 
+  useEffect(() => {
+    fetch(`http://ec2-3-133-79-117.us-east-2.compute.amazonaws.com:8085/producto/${id}/reservas`)
+      .then(response => response.json())
+      .then(data => setReservas(data))
+      .catch(error => console.error(error))
+  }, [id])
+
+  const usuarioDatos = usuarios.filter(u => u.email == user?.sub)
+
+  useEffect(() => {
+    setNombre(usuarioDatos[0]?.first_name)
+    setApellido(usuarioDatos[0]?.last_name)
+  }, [usuarioDatos])
+
+  const primeraLetraNombre = nombre?.toUpperCase().charAt(0)
+  const restoNombre = nombre?.slice(1)
+  const nombreCompleto = primeraLetraNombre + restoNombre
+  const primeraLetraApellido = apellido?.toUpperCase().charAt(0)
+  const restoApellido = apellido?.slice(1)
+  const apellidoCompleto = primeraLetraApellido + restoApellido
 
   return (
     <>
@@ -97,11 +125,11 @@ const ReservasPage = () => {
               <section className='data'>
                 <div>
                   <label>Nombre</label>
-                  <input type="text" value={user?.sub} disabled />
+                  <input type="text" value={nombreCompleto} disabled />
                 </div>
                 <div>
                   <label>Apellido</label>
-                  <input type="text" value={user?.sub} disabled />
+                  <input type="text" value={apellidoCompleto} disabled />
                 </div>
                 <div>
                   <label>Correo Electronico</label>
@@ -156,10 +184,10 @@ const ReservasPage = () => {
             </div>
           </section>
           {/* Selecciona tu fecha de reserva */}
-          <div className='calendary-zone'>
+          <div>
             <h3 className='calendary-zone-titles'>Selecciona tu fecha de reserva</h3>
             <div className='calendary-booking'>
-              <CalendarRangePicker calendarRange={calendarRange} setCalendarRange={setCalendarRange} />
+              <CalendarRangePicker calendarRange={calendarRange} setCalendarRange={setCalendarRange} reservas={reservas} />
             </div>
           </div>
           {/* Tu horario de llegada */}

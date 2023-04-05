@@ -36,3 +36,11 @@
   list-style: none;
   color: #f0572d;
 }
+
+@media(max-width: 500px){
+  .category-card img{
+    object-fit: cover;
+    width: 440px;
+  }
+
+}

@@ -84,6 +84,12 @@
   padding: 10px;
 }
 
+.booking-details img{
+  height: 300px;
+  width: 450px;
+  object-fit: cover;
+}
+
 .booking-data{
   padding: 10px;
   height: 280px;
@@ -122,15 +128,17 @@
 }
 
 
+
+/* zona calendario */
 .calendary-zone-titles{
   position: absolute;
-  top: 630px;
+  top: 600px;
   margin-left: 30px;
 }
 
 .calendary-booking{
   position: absolute;
-  top: 660px;
+  top: 630px;
   width: 700px;
   margin-left: 15px;
 }
@@ -152,6 +160,10 @@
 
 .select-time select{
   margin-top: 20px;
+  padding: 8px;
+  border: none;
+  /* background-color: #f0572d; */
+  border-radius: 8px;
 }
 
 
@@ -159,11 +171,15 @@
 .more-info-booking{
   padding: 30px;
   padding-bottom: 90px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
 }
 
 .more-info-booking h3{
   text-align: center;
-  margin-bottom: 30px;
+  margin-left: 50px;
+  margin-bottom: 30px; 
   color: #f0572d;
 }
 
@@ -175,11 +191,12 @@
 .more-info-details h4{
   margin-bottom: 20px;
   color: #f0572d;
+  /* margin-left: 30px; */
 }
 
 .more-info-details div{
   margin-left: 50px;
-  width: 600px;
+  width: 300px;
 }
 
 .more-info-details p{

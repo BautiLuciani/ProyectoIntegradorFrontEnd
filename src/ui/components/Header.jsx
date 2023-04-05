@@ -1,13 +1,19 @@
 import React, { useEffect, useState } from 'react'
 import { Link, NavLink, useLocation, useNavigate } from 'react-router-dom'
+import { BiMenu } from 'react-icons/bi'
 import '../../styles/Header.css'
 import { useJwt } from 'react-jwt'
+import useFetchUsuarios from '../../hooks/useFetchUsuarios'
 
 
 const Header = () => {
+  const [menuOpen, setMenuOpen] = useState(false)
   const [loggedIn, setLoggedIn] = useState(false)
+  const [nombre, setNombre] = useState("")
+  const [apellido, setApellido] = useState("")
   const navigate = useNavigate()
   const { pathname, search } = useLocation()
+  const { usuarios } = useFetchUsuarios()
   const lastPath = pathname + search
 
   const cookie = document.cookie
@@ -20,6 +26,13 @@ const Header = () => {
   const user = JSON.parse(usuario)
 
   const role = user?.authorities[0]?.authority
+
+  const usuarioDatos = usuarios.filter(u => u.email == user?.sub)
+
+  useEffect(() => {
+    setNombre(usuarioDatos[0]?.first_name)
+    setApellido(usuarioDatos[0]?.last_name)
+  }, [usuarioDatos])
 
   useEffect(() => {
     if (cookie) {
@@ -47,19 +60,32 @@ const Header = () => {
     })
   }
 
-  /*const nombreMayuscula = () => {
-    const restoNombre = user?.nombre.slice(1)
-    const restoApellido = user?.apellido.slice(1)
+  const primeraLetraNombre = nombre?.toUpperCase().charAt(0)
+  const primeraLetraApellido = apellido?.toUpperCase().charAt(0)
+
+  const nombreMayuscula = () => {
+    const restoNombre = nombre.slice(1)
+    const restoApellido = apellido.slice(1)
     const nombreCompleto = primeraLetraNombre + restoNombre
     const apellidoCompleto = primeraLetraApellido + restoApellido
     return `${nombreCompleto} ${apellidoCompleto}`
-  }*/
+  }
 
   const onCreateAcount = () => {
     navigate('/acount')
   }
 
   const onLogin = () => {
+    navigate('/login')
+  }
+
+  const onCreateAcountResponsive = () => {
+    setMenuOpen(false)
+    navigate('/acount')
+  }
+
+  const onLoginResponsive = () => {
+    setMenuOpen(false)
     navigate('/login')
   }
 
@@ -80,7 +106,7 @@ const Header = () => {
       <div className="usuario">
         {loggedIn ? (
           <>
-            {(role == 'ROLE_USER') &&
+            {(role == 'ROLE_ADMIN') &&
               <div>
                 <Link
                   to={'/administracion'}
@@ -92,10 +118,10 @@ const Header = () => {
             <div>
               <section className="iniciales">
                 <b>
-                  BL
+                  {`${primeraLetraNombre}${primeraLetraApellido}`}
                 </b>
               </section>
-              <p>Bienvenido, {user?.sub}</p>
+              <p>Bienvenido, {nombreMayuscula()}</p>
               <button className="buttons" onClick={handleLogout}>
                 Cerrar Sesion
               </button>
@@ -121,6 +147,19 @@ const Header = () => {
             </button>
           </>
         )}
+      </div>
+      <div className={(lastPath === '/login' || lastPath === '/acount') ? 'menuMobileDisable' : 'menuMobile'}>
+        <div className={menuOpen ? 'menuOptions' : 'menuOptionDisable'}>
+          <button className="buttons" onClick={onCreateAcountResponsive}>
+            Crear Cuenta
+          </button>
+          <button className="buttons" onClick={onLoginResponsive}>
+            Iniciar Sesion
+          </button>
+        </div>
+        <div className='menuToggle' onClick={() => setMenuOpen(!menuOpen)}>
+          <BiMenu />
+        </div>
       </div>
     </div>
   )

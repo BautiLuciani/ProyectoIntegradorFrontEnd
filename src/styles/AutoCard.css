@@ -64,13 +64,27 @@
   color: #f0572d;
 }
 
-@media (max-width: 600px) {
+@media (max-width: 500px) {
   .auto-card {
     flex-direction: column;
+  }
+
+
+  .auto-card img{
+    border-bottom-right-radius: 0px;
+    border-bottom-left-radius: 0px;    
   }
 
   .info-view-more {
     margin: auto;
     margin-top: 20px;
+  }
+
+  .info-car{
+    height: 230px;
+    border-bottom-right-radius: 8px;
+    border-bottom-left-radius: 8px;
+    border-top-left-radius: 0px;
+    border-top-right-radius: 0px;
   }
 }

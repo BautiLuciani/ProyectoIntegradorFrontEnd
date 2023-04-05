@@ -38,9 +38,9 @@
 
 /* campos nombre y apellido */
 
-.caNombreApellido {
+.caNombreApellido{
   display: flex;
-  justify-content: space-between;
+  justify-content: space-around;
 }
 
 .caNombreApellido div {
@@ -54,8 +54,7 @@
 
 .caNombreApellido label {
   margin-left: 10px;
-}
-
+} 
 
 /* campos email y contrasena */
 .caEmailContrasena input {

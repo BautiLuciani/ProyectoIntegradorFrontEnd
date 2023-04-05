@@ -15,12 +15,13 @@ const CreateAcountPage = () => {
   const [lastName, setLastName] = useState("")
   const [email, setEmail] = useState("")
   const [password, setPassword] = useState("")
+  const [passwordDbl, setPasswordDbl] = useState("")
 
   const handleLogin = async (event) => {
     event.preventDefault();
 
-    if (!email || !password || !firstName || !lastName) {
-      setErrors(validate(firstName, lastName, email, password))
+    if (!email || !password || !firstName || !lastName || !passwordDbl || password.length < 7 || password !== passwordDbl) {
+      setErrors(validate(firstName, lastName, email, password, passwordDbl))
       return;
     }
 
@@ -38,7 +39,7 @@ const CreateAcountPage = () => {
         })
       });
       if (response.ok) {
-        navegar('/administracion/creadook')
+        navegar('/registro')
       } else if (response.status === 500) {
         setRegistradoError(true)
       } else {
@@ -58,27 +59,31 @@ const CreateAcountPage = () => {
         <form className='formularioCA' onSubmit={handleLogin}>
 
           <section className='caNombreApellido'>
-            <label htmlFor='nombre'>Nombre</label>
-            <input
-              type="text"
-              id='nombre'
-              placeholder='Ingrese su nombre'
-              name='nombre'
-              value={firstName}
-              onChange={(e) => setFirstName(e.target.value)}
-            />
-            {errors.nombre && <p className='mensajeError'>{errors.nombre}</p>}
+            <div>
+              <label htmlFor='nombre'>Nombre</label>
+              <input
+                type="text"
+                id='nombre'
+                placeholder='Ingrese su nombre'
+                name='nombre'
+                value={firstName}
+                onChange={(e) => setFirstName(e.target.value)}
+              />
+              {errors.nombre && <p className='mensajeError'>{errors.nombre}</p>}
+            </div>
 
-            <label htmlFor='apellido'>Apellido</label>
-            <input
-              type="text"
-              id='apellido'
-              placeholder='Ingrese su apellido'
-              name='apellido'
-              value={lastName}
-              onChange={(e) => setLastName(e.target.value)}
-            />
-            {errors.apellido && <p className='mensajeError'>{errors.apellido}</p>}
+            <div>
+              <label htmlFor='apellido'>Apellido</label>
+              <input
+                type="text"
+                id='apellido'
+                placeholder='Ingrese su apellido'
+                name='apellido'
+                value={lastName}
+                onChange={(e) => setLastName(e.target.value)}
+              />
+              {errors.apellido && <p className='mensajeError'>{errors.apellido}</p>}
+            </div>
           </section>
 
           <section className='caEmailContrasena'>
@@ -110,10 +115,10 @@ const CreateAcountPage = () => {
               id='password'
               placeholder='Confirme su contraseña'
               name='password'
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
+              value={passwordDbl}
+              onChange={(e) => setPasswordDbl(e.target.value)}
             />
-            {errors.password && <p className='mensajeError'>{errors.password}</p>}
+            {errors.passwordDbl && <p className='mensajeError'>{errors.passwordDbl}</p>}
           </section>
 
           {errors.ingresar && <p className='mensajeError'>{errors.ingresar}</p>}

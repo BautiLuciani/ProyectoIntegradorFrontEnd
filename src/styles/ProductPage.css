@@ -63,8 +63,8 @@
   grid-template-rows: 1fr 1fr;
   margin-bottom: 10px;
   gap: 1rem;
-  max-width: 800px; /* aca pones el ancho que quieras*/
-  max-height: 800px;
+  max-width: 670px; /* aca pones el ancho que quieras*/
+  max-height: 600px;
   margin-left: auto;
   margin-right: auto; /*esto es para que te quede centrado*/
 }
@@ -162,6 +162,7 @@ hr {
 .bookings-zone {
   padding: 30px;
   background-color: #DFE4EA;
+  padding-bottom: 60px;
 }
 
 
@@ -290,12 +291,12 @@ hr {
   }
 
   .calendary {
-    width: 400px;
+    width: 700px;
     margin: 0px;
     display: flex;
     flex-direction: column;
-    padding-top: 20px;
-    padding-right: 20px;
+    padding-top: 30px;
+    padding-right: 30px;
     padding-bottom: 10px;
   }
 
@@ -307,6 +308,10 @@ hr {
     justify-content: center;
     margin-right: 20px;
     margin-left: 0px;
+  }
+
+  .calendario{
+    padding: 30px;
   }
 
 }

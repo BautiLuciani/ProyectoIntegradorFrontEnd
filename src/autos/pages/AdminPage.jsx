@@ -58,7 +58,7 @@ const AdminPage = () => {
                 })
             });
             if (response.ok) {
-                navegar('/registro')
+                navegar('/administracion/creadook')
             } else if (response.status === 500) {
                 setProductoError(true)
             } else {

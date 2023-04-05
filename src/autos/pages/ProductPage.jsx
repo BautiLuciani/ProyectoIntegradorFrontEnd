@@ -7,32 +7,43 @@ import { GiSteeringWheel } from 'react-icons/gi'
 import { MdOutlineFlipCameraAndroid, MdTouchApp } from 'react-icons/md'
 import { TbGps } from 'react-icons/tb'
 import Footer from '../../ui/components/Footer'
-import '../../styles/ProductPage.css'
-import CalendarRangePicker from '../../ui/components/CalendarRangePicker'
 import useFetchProductosId from '../../hooks/useFetchProductosId'
 import Carrusel from '../components/Carrusel'
 import useFetchImagenes from '../../hooks/useFetchImagenes'
 import useFetchDescripcion from '../../hooks/useFetchDescripcion'
 import { useState } from 'react'
 import Cookies from 'js-cookie'
+import CalendarPicker from '../../ui/components/CalendarPicker'
+import { useEffect } from 'react'
+import { useContextGlobal } from '../../context/globalContext'
+// import '../../styles/ProductPage.css'
 
 const ProductPage = () => {
-    
-    const [calendarRange, setCalendarRange] = useState([null, null]);
 
+    const [reservas, setReservas] = useState([])
     const { id } = useParams()
     const { products, loading } = useFetchProductosId(id)
     const { imagenes } = useFetchImagenes()
     const { descripcion } = useFetchDescripcion()
+    const {setUserReserva, setIdProducto} = useContextGlobal()
 
     const galeria = imagenes.filter(img => (img.producto.id == id))
 
+    useEffect(() => {
+        fetch(`http://ec2-3-133-79-117.us-east-2.compute.amazonaws.com:8085/producto/${id}/reservas`)
+            .then(response => response.json())
+            .then(data => setReservas(data))
+            .catch(error => console.error(error))
+    }, [id])
+
     const navigate = useNavigate()
 
-    const onReserva = ()=> {
+    const onReserva = () => {
         const token = Cookies.get('jwt')
-        if(!token) {
-            alert("Para hacer una reserva debe inicar sesion")
+        if (!token) {
+            /*alert("Para hacer una reserva debe inicar sesion")*/
+            setUserReserva(true)
+            setIdProducto(id)
             navigate(`/login`)
         } else {
             navigate(`/producto/${id}/reserva`)
@@ -40,7 +51,7 @@ const ProductPage = () => {
     }
 
     const onNavigateBack = () => {
-        navigate(-1)
+        navigate('/home')
     }
 
     return (
@@ -149,10 +160,10 @@ const ProductPage = () => {
                     <h3 className='bookings-zone-title'>Fechas disponibles</h3>
                     <div className='calendary-and-booking'>
                         <div className='calendary'>
-                            <CalendarRangePicker calendarRange={calendarRange} setCalendarRange={setCalendarRange}/>
+                            <CalendarPicker reservas={reservas}/>
                         </div>
                         <div className='starting-reservation'>
-                            <p>Agrega tus fechas de viaje para obtener precios exactos</p>
+                            <p className='reservation-mensagge'>Agrega tus fechas de viaje para obtener precios exactos</p>
                             <button className='booking-button' onClick={onReserva}> Iniciar Reserva </button>
                         </div>
                     </div>

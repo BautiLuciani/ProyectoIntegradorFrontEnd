@@ -94,9 +94,9 @@
   color: #dfe4ea;
 }
 
-@media (max-width: 400px){
+@media (max-width: 500px){
   .formualarioLogin input{
-    width: 300px;
+    width: 400px;
   }
 
   .login button{
