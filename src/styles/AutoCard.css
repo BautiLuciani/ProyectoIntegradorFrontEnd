@@ -14,6 +14,7 @@
   width: 700px;
   height: 290px;
   /* margin: auto; */
+  object-fit: cover;
   display: flex;
   border-top-left-radius: 8px;
   border-bottom-left-radius: 8px;
@@ -53,17 +54,22 @@
   color: #ffffff;
 }
 
+/* .info-description {
+  font-size: 14pt;
+  margin-top: 20px;
+} */
+
 .info-view-more:hover {
   background-color: #31363f;
   color: #f0572d;
 }
 
-@media (max-width: 600px){
-  .auto-card{
+@media (max-width: 600px) {
+  .auto-card {
     flex-direction: column;
   }
 
-  .info-view-more{
+  .info-view-more {
     margin: auto;
     margin-top: 20px;
   }
