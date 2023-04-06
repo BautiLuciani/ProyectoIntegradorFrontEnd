@@ -6,7 +6,7 @@
   background-color: #F0572D;
   position: absolute;
   right: 440px;
-  top: 780px;
+  top: 850px;
 }
 
 .open-galery-button:hover {
@@ -36,6 +36,7 @@
 .carousel img {
   max-height: 320px;
   max-width: 600px;
+  object-fit: cover;
   /* margin-right: 600px; */
 }
 

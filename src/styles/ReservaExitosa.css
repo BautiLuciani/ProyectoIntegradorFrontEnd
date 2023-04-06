@@ -1,5 +1,10 @@
 .booking-confirmed{
   padding: 30px;
+  background-color: rgb(239, 239, 239);
+  width: 500px;
+  margin: 30px;
+  margin-top: 150px;
+  border-radius: 8px;
 }
 
 .booking-confirmed p{
@@ -10,4 +15,11 @@
 .link-to-home{
   color: #f0572d;
   font-size: 30px;
+}
+
+@media(max-width: 500px){
+  .booking-confirmed{
+    width: 400px;
+    margin-left: 50px;
+  }
 }

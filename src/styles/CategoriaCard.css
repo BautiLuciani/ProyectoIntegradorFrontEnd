@@ -42,5 +42,16 @@
     object-fit: cover;
     width: 440px;
   }
+}
 
+
+@media(max-width: 1000px){
+  .category-card img{
+    width: 440px;
+    object-fit: cover;
+  }
+  
+  .info{
+    width: 440px;
+  }
 }

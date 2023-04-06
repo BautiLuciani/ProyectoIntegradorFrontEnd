@@ -202,3 +202,52 @@
 .more-info-details p{
   margin-bottom: 10px;
 }
+
+@media (max-width: 500px){
+  .booking-zone{
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 400px;
+  }
+
+  .booking-details{
+    margin-top: 10px;
+  }
+
+  .fill-data{
+    flex-direction: column;
+    display: flex;
+  }
+
+  .data{
+    display: flex;
+    flex-direction: column;
+    height: 400px;
+  }
+
+  .calendary-zone-titles{
+    position: absolute;
+    top: 1410px;
+    text-align: center;
+  }
+
+  .calendary-booking{
+    position: absolute;
+    top: 1430px;
+    margin: 0px;
+  }
+
+  .more-info-booking{
+    padding: 30px;
+  }
+
+  .more-info-details div{
+    /* width: 200px; */
+    margin-bottom: 50px;
+    margin-right: 30px;
+  }
+
+  .more-info-details div p{
+    width: 100px;
+  }
+}
