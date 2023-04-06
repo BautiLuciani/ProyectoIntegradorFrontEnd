@@ -149,7 +149,7 @@ hr {
 
 
 .sections div h4 {
-  margin-bottom: 30px;
+  margin-bottom: 15px;
   font-size: 16pt;
 }
 
@@ -314,4 +314,31 @@ hr {
     padding: 30px;
   }
 
+}
+
+
+@media (max-width: 1000px) {
+  .calendary-and-booking{
+    display: flex;
+    flex-direction: column;
+  }
+
+  .section-info{
+    margin-bottom: 30px;
+    margin-right: 100px;
+  }
+
+  .sections{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr 1fr;
+  }
+
+  .sections div{
+    width: 300px;
+  }
+
+  .starting-reservation{
+    margin-bottom: 30px;
+  }
 }

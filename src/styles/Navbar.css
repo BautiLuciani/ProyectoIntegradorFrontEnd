@@ -112,3 +112,13 @@
   }
 
 }
+
+@media (max-width: 1000px){
+  .navbar{
+    width: 100%;
+  }
+
+  .formulario input{
+    width: 300px;
+  }
+} 
