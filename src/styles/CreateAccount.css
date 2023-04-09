@@ -128,7 +128,7 @@
 }
 
 
-@media (max-width: 600px) {
+@media (max-width: 500px) {
   .formCreateAcount {
     padding: 70px;
     display: flex;
@@ -149,7 +149,7 @@
   }
 
   .caNombreApellido input{
-    width: 300px;
+    width: 500px;
   }
 
   .caButton p {

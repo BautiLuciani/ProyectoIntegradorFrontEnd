@@ -45,7 +45,7 @@
 }
 
 
-@media(max-width: 1000px){
+@media(min-width: 1000px){
   .category-card img{
     width: 440px;
     object-fit: cover;

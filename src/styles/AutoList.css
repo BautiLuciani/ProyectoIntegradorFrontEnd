@@ -14,7 +14,7 @@
   }
 }
 
-@media (max-width: 1000px) {
+@media (min-width: 1000px) {
   .auto-list{
     display: flex;
     flex-direction: column;

@@ -15,7 +15,7 @@
   text-decoration: none;
 }
 
-@media (max-width: 1000px) {
+@media (min-width: 1000px) {
   .categorys{
     display: grid;
     grid-template-columns: 1fr 1fr;

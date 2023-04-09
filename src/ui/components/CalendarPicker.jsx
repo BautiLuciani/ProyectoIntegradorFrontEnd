@@ -19,7 +19,7 @@ const CalendarPicker = ({ reservas }) => {
     }
 
     return (
-        <Calendar className={'calendario'}
+        <Calendar className={'calendario calendarioReserva'}
             value={CalendarPicker}
             onChange={(update) => {
                 setCalendarPicker(update);

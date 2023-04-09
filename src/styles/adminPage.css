@@ -33,6 +33,7 @@
   height: 30px;
   padding: 10px;
   border-radius: 8px;
+  border-width: 1px;
 }
 
 .create-product-button{
@@ -40,4 +41,9 @@
   border-radius: 8px;
   padding: 10px;
   background-color: #f0572d;
+}
+
+.create-product-button:hover{
+  background-color: #31363f;
+  color: #f0572d;
 }

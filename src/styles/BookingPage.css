@@ -233,8 +233,9 @@
 
   .calendary-booking{
     position: absolute;
-    top: 1430px;
+    top: 1420px;
     margin: 0px;
+    padding: 40px;
   }
 
   .more-info-booking{
@@ -250,4 +251,5 @@
   .more-info-details div p{
     width: 100px;
   }
+
 }
