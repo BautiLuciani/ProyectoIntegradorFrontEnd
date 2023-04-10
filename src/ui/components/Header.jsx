@@ -64,8 +64,8 @@ const Header = () => {
   const primeraLetraApellido = apellido?.toUpperCase().charAt(0)
 
   const nombreMayuscula = () => {
-    const restoNombre = nombre.slice(1)
-    const restoApellido = apellido.slice(1)
+    const restoNombre = nombre?.slice(1)
+    const restoApellido = apellido?.slice(1)
     const nombreCompleto = primeraLetraNombre + restoNombre
     const apellidoCompleto = primeraLetraApellido + restoApellido
     return `${nombreCompleto} ${apellidoCompleto}`
