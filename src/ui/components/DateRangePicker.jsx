@@ -2,8 +2,8 @@ import React, { useState } from 'react'
 import DatePicker, { CalendarContainer } from 'react-datepicker'
 import 'react-datepicker/dist/react-datepicker.css' 
 
-const DateRangePicker = () => {
-    const [dateRange, setDateRange] = useState([null, null]);
+const DateRangePicker = ({dateRange, setDateRange}) => {
+    
     const [startDate, endDate] = dateRange;
     const ayer = new Date(Date.now() - 1);
     const MyContainer = ({ className, children }) => {
