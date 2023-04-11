@@ -4,6 +4,8 @@
   position: relative;
   padding: 20px;
   width: 100%;
+  display: flex;
+  justify-content: space-between;
 }
 
 .button-back{
@@ -11,9 +13,6 @@
   border-radius: 4px;
   border: none;
   background-color: #f0572d;
-  position: absolute;
-  right: 40px;
-  top: 140px;
 }
 
 .auto-list-filter{

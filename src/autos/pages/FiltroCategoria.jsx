@@ -24,8 +24,8 @@ const FiltroCategoria = () => {
     return (
         <>
             <Header />
-            <section>
-                <div className='category'>
+            <section className='category'>
+                <div >
                     <p>Categoria</p>
                     <h3>{categoria}</h3>
                 </div>

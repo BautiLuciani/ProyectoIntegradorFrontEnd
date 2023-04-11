@@ -1,0 +1,35 @@
+.admin-ok{
+  background-color: #DFE4EA;
+  width: 800px;
+  margin: auto;
+  margin-top: 100px;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  text-align: center;
+  border-radius: 10px;
+}
+
+.product-ok{
+  font-size: 50px;
+  margin: auto;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+
+.admin-ok p{
+  margin: 10px;
+}
+
+.go-to-home{
+  color: #f0572d;
+  font-size: 20px;
+  margin-bottom: 10px;
+}
+
+@media(max-width: 500px){
+  .admin-ok{
+    width: 400px;
+  }
+}
