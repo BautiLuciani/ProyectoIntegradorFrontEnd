@@ -13,7 +13,7 @@
 .logo {
   display: flex;
   margin: 15px;
-  /* margin-top: 50px; */
+  margin-top: 30px;
   height: 60px;
   text-decoration: none;
 }
@@ -26,6 +26,23 @@
   color: #191b1d;
 }
 
+
+.go-admin{
+  /* text-decoration: none; */
+  color: #dfe4ea;
+}
+
+.go-my-bookings{
+  color: #dfe4ea;
+}
+
+.iniciales{
+  display: none;
+}
+
+.welcome-user{
+  margin-top: 5px;
+}
 
 .user{
   display: flex;

@@ -109,7 +109,7 @@ const Header = () => {
           <>
             {(role == 'ROLE_ADMIN') &&
               <div>
-                <Link
+                <Link className='go-admin'
                   to={'/administracion'}
                 >
                   Administracion
@@ -118,7 +118,7 @@ const Header = () => {
             }
             {(role == 'ROLE_USER') &&
               <div>
-                <Link
+                <Link className='go-my-bookings'
                   to={'/misreservas'}
                   state={{nombre, apellido}}
                 >
@@ -132,7 +132,7 @@ const Header = () => {
                   {`${primeraLetraNombre}${primeraLetraApellido}`}
                 </b>
               </section>
-              <p>Bienvenido, {nombreMayuscula()}</p>
+              <p className='welcome-user'>Bienvenido, {nombreMayuscula()}</p>
               <button className="buttons" onClick={handleLogout}>
                 Cerrar Sesion
               </button>

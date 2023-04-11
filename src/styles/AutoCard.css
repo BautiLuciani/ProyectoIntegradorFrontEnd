@@ -88,3 +88,10 @@
     border-top-right-radius: 0px;
   }
 }
+
+@media(min-width: 700px) and (max-width: 1000px){
+  .info-view-more {
+    margin: auto;
+    margin-top: 40px;
+  }
+}
