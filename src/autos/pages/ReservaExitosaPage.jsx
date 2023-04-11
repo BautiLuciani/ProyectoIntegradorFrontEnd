@@ -12,7 +12,7 @@ const ReservaExitosaPage = () => {
         <Header/>
         <div className='booking-confirmed'>
             <GoVerified className='icon-verified'/>
-            <p><b>¡Muchas gracias!</b></p>
+            <p className='mensaje'><b>¡Muchas gracias!</b></p>
             <p>Su reserva se ha realizado con exito</p>
             <Link className='link-to-home' to={`/home`}>
                 ok

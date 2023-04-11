@@ -1,10 +1,18 @@
 .booking-confirmed{
   padding: 30px;
   background-color: rgb(239, 239, 239);
-  width: 500px;
-  margin: 30px;
-  margin-top: 150px;
+  width: 800px; /*500*/
+  margin: auto;
+  margin-top: 100px;
   border-radius: 8px;
+  text-align: center;
+}
+
+
+.booking-confirmed .icon-verified {
+  margin: auto;
+  font-size: 60px;
+  margin-bottom: 15px;
 }
 
 .booking-confirmed p{
@@ -20,6 +28,40 @@
 @media(max-width: 500px){
   .booking-confirmed{
     width: 400px;
-    margin-left: 50px;
+    height: 295px; 
+    margin: auto;
+    margin-top: 90px;
+    text-align: center;
   }
+  
+  .booking-confirmed .icon-verified {
+    margin: auto;
+    font-size: 60px;
+    margin-bottom: 15px;
+  }
+
+  .booking-confirmed .mensaje{
+    color: #f0572d;
+  }
+}
+
+@media(min-width: 700px) and (max-width: 1000px){
+  .booking-confirmed{
+    height: 295px;
+    width: 700px;
+    margin: auto;
+    margin-top: 100px;
+    text-align: center;
+  }
+
+  .booking-confirmed .icon-verified {
+    margin: auto;
+    font-size: 60px;
+    margin-bottom: 15px;
+  }
+
+  .booking-confirmed .mensaje{
+    color: #f0572d;
+  }
+
 }

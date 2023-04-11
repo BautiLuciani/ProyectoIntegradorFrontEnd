@@ -30,10 +30,10 @@ const Navbar = () => {
             ))}
           </select>
         </>
-        <>
+        <div className='select-city'>
           {/* <label>Check In - Check Out</label> */}
           <DateRangePicker />
-        </>
+        </div>
         <Link
           to={"producto/ciudad"}
           state={ciudad}

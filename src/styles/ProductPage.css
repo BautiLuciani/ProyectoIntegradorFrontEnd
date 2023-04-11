@@ -309,34 +309,14 @@ hr {
 }
 
 
-@media (min-width: 1000px) {
-  
+@media(min-width: 700px) and (max-width: 1000px){
   .bookings-zone-title{
-    /* margin-left: 50px; */
-    text-align: center;
+    display: flex;
+    justify-content: center;
   }
-  
+
   .calendary-and-booking{
     display: flex;
     flex-direction: column;
-  }
-
-  .section-info{
-    margin-bottom: 30px;
-    margin-right: 100px;
-  }
-
-  .sections{
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    grid-template-rows: 1fr 1fr;
-  }
-
-  .sections div{
-    width: 300px;
-  }
-
-  .starting-reservation{
-    margin-bottom: 30px;
   }
 }

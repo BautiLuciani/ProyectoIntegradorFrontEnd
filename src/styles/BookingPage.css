@@ -253,3 +253,14 @@
   }
 
 }
+
+
+@media(min-width: 700px) and (max-width: 1000px){
+  .booking-zone{
+    padding-bottom: 390px;
+  }
+
+  .booking-details{
+    display: none;
+  }
+}

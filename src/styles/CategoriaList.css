@@ -15,10 +15,9 @@
   text-decoration: none;
 }
 
-@media (min-width: 1000px) {
+@media(min-width: 700px) and (max-width: 1000px){
   .categorys{
     display: grid;
     grid-template-columns: 1fr 1fr;
   }
 }
-

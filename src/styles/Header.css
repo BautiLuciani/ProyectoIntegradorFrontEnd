@@ -142,8 +142,8 @@
 
 }
 
-@media(max-width: 1000px){
-  .header{
-    width: 100%;
+@media(min-width: 700px) and (max-width: 1000px){
+  .header .slogan{
+    display: none;
   }
 }

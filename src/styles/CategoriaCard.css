@@ -45,7 +45,7 @@
 }
 
 
-@media(min-width: 1000px){
+/* @media screen and (min-width: 1000px), screen and (max-width: 1200px){
   .category-card img{
     width: 440px;
     object-fit: cover;
@@ -54,4 +54,4 @@
   .info{
     width: 440px;
   }
-}
+} */
