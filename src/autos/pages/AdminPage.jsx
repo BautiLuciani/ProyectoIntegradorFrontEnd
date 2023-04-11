@@ -14,10 +14,9 @@ const AdminPage = () => {
     const [categoria, setCategoria] = useState()
     const [ciudad, setCiudad] = useState()
     const [imagen, setImagen] = useState()
-    const [imagenes, setImagenes] = useState([])
     const [descripcion, setDescripcion] = useState("")
     const [id, setId] = useState()
-    const [idGenerados, setIdGenerados] = useState()
+    const [idGenerados, setIdGenerados] = useState([])
     const [productoError, setProductoError] = useState(false)
     const { provincias } = useFetchProvincias()
     const { categorias } = useFetchCategorias()
@@ -65,20 +64,9 @@ const AdminPage = () => {
             })
         });
 
-        const request3 = await fetch('http://ec2-3-133-79-117.us-east-2.compute.amazonaws.com:8085/imagen/agregarVarias', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify([{
-                idProducto: id,
-                titulo: tituloProducto,
-                url: imagenes
-            }])
-        });
-
-        Promise.all([request1, request2, request3])
+        Promise.all([request1, request2])
         .then((responses) => {
+            data => console.log(data);
             navigate('/administracion/creadook')
         })
         .catch((error) => {
@@ -127,28 +115,6 @@ const AdminPage = () => {
                                     name='image'
                                     value={imagen}
                                     onChange={(e) => setImagen(e.target.value)}
-                                />
-                                {errors.imagen && <p className='mensajeError'>{errors.imagen}</p>}
-                            </div>
-                            <div>
-                                <label>Imagenes</label>
-                                <input
-                                    type='text'
-                                    placeholder='Ingrese url de imagen'
-                                    name='image'
-                                    value={imagenes}
-                                    onChange={(e) => setImagenes(...imagenes, e.target.value)}
-                                />
-                                {errors.imagen && <p className='mensajeError'>{errors.imagen}</p>}
-                            </div>
-                            <div>
-                                <label>Imagenes</label>
-                                <input
-                                    type='text'
-                                    placeholder='Ingrese url de imagen'
-                                    name='image'
-                                    value={imagenes}
-                                    onChange={(e) => setImagenes(...imagenes, e.target.value)}
                                 />
                                 {errors.imagen && <p className='mensajeError'>{errors.imagen}</p>}
                             </div>
