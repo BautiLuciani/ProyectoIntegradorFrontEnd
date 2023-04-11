@@ -101,7 +101,7 @@ const Header = () => {
       }>
       <NavLink to="/home" className="logo">
         <img src="/assets/logo 1.png" alt="Logo DB" />
-        <p className="slogan">Sentite como en tu hogar</p>
+        <p className="slogan">Viaja seguro</p>
       </NavLink>
 
       <div className="usuario">
