@@ -5,6 +5,8 @@ import Footer from '../../ui/components/Footer'
 import useFetchProductosCiudadFecha from '../../hooks/useFetchProductoCiudadFecha'
 import AutoCard from '../components/AutoCard'
 import useFetchProductosCiudad from '../../hooks/useFetchProductoCiudad'
+import '../../styles/FiltroFechaCiudad.css'
+
 
 const FiltroCiudadFecha = () => {
 
@@ -25,13 +27,13 @@ const FiltroCiudadFecha = () => {
     return (
         <>
             <Header />
-            <section>
+            <section className='info-avaliable'>
                 <div>
-                    <p>Autos disponibles en</p>
-                    <h3>{ciudad}</h3>
-                    <h3>{checkIn} - {checkOut}</h3>
+                    <p className='carros-disponibles'>Autos disponibles en</p>
+                    <h3 className='city'>{ciudad}</h3>
+                    <h3 className='date'>{checkIn} - {checkOut}</h3>
                 </div>
-                <button
+                <button className='back-menu-button'
                     onClick={onNavigateBack}
                 >
                     Volver

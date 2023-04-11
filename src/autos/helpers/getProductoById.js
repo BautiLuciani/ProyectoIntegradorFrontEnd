@@ -7,7 +7,8 @@ const getProductById = async(id)=>{
         id: data.id,
         titulo: data.titulo,
         categoria: data.categoria,
-        ciudad: data.ciudad
+        ciudad: data.ciudad,
+        description: data.description
     })
 
     return productId;

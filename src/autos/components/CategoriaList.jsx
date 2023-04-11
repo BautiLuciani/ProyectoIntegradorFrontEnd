@@ -17,7 +17,7 @@ const CategoriaList = () => {
     let cantidadDeportivo = 0;
 
     productos.map(prod => {
-      switch (prod.categoria.titulo) {
+      switch (prod.categoria?.titulo) {
         case "Economico":
           cantidadEconomico += 1
           break;

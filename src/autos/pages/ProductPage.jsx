@@ -92,11 +92,13 @@ const ProductPage = () => {
                 <section className='description'>
                     <h3>Disfruta de tu viaje</h3>
                     {
-                        descripcion.map(desc => {
+                        (!products.description)
+                        ? descripcion.map(desc => {
                             if (desc.id == id) {
                                 return <p key={desc.id}>{desc.descripcion}</p>
                             }
                         })
+                        : <p>{products.description}</p>
                     }
                 </section>
 

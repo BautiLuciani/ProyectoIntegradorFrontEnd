@@ -1,0 +1,33 @@
+.info-avaliable{
+  background-color: #31363f;
+  color: #F0572D;
+  padding: 15px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.info-avaliable h3{
+  margin-top: 5px;  
+}
+
+.city{
+  color: #ffffff;
+}
+
+.date{
+  color: #ffffff;
+}
+
+.back-menu-button{
+  background-color: #F0572D;
+  margin-top: 10px;
+  height:  40px;
+  width: 90px;
+  padding: 8px;
+  border-radius: 8px;
+}
+
+.back-menu-button:hover{
+  background-color: #ffffff;
+  color: #F0572D;
+}

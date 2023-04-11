@@ -55,8 +55,8 @@ const ReservasPage = () => {
   const onHandleSubmit = async (e) => {
     e.preventDefault();
     const role = user?.authorities[0]?.authority
-
-    if (role == 'ROLE_USER') {
+    
+    if(role == 'ROLE_USER' || role == 'ROLE_ADMIN') {
       fetch('http://ec2-3-133-79-117.us-east-2.compute.amazonaws.com:8085/reserva/agregar', {
         method: 'POST',
         body: JSON.stringify({
