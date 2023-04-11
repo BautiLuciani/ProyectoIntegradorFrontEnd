@@ -4,7 +4,7 @@ import useFetchDescripcion from '../../hooks/useFetchDescripcion'
 import useFetchImagenes from '../../hooks/useFetchImagenes'
 import '../../styles/AutoCard.css'
 
-const AutoCard = ({ id, titulo, ciudad, categoria }) => {
+const AutoCard = ({ id, titulo, ciudad, categoria, description }) => {
 
   const { imagenes } = useFetchImagenes()
   const { descripcion } = useFetchDescripcion()
@@ -25,11 +25,13 @@ const AutoCard = ({ id, titulo, ciudad, categoria }) => {
         <h6 className="info-category">{categoria?.titulo}</h6>
         <p className="info-location">{ciudad?.titulo}</p>
         {
-          descripcion.map(desc => {
+          (!description)
+          ? descripcion.map(desc => {
             if (desc.id == id) {
               return <p key={desc.id} className="info-description"><small>{desc.descripcion.substr(0, 70)}...</small></p>
             }
           })
+          : <p className="info-description">{description.substr(0, 70)}...</p>
         }
         <Link to={`/producto/${id}`}>
           Ver mas

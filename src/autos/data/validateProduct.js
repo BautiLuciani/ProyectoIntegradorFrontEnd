@@ -1,4 +1,4 @@
-const validateProduct = (tituloProducto, ciudad, categoria, descripcion, imagen) => {
+const validateProduct = (tituloProducto, ciudad, categoria, descripcion, imagen, imagen1, imagen2, imagen3, imagen4) => {
     const errores = {}
 
     if (!tituloProducto) {
@@ -15,6 +15,9 @@ const validateProduct = (tituloProducto, ciudad, categoria, descripcion, imagen)
     } 
     if (!imagen) {
         errores.imagen = "El producto debe tener una imagen"
+    }
+    if (!imagen1 || !imagen2 || !imagen3 || !imagen4){
+        errores.imagenes = "Debe ingresar al menos 4 imagenes"
     }
 
     return errores

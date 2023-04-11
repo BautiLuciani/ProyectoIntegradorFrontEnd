@@ -14,6 +14,10 @@ const AdminPage = () => {
     const [categoria, setCategoria] = useState()
     const [ciudad, setCiudad] = useState()
     const [imagen, setImagen] = useState()
+    const [imagen1, setImagen1] = useState()
+    const [imagen2, setImagen2] = useState()
+    const [imagen3, setImagen3] = useState()
+    const [imagen4, setImagen4] = useState()
     const [descripcion, setDescripcion] = useState("")
     const [id, setId] = useState()
     const [idGenerados, setIdGenerados] = useState([])
@@ -34,8 +38,8 @@ const AdminPage = () => {
     const onHandleSubmit = async (e) => {
         e.preventDefault()
 
-        if (!tituloProducto || !ciudad || !categoria || !descripcion || !imagen) {
-            setErrors(validateProduct(tituloProducto, ciudad, categoria, descripcion, imagen))
+        if (!tituloProducto || !ciudad || !categoria || !descripcion || !imagen || !imagen1 || !imagen2 || !imagen3 || !imagen4) {
+            setErrors(validateProduct(tituloProducto, ciudad, categoria, descripcion, imagen, imagen1, imagen2, imagen3, imagen4))
             return;
         }
 
@@ -48,7 +52,8 @@ const AdminPage = () => {
                 id: id,
                 tituloProducto: tituloProducto,
                 tituloCiudad: ciudad,
-                tituloCategoria: categoria
+                tituloCategoria: categoria,
+                description: descripcion
             })
         });
 
@@ -64,14 +69,48 @@ const AdminPage = () => {
             })
         });
 
-        Promise.all([request1, request2])
-        .then((responses) => {
-            data => console.log(data);
-            navigate('/administracion/creadook')
-        })
-        .catch((error) => {
-          setProductoError(true)
+        const img = [
+            {
+                idProducto: id,
+                titulo: tituloProducto,
+                url: imagen1
+            },
+            {
+                idProducto: id,
+                titulo: tituloProducto,
+                url: imagen2
+            },
+            {
+                idProducto: id,
+                titulo: tituloProducto,
+                url: imagen3
+            },
+            {
+                idProducto: id,
+                titulo: tituloProducto,
+                url: imagen4
+            }
+        ]
+
+        const request3 = await fetch('http://ec2-3-133-79-117.us-east-2.compute.amazonaws.com:8085/imagen/agregarVarias', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(img)
         });
+
+        Promise.all([request1, request2, request3])
+            .then((responses) => {
+                if(request1.ok, request2.ok, request3.ok){
+                    navigate('/administracion/creadook')
+                } else {
+                    setProductoError(true)
+                }
+            })
+            .catch((error) => {
+                
+            });
     }
 
     const navigate = useNavigate()
@@ -108,7 +147,7 @@ const AdminPage = () => {
                                 {errors.nombre && <p className='mensajeError'>{errors.nombre}</p>}
                             </div>
                             <div>
-                                <label>Imagen</label>
+                                <label>Imagen Principal</label>
                                 <input
                                     type='text'
                                     placeholder='Ingrese url de imagen'
@@ -118,6 +157,40 @@ const AdminPage = () => {
                                 />
                                 {errors.imagen && <p className='mensajeError'>{errors.imagen}</p>}
                             </div>
+                        </section>
+                        <section>
+                            <label>Imagenes</label>
+                            <div>
+                                <input
+                                    type='text'
+                                    placeholder='Ingrese url de imagen'
+                                    name='image'
+                                    value={imagen1}
+                                    onChange={(e) => setImagen1(e.target.value)}
+                                />
+                                <input
+                                    type='text'
+                                    placeholder='Ingrese url de imagen'
+                                    name='image'
+                                    value={imagen2}
+                                    onChange={(e) => setImagen2(e.target.value)}
+                                />
+                                <input
+                                    type='text'
+                                    placeholder='Ingrese url de imagen'
+                                    name='image'
+                                    value={imagen3}
+                                    onChange={(e) => setImagen3(e.target.value)}
+                                />
+                                <input
+                                    type='text'
+                                    placeholder='Ingrese url de imagen'
+                                    name='image'
+                                    value={imagen4}
+                                    onChange={(e) => setImagen4(e.target.value)}
+                                />
+                            </div>
+                            {errors.imagenes && <p className='mensajeError'>{errors.imagenes}</p>}
                         </section>
                         <section>
                             <div>

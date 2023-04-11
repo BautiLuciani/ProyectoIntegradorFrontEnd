@@ -7,7 +7,8 @@ const getProductos = async()=>{
         id: prod.id,
         titulo: prod.titulo,
         categoria: prod.categoria,
-        ciudad: prod.ciudad
+        ciudad: prod.ciudad,
+        description: prod.description
     }))
 
     return productos;
