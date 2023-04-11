@@ -1,22 +1,17 @@
-import React, { useEffect } from 'react'
+import React from 'react'
 import Header from '../../ui/components/Header'
 import Footer from '../../ui/components/Footer'
-import { useLocation, useNavigate } from 'react-router-dom'
-import useFetchUsuarios from '../../hooks/useFetchUsuarios'
-import { useJwt } from 'react-jwt'
+import { useNavigate } from 'react-router-dom'
 import useFetchReservaId from '../../hooks/useFetchReservaId'
 import ReservaCard from '../components/ReservaCard'
 
 const MisReservasPage = () => {
 
-    const location = useLocation()
-    const {nombre, apellido} = location.state 
-
-    const {usuarios} = useFetchUsuarios()
-    const id = usuarios.filter(usu => usu.first_name == nombre && usu.last_name == apellido)
+    const usuarioLS = localStorage.getItem(`user`)
+    const usuarioData = JSON.parse(usuarioLS)
+    const {id} = usuarioData
     
-    const { reserva, loading } = useFetchReservaId(106)
-    console.log(reserva);
+    const { reserva, loading } = useFetchReservaId(id)
     
     const navigate = useNavigate()
 

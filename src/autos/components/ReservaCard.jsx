@@ -4,7 +4,6 @@ import useFetchImagenes from '../../hooks/useFetchImagenes'
 const ReservaCard = ({ id, fechaInicial, fechaFinal, titulo, categoria, ciudad, productoId }) => {
 
     const { imagenes } = useFetchImagenes()
-    console.log(imagenes);
 
     return (
         <div className="auto-card">

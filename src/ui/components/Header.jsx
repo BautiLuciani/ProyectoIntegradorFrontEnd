@@ -50,11 +50,16 @@ const Header = () => {
     }
   }, []);
 
-
+  const localStorageUser = ()=> {
+    const usuarioActual = usuarioDatos[0]
+    const usuarioLS = JSON.stringify(usuarioActual)
+    localStorage.setItem(`user`, usuarioLS)
+  }
 
   const handleLogout = () => {
     document.cookie = 'jwt=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;';
     setLoggedIn(false);
+    localStorage.removeItem("user");
 
     navigate('/', {
       replace: true
@@ -120,7 +125,7 @@ const Header = () => {
               <div>
                 <Link
                   to={'/misreservas'}
-                  state={{nombre, apellido}}
+                  onClick={localStorageUser}
                 >
                   Mis Reservas
                 </Link>
