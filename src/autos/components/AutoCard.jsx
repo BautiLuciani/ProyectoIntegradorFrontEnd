@@ -14,7 +14,7 @@ const AutoCard = ({ id, titulo, ciudad, categoria }) => {
       <div>
         {
           imagenes.map(img => {
-            if ((img.producto.id == id) && (img.titulo.includes("Imagen Principal"))) {
+            if ((img.producto.id == id) && (img.titulo?.includes("Imagen Principal"))) {
               return <img key={img.id} src={img.url} alt={img.titulo} />
             }
           })

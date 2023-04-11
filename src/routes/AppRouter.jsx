@@ -12,6 +12,7 @@ import ReservasPage from '../autos/pages/ReservasPage'
 import AdminPage from '../autos/pages/AdminPage'
 import AdminExitosaPage from '../autos/pages/AdminExitosaPage'
 import FiltroCiudadFecha from '../autos/pages/FiltroCiudadFecha'
+import MisReservasPage from '../autos/pages/MisReservasPage'
 
 const AppRouter = () => {
   return (
@@ -28,6 +29,8 @@ const AppRouter = () => {
         <Route path='producto/ciudadFecha' element={<FiltroCiudadFecha/>} />
 
         <Route path="producto/categoria" element={<FiltroCategoria/>} />
+
+        <Route path='misreservas' element={<MisReservasPage/>} />
 
         <Route path='producto/:id/reserva' element={<ReservasPage/>}/>
 

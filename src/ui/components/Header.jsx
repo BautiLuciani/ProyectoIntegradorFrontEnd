@@ -51,6 +51,7 @@ const Header = () => {
   }, []);
 
 
+
   const handleLogout = () => {
     document.cookie = 'jwt=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;';
     setLoggedIn(false);
@@ -112,6 +113,16 @@ const Header = () => {
                   to={'/administracion'}
                 >
                   Administracion
+                </Link>
+              </div>
+            }
+            {(role == 'ROLE_USER') &&
+              <div>
+                <Link
+                  to={'/misreservas'}
+                  state={{nombre, apellido}}
+                >
+                  Mis Reservas
                 </Link>
               </div>
             }
