@@ -1,0 +1,42 @@
+.product-reserve{
+  margin-bottom: 50px;
+}
+
+.mis-reservas{
+  background-color: #31363f;
+  color: #f0572d;
+  padding: 20px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.mis-reservas button{
+  background-color: #f0572d;
+  color: #31363f;
+  padding: 10px;
+  border-radius: 8px;
+}
+
+.mis-reservas p{
+  margin-top: 10px;
+}
+
+.mis-reservas button:hover{
+  color: #f0572d;
+  background-color: #ffffff;
+  padding: 10px;
+  border-radius: 8px;
+}
+
+.product-reserve img{
+  width: 500px;
+  object-fit: cover;
+}
+
+@media(max-width: 500px){
+  .product-reserve{
+     display: flex;
+     flex-direction: column;
+  }
+}
+

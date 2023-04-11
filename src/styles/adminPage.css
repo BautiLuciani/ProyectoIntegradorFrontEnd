@@ -16,7 +16,7 @@
 
 .admin-page{
   background-color: #EEEEF1;
-  height: 80vh;
+  height: 85vh;
   padding: 40px;
 }
 
@@ -35,41 +35,37 @@
   border-radius: 8px;
   background-color: #ffffff;
   box-shadow: 0px 2px 3px 3px rgba(141, 140, 140, 0.5);
-
 }
 
-.principal-info{
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  margin: auto;
-}
-
-.principal-info div{
+.form section div{
   display: flex;
   flex-direction: column;
-  margin-left: 10px;
+  display: flex;
+  margin: auto;
   margin-bottom: 20px;
 }
 
-.principal-info section div input{
+.form .principal-info div input{
   width: 650px;
   height: 30px;
-  border-radius: 8px;
   padding: 8px;
-  margin-top: 5px;
+  margin-top: 10px;
+  border-radius: 8px;
 }
 
-.principal-info section div select{
-  width: 650px;
-  height: 30px;
-  border-radius: 8px;
-  margin-top: 5px;
+.form .principal-info{
+  display: grid;
+  grid-template-columns: 1fr 1fr;
 }
+
 
 .description-section{
   display: flex;
-  flex-direction: column  ;
+  justify-content: center;
+  margin: auto;
   padding: 10px;
+  flex-direction: column;
+  text-align: center;
 }
 
 .description-section input{
@@ -77,6 +73,7 @@
   height: 100px;
   padding: 10px;
   margin-top: 10px;
+  border-radius: 10px;
 }
 
 
@@ -92,4 +89,42 @@
 .add-product:hover{
   background-color: #31363f;
   color: #f0572d; 
+}
+
+@media(max-width: 500px){
+
+  .admin-page h3{
+    display: flex;
+    margin: auto;
+    justify-content: center;
+    text-align: center;
+  }
+
+
+  .form .principal-info{
+    display: flex;
+    flex-direction: column;
+  }
+
+  .form .principal-info div input{
+    width: 300px;
+  }
+
+  .admin-page{  
+    height: 100vh;
+    margin-bottom: 50px;
+  }
+}
+
+@media(min-width: 700px) and (max-width: 1000px){
+  .form .principal-info{
+    display: flex;
+    flex-direction: column;
+  }
+
+  .admin-page{
+    height: 100vh;
+    margin-bottom: 50px;
+  }
+
 }

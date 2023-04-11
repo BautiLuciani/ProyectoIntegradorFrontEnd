@@ -13,7 +13,7 @@
 .logo {
   display: flex;
   margin: 15px;
-  margin-top: 30px;
+  /* margin-top: 50px; */
   height: 60px;
   text-decoration: none;
 }
@@ -82,12 +82,8 @@
     justify-content: space-between;
   }
    
-  .header img{
-    height: 60px;
-    width: 80px;
-    object-fit: cover;
-    border-radius: 8px;
-    /* margin-top: 10px; */
+  .logo{
+    margin-top: 10px;
   }
 
 

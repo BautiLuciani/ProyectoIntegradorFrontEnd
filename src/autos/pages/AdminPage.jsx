@@ -6,6 +6,7 @@ import useFetchProvincias from '../../hooks/useFetchProvincias'
 import useFetchCategorias from '../../hooks/useFetchCategorias'
 import validateProduct from '../data/validateProduct'
 import '../../styles/adminPage.css'
+import { useEffect } from 'react'
 
 const AdminPage = () => {
 
@@ -14,18 +15,23 @@ const AdminPage = () => {
     const [categoria, setCategoria] = useState()
     const [ciudad, setCiudad] = useState()
     const [imagen, setImagen] = useState()
+    const [imagenes, setImagenes] = useState([])
     const [descripcion, setDescripcion] = useState("")
+    const [id, setId] = useState()
+    const [idGenerados, setIdGenerados] = useState()
     const [productoError, setProductoError] = useState(false)
     const { provincias } = useFetchProvincias()
     const { categorias } = useFetchCategorias()
 
-    console.log(tituloProducto);
-    console.log(categoria);
-    console.log(ciudad);
-    console.log(imagen);
-    console.log(descripcion);
+    const generarNumero = () => {
+        let nuevoId;
+        do {
+            nuevoId = Math.floor(Math.random() * 1000) + 1;
+        } while (idGenerados?.includes(nuevoId));
 
-
+        setId(nuevoId);
+        setIdGenerados([...idGenerados, nuevoId]);
+    };
 
     const onHandleSubmit = async (e) => {
         e.preventDefault()
@@ -35,37 +41,50 @@ const AdminPage = () => {
             return;
         }
 
-        try {
-            const response = await fetch('http://ec2-3-133-79-117.us-east-2.compute.amazonaws.com:8085/producto/agregar', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify({
-                    id: 0,
-                    titulo: tituloProducto,
-                    categoria: {
-                        id: 0,
-                        titulo: categoria,
-                        descripcion: descripcion,
-                        urlImagen: ""
-                    },
-                    ciudad: {
-                        id: 0,
-                        titulo: ciudad
-                    }
-                })
-            });
-            if (response.ok) {
-                navegar('/administracion/creadook')
-            } else if (response.status === 500) {
-                setProductoError(true)
-            } else {
-                throw new Error('Error al crear producto');
-            }
-        } catch (e) {
-            console.error(e)
-        }
+        const request1 = await fetch('http://ec2-3-133-79-117.us-east-2.compute.amazonaws.com:8085/producto/agregar', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                id: id,
+                tituloProducto: tituloProducto,
+                tituloCiudad: ciudad,
+                tituloCategoria: categoria
+            })
+        });
+
+        const request2 = await fetch('http://ec2-3-133-79-117.us-east-2.compute.amazonaws.com:8085/imagen/agregar', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                idProducto: id,
+                titulo: `Imagen Principal ${tituloProducto}`,
+                url: imagen
+            })
+        });
+
+        const request3 = await fetch('http://ec2-3-133-79-117.us-east-2.compute.amazonaws.com:8085/imagen/agregarVarias', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify([{
+                idProducto: id,
+                titulo: tituloProducto,
+                url: imagenes
+            }])
+        });
+
+        Promise.all([request1, request2, request3])
+        .then((responses) => {
+            navigate('/administracion/creadook')
+        })
+        .catch((error) => {
+          setProductoError(true)
+        });
     }
 
     const navigate = useNavigate()
@@ -90,52 +109,53 @@ const AdminPage = () => {
                 <div className='form'>
                     <form onSubmit={onHandleSubmit}>
                         <section className='principal-info'>
-                            <section>
-                                <div>
-                                    <label>Nombre del producto</label>
-                                    <input
-                                        type='text'
-                                        placeholder='Ingrese nombre del producto'
-                                        name='nombre'
-                                        value={tituloProducto}
-                                        onChange={(e) => setTituloProducto(e.target.value)}
-                                    />
-                                    {errors.nombre && <p className='mensajeError'>{errors.nombre}</p>}
-                                </div>
-                                <div>
-                                    <label>Imagen</label>
-                                    <input className='add-image'
-                                        type='file'
-                                        name='image'
-                                        accept='image/*'
-                                        onChange={(e) => setImagen(e.target.files[0])}
-                                    />
-                                    {errors.imagen && <p className='mensajeError'>{errors.imagen}</p>}
-                                </div>
-                            </section>
-                            <section>
-                                <div>
-                                    <label>Ciudad</label>
-                                    <select name="provincias" value={ciudad} onChange={(e) => setCiudad(e.target.value)}>
-                                        {provincias.map(prov => (
-                                            <option key={prov.id} value={prov.titulo}>{prov.titulo}</option>
-                                        ))}
-                                    </select>   
-                                    {errors.ciudad && <p className='mensajeError'>{errors.ciudad}</p>}
-                                </div>
-                                <div>
-                                    <label>Categoria</label>
-                                    <select name="categoria" value={categoria} onChange={(e) => setCategoria(e.target.value)}>
-                                        {categorias.map(cate => (
-                                            <option key={cate.id} value={cate.titulo}>{cate.titulo}</option>
-                                        ))}
-                                    </select>
-                                    {errors.categoria && <p className='mensajeError'>{errors.categoria}</p>}
-                                </div>
-                            </section>
+                            <div>
+                                <label>Nombre del producto</label>
+                                <input
+                                    type='text'
+                                    placeholder='Ingrese nombre del producto'
+                                    name='nombre'
+                                    value={tituloProducto}
+                                    onChange={(e) => setTituloProducto(e.target.value)}
+                                />
+                                {errors.nombre && <p className='mensajeError'>{errors.nombre}</p>}
+                            </div>
+                            <div>
+                                <label>Imagen</label>
+                                <input
+                                    type='text'
+                                    placeholder='Ingrese url de imagen'
+                                    name='image'
+                                    value={imagen}
+                                    onChange={(e) => setImagen(e.target.value)}
+                                />
+                                {errors.imagen && <p className='mensajeError'>{errors.imagen}</p>}
+                            </div>
+                            <div>
+                                <label>Imagenes</label>
+                                <input
+                                    type='text'
+                                    placeholder='Ingrese url de imagen'
+                                    name='image'
+                                    value={imagenes}
+                                    onChange={(e) => setImagenes(...imagenes, e.target.value)}
+                                />
+                                {errors.imagen && <p className='mensajeError'>{errors.imagen}</p>}
+                            </div>
+                            <div>
+                                <label>Imagenes</label>
+                                <input
+                                    type='text'
+                                    placeholder='Ingrese url de imagen'
+                                    name='image'
+                                    value={imagenes}
+                                    onChange={(e) => setImagenes(...imagenes, e.target.value)}
+                                />
+                                {errors.imagen && <p className='mensajeError'>{errors.imagen}</p>}
+                            </div>
                         </section>
-                        <section>
-                            <div className='description-section'>
+                        <section  className='description-section'>
+                            <div>
                                 <label>Descripcion</label>
                                 <input
                                     type='text-area'
@@ -149,7 +169,7 @@ const AdminPage = () => {
                             </div>
                         </section>
                         {productoError && <p className='mensajeError'>No se pudo crear el producto. Por favor, vuelva a intentarlo</p>}
-                        <button className='add-product'>Crear Producto</button>
+                        <button className='add-product' onClick={generarNumero}>Crear Producto</button>
                     </form>
                 </div>
             </div>

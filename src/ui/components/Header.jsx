@@ -51,6 +51,7 @@ const Header = () => {
   }, []);
 
 
+
   const handleLogout = () => {
     document.cookie = 'jwt=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;';
     setLoggedIn(false);
@@ -64,8 +65,8 @@ const Header = () => {
   const primeraLetraApellido = apellido?.toUpperCase().charAt(0)
 
   const nombreMayuscula = () => {
-    const restoNombre = nombre.slice(1)
-    const restoApellido = apellido.slice(1)
+    const restoNombre = nombre?.slice(1)
+    const restoApellido = apellido?.slice(1)
     const nombreCompleto = primeraLetraNombre + restoNombre
     const apellidoCompleto = primeraLetraApellido + restoApellido
     return `${nombreCompleto} ${apellidoCompleto}`
@@ -100,7 +101,7 @@ const Header = () => {
       }>
       <NavLink to="/home" className="logo">
         <img src="/assets/logo 1.png" alt="Logo DB" />
-        <p className="slogan">Sentite como en tu hogar</p>
+        <p className="slogan">Viaja seguro</p>
       </NavLink>
 
       <div className="usuario">
@@ -112,6 +113,16 @@ const Header = () => {
                   to={'/administracion'}
                 >
                   Administracion
+                </Link>
+              </div>
+            }
+            {(role == 'ROLE_USER') &&
+              <div>
+                <Link
+                  to={'/misreservas'}
+                  state={{nombre, apellido}}
+                >
+                  Mis Reservas
                 </Link>
               </div>
             }
