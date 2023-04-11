@@ -1,12 +1,14 @@
 .open-galery-button {
-  padding: 4px;
+  padding: 8px;
   height: 30px;
   border-width: 0px;
   border-radius: 8px;
   background-color: #F0572D;
-  position: absolute;
-  right: 440px;
-  top: 850px;
+  /* margin: auto; */
+  /* display: flex; */
+  position: relative;
+  bottom: 50px;
+  left: 1010px;
 }
 
 .open-galery-button:hover {
@@ -42,7 +44,12 @@
 
 @media (max-width: 500px) {
   .open-galery-button{
-    right: 20px;
-    top: 730px;
+    display: none;
+  }
+}
+
+@media(min-width: 700px) and (max-width: 1000px){
+  .open-galery-button{
+    display: none;
   }
 }
